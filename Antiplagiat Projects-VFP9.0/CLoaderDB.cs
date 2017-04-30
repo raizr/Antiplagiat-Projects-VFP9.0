@@ -27,6 +27,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     Path.GetFileName(FileName), oleDbConnection);
                 DataSet ds = new DataSet();
                 DataAdapter.Fill(ds);
+                
                 AllTables = ds.Tables[0];
                 //string mySQL = "USE ?";
                 //OleDbCommand query = new OleDbCommand(mySQL, oleDbConnection);
@@ -48,11 +49,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
             if (oleDbConnection.State == ConnectionState.Open) {
                 //AllTables = oleDbConnection.GetSchema("Tables", new string[] { null, null, null, "TABLE" });
-
-
-                OleDbDataAdapter DataAdapter = new OleDbDataAdapter("select * from " +
+                OleDbDataAdapter DataAdapter = new OleDbDataAdapter();
+                if (FileName.Substring(FileName.Length-3, 3) == "scx") {
+                    DataAdapter = new OleDbDataAdapter("select Platform, Uniqueid, Class,Baseclass, Objname, Properties, Methods from " +
                     Path.GetFileName(FileName), oleDbConnection);
+                } else {
+                    DataAdapter = new OleDbDataAdapter("select * from " +
+                    Path.GetFileName(FileName), oleDbConnection);
+                }
                 DataSet ds = new DataSet();
+                Console.WriteLine(ds.Tables.Count);
                 DataAdapter.Fill(ds);
                 oleDbConnection.Close();
                 return ds.Tables[0];

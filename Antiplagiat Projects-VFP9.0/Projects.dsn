@@ -1,0 +1,15 @@
+[ODBC]
+DRIVER=Driver do Microsoft dBase (*.dbf)
+UID=admin
+UserCommitSync=Yes
+Threads=3
+Statistics=0
+SafeTransactions=0
+PageTimeout=5
+MaxScanRows=8
+MaxBufferSize=2048
+FIL=dBase 5.0
+DriverId=533
+Deleted=0
+DefaultDir=C:\Users\Denis\Dropbox\VKR\Antiplagiat Projects-VFP9.0\Antiplagiat Projects-VFP9.0
+CollatingSequence=ASCII
