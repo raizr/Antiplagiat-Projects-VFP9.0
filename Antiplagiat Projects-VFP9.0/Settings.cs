@@ -11,32 +11,32 @@ using System.IO;
 
 namespace Antiplagiat_Projects_VFP9._0 {
     public partial class Settings : Form {
-        public Settings() {
+        public Settings(CManager ptr) {
             InitializeComponent();
-            
+            manager = ptr;
+            textBoxPathDBKP.Text = Properties.Settings.Default.BDPath;
+            Console.WriteLine(Properties.Settings.Default.BDPath);
         }
-        private Form1 main;
+
+        private CManager manager;
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
-                if (e.Node.Text == "База КП") {
-                    dataGridViewKP.Enabled = true;
-                    buttonAddKP.Enabled = true;
-                    buttonDelProject.Enabled = true;
-                    buttonOpenDBProjects.Enabled = true;
-                    dataGridViewKP.Visible = true;
-                    buttonAddKP.Visible = true;
-                    buttonDelProject.Visible = true;
-                    buttonOpenDBProjects.Visible = true;
+            if (e.Node.Text == "База КП") {
+                dataGridViewKP.Enabled = true;
+                buttonAddKP.Enabled = true;
+                buttonDelProject.Enabled = true;
+                buttonOpenDBProjects.Enabled = true;
+                dataGridViewKP.Visible = true;
+                buttonAddKP.Visible = true;
+                buttonDelProject.Visible = true;
+                buttonOpenDBProjects.Visible = true;
                     
-                    if(dataGridViewKP.DataSource != null)
-                        ((DataTable)dataGridViewKP.DataSource).Clear();
-                    main = this.Owner as Form1;
-                    dataGridViewKP.DataSource = main.DBase.Load();
-                    dataGridViewKP.AutoResizeColumns(
-                        DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
-                
-
+                if(dataGridViewKP.DataSource != null)
+                    ((DataTable)dataGridViewKP.DataSource).Clear();
+                dataGridViewKP.DataSource = manager.DBase.Load();
+                dataGridViewKP.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
             } else {
-
+                manager.DBase.Save();
                 dataGridViewKP.Enabled = false;
                 buttonAddKP.Enabled = false;
                 buttonDelProject.Enabled = false;
@@ -57,7 +57,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e) {
-            main.DBase.Save();
+            manager.DBase.Save();
+            Properties.Settings.Default.BDPath = textBoxPathDBKP.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void buttonDelProject_Click(object sender, EventArgs e) {
@@ -66,12 +68,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     dataGridViewKP.Rows.RemoveAt(dataGridViewKP.SelectedRows[0].Index);
                 }
             }
-            main.DBase.Save();
+            manager.DBase.Save();
         }
 
         private void buttonOpenDBProjects_Click(object sender, EventArgs e) {
             if (folderBrowserDialogKP.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 textBoxPathDBKP.Text = folderBrowserDialogKP.SelectedPath;
+                
             }
         }
 
@@ -80,6 +83,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 MessageBox.Show("Укажите путь к папкам КП");
             }else {
                 CVFPProject VFProject = new CVFPProject();
+                Properties.Settings.Default.Save(); 
                 string[] Projects = Directory.GetFiles(folderBrowserDialogKP.SelectedPath,
                                                          "*.pjx",
                                                          SearchOption.AllDirectories);
@@ -94,7 +98,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                              SearchOption.AllDirectories);
                     VFProject.Name = Path.GetFileName(Projects[i]);
                     VFProject.Open(TablesFullName, FormsFullName);
-                    main.DBase.SaveProject(VFProject, Projects[i]);
+                    manager.DBase.SaveProject(VFProject, Projects[i]);
                 }
                 dataGridViewKP.Refresh();
             }

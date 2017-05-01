@@ -8,7 +8,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
    public class CManager {
 
         private string PathConf;
-        private Stream ConfFile;
         public CVFPProject Project;
         public CDateBase DBase;
 
@@ -28,7 +27,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             string[] NameProject = Directory.GetFiles(PathPr,
                                                      "*.pjx",
                                                      SearchOption.AllDirectories);
-            Project.Name = Path.GetFileName(NameProject[0]);
+            Project.Name = NameProject[0];
             Project.Open(TablesFullName, FormsFullName);
             return Project.Name;
         }

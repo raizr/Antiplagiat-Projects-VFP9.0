@@ -49,6 +49,7 @@
     <Compile Include="CDateBase.cs" />
     <Compile Include="CLoaderDB.cs" />
     <Compile Include="CManager.cs" />
+    <Compile Include="CVerification.cs" />
     <Compile Include="CVFPProject.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
