@@ -81,24 +81,24 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private void buttonAddKP_Click(object sender, EventArgs e) {
             if(textBoxPathDBKP.Text.Length == 0) {
                 MessageBox.Show("Укажите путь к папкам КП");
-            }else {
-                CVFPProject VFProject = new CVFPProject();
+            } else {
                 Properties.Settings.Default.Save(); 
-                string[] Projects = Directory.GetFiles(folderBrowserDialogKP.SelectedPath,
-                                                         "*.pjx",
+                string[] Projects = Directory.GetFiles(textBoxPathDBKP.Text,"*.pjx",
                                                          SearchOption.AllDirectories);
                 string prjpath;
+                string[] TablesFullName;
+                string[] FormsFullName;
                 for (int i = 0; i < Projects.Length; i++) {
-                    prjpath = Path.GetDirectoryName(Projects[i]);
-                    string[] TablesFullName = Directory.GetFiles(prjpath,
-                                                                 "*.dbf",
+                    if (manager.DBase.CheckProject(Projects[i])) {
+                        prjpath = Path.GetDirectoryName(Projects[i]);
+                        TablesFullName = Directory.GetFiles(prjpath, "*.dbf",
+                                                                     SearchOption.AllDirectories);
+                        FormsFullName = Directory.GetFiles(prjpath, "*.scx",
                                                                  SearchOption.AllDirectories);
-                    string[] FormsFullName = Directory.GetFiles(prjpath,
-                                                             "*.scx",
-                                                             SearchOption.AllDirectories);
-                    VFProject.Name = Path.GetFileName(Projects[i]);
-                    VFProject.Open(TablesFullName, FormsFullName);
-                    manager.DBase.SaveProject(VFProject, Projects[i]);
+                        manager.ReferenceProject.Name = Path.GetFileName(Projects[i]);
+                        manager.ReferenceProject.Open(TablesFullName, FormsFullName);
+                        manager.DBase.SaveProject(manager.ReferenceProject, Projects[i]);
+                    }
                 }
                 dataGridViewKP.Refresh();
             }

@@ -14,13 +14,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public Form1(CManager ptr) {
             InitializeComponent();
             manager = ptr;
+            manager.DBase.Load();
         }
         private CManager manager;
         private void button1_Click(object sender, EventArgs e) {
             if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 label1.Text = Path.GetFileName(manager.OpenProject(folderBrowserDialog1.SelectedPath));
-                string[] TablesName = manager.Project.TablesFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
-                string[] FormsName = manager.Project.FormsFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
+                string[] TablesName = manager.InspectProject.TablesFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
+                string[] FormsName = manager.InspectProject.FormsFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
                 treeViewProject.Nodes[0].Nodes.Clear();
                 treeViewProject.Nodes[1].Nodes.Clear();
                 for (int i = 0; i< TablesName.Length; i++) {
@@ -31,6 +32,22 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     treeViewProject.Nodes[1].Nodes.Add(FormsName[i].ToString());
                 }
                 treeViewProject.Nodes[1].Expand();
+                
+                List<SCheckInfo> OpenInfo = manager.CheckOpenList;
+                for (int i = 0; i< OpenInfo.Count; i++) {
+                    if (OpenInfo[i].IsTable) {
+                        treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
+                            OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
+                            "\n" + OpenInfo[i].FileName;
+                    } else {
+                        treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].ToolTipText =
+                            OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
+                            "\n" + OpenInfo[i].FileName;
+                    }
+                        
+                }
             }
 
         }
@@ -40,9 +57,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 listView1.Items.Clear();
                 if (e.Node.Parent.Name == treeViewProject.Nodes[0].Name) {
                     dataGridView1.Columns.Clear();
-                    dataGridView1.DataSource = manager.Project.TablesTables[e.Node.Index];
-                    string[] columns = manager.Project.GetColumnsName(e.Node.Index);
-                    string[] coltype = manager.Project.GetColumnsType(e.Node.Index);
+                    dataGridView1.DataSource = manager.InspectProject.TablesTables[e.Node.Index];
+                    string[] columns = manager.InspectProject.GetColumnsName(e.Node.Index);
+                    string[] coltype = manager.InspectProject.GetColumnsType(e.Node.Index);
                     for(int i = 0; i < columns.Count(); i++) {
                         listView1.Items.Add(columns[i]);
                         listView1.Items[i].SubItems.Add(coltype[i]);
@@ -50,9 +67,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
                 if (e.Node.Parent.Name == treeViewProject.Nodes[1].Name) {
                     dataGridView1.Columns.Clear();
-                    dataGridView1.DataSource = manager.Project.FormTables[e.Node.Index];
-                    string[] columns = manager.Project.GetFormObjectsType(e.Node.Index);
-                    string[] properties = manager.Project.GetFormObjectsProperties(e.Node.Index);
+                    dataGridView1.DataSource = manager.InspectProject.FormTables[e.Node.Index];
+                    string[] columns = manager.InspectProject.GetFormObjectsType(e.Node.Index);
+                    string[] properties = manager.InspectProject.GetFormObjectsProperties(e.Node.Index);
                     for (int i = 0; i < columns.Count(); i++) {
                         listView1.Items.Add(columns[i]);
                         listView1.Items[i].SubItems.Add(properties[i]);
@@ -80,6 +97,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private void button3_Click(object sender, EventArgs e) {
             dataGridView1.DataSource = manager.DBase.GetProject(0);
             
+        }
+
+        private void buttonCheck_Click(object sender, EventArgs e) {
+            manager.CheckProject();
         }
     }
 }

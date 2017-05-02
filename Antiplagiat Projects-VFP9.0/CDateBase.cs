@@ -9,7 +9,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public class CDateBase {
 
         public DataTable Projects; // таблица всех проектов
-        private DataTable FilesProjectHash; // таблиц файлов одного проекта с их хэшами
+        public DataTable FilesProjectHash; // таблиц файлов одного проекта с их хэшами
         public CDateBase() {
             Projects = new DataTable("Projects Path");
 
@@ -28,7 +28,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             FilesProjectHash = new DataTable("Project Hash File");
             column = new DataColumn();
             column.DataType = System.Type.GetType("System.String");
-            column.ColumnName = "PathFile";
+            column.ColumnName = "FileName";
             FilesProjectHash.Columns.Add(column);
             
             column = new DataColumn();
@@ -55,50 +55,75 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public DataTable GetProject(int index) {
             if(Projects.Rows.Count > 0) {
                 DataRow row = Projects.Rows[index];
-                string s = row["Path"].ToString();
+                string s = row["Путь к проекту"].ToString();
                 FilesProjectHash.ReadXml(s.Substring(0, s.Length - 4) + ".xml");
             } else {
                 Load();
                 DataRow row = Projects.Rows[index];
-                string s = row["Path"].ToString();
+                string s = row["Путь к проекту"].ToString();
                 FilesProjectHash.ReadXml(s.Substring(0, s.Length - 4) + ".xml");
             }
+            return FilesProjectHash;
+        }
+
+        public bool CheckProject(string Name) {
+            for (int i = 0; i < Projects.Rows.Count; i++) {
+                if (Projects.Rows[i][1].ToString() == Name) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public DataTable GenerateProjectTable(CVFPProject project) {
+            DataRow newRow;
+            FilesProjectHash.Clear();
+            // Сохранение путей файлов таблиц и их хэшей
+            for (int i = 0; i < project.TablesFullName.Length; i++) {
+                newRow = FilesProjectHash.NewRow();
+                newRow["FileName"] = Path.GetFileName(project.TablesFullName[i]); 
+                newRow["Hash"] = project.HashTables[i];
+                FilesProjectHash.Rows.Add(newRow);
+            }
+            // Сохранение путей файлов форм и их хэшей
+            for (int i = 0; i < project.FormsFullName.Length; i++) {
+                newRow = FilesProjectHash.NewRow();
+                newRow["FileName"] = Path.GetFileName(project.FormsFullName[i]);
+                newRow["Hash"] = project.HashForms[i];
+                FilesProjectHash.Rows.Add(newRow);
+            }
+            FilesProjectHash.WriteXml(project.Name.Substring(0, project.Name.Length - 4) + ".xml");
             return FilesProjectHash;
         }
 
         public void SaveProject(CVFPProject project, string path) {
             DataRow newRow;
             Console.WriteLine(path);
-            bool check = true;
-            for(int i = 0; i< Projects.Rows.Count; i++) {
-                if (Projects.Rows[i][1].ToString() == path) {
-                    check = false;
-                    break;
-                }       
-            }
-            if (check) {
+            if (CheckProject(path)) {
+                FilesProjectHash.Clear();
                 newRow = Projects.NewRow();
                 newRow[0] = "";
                 newRow[1] = path;
                 Projects.Rows.Add(newRow);
-                FilesProjectHash.WriteXml(path.Substring(0, path.Length - 4) + ".xml");
+                
                 // Сохранение путей файлов таблиц и их хэшей
                 for (int i = 0; i < project.TablesFullName.Length; i++) {
                     newRow = FilesProjectHash.NewRow();
-                    newRow["PathFile"] = project.TablesFullName[i];
+                    newRow["FileName"] = Path.GetFileName(project.TablesFullName[i]);
                     newRow["Hash"] = project.HashTables[i];
                     FilesProjectHash.Rows.Add(newRow);
                 }
                 // Сохранение путей файлов форм и их хэшей
                 for (int i = 0; i < project.FormsFullName.Length; i++) {
                     newRow = FilesProjectHash.NewRow();
-                    newRow["PathFile"] = project.FormsFullName[i];
+                    newRow["FileName"] = Path.GetFileName(project.FormsFullName[i]);
                     newRow["Hash"] = project.HashForms[i];
                     FilesProjectHash.Rows.Add(newRow);
                 }
-
+                FilesProjectHash.WriteXml(path.Substring(0, path.Length - 4) + ".xml");
+                FilesProjectHash.Clear();
                 Save();
-            }else {
+            } else {
                 Console.WriteLine("Этот проект уже сущесвует");
             }
             

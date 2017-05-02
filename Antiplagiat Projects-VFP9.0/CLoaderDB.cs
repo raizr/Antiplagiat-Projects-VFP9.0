@@ -20,21 +20,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                               oleDbConnection.ServerVersion, oleDbConnection.DataSource);
 
             if (oleDbConnection.State == ConnectionState.Open) {
-                //AllTables = oleDbConnection.GetSchema("Tables", new string[] { null, null, null, "TABLE" });
-                
-                
                 OleDbDataAdapter DataAdapter = new OleDbDataAdapter("select * from " +
                     Path.GetFileName(FileName), oleDbConnection);
                 DataSet ds = new DataSet();
                 DataAdapter.Fill(ds);
                 
                 AllTables = ds.Tables[0];
-                //string mySQL = "USE ?";
-                //OleDbCommand query = new OleDbCommand(mySQL, oleDbConnection);
-
-                //DA.SelectCommand = query;
-
-                //DA.Fill(AllTables);
 
                 oleDbConnection.Close();
             }
@@ -61,24 +52,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 Console.WriteLine(ds.Tables.Count);
                 DataAdapter.Fill(ds);
                 oleDbConnection.Close();
+
                 return ds.Tables[0];
-                //string mySQL = "USE ?";
-                //OleDbCommand query = new OleDbCommand(mySQL, oleDbConnection);
-
-                //DA.SelectCommand = query;
-
-                //DA.Fill(AllTables);
-
-
-            }else {
+            } else {
                 return null;
             }
         }
-
-        ~CLoaderDB() {
-
-        }
-
+        
         private OleDbConnection oleDbConnection;
         private DataTable AllTables = new DataTable();
         public DataTable Table

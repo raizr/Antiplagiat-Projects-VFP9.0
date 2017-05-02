@@ -91,27 +91,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         }
         
-        private void CreateSHA1Prj() {
-            hashTables = new string[tablesFullName.Length];
-            hashForms = new string[formsFullName.Length];
-            for (int i = 0; i < tablesFullName.Length; i++) {
-                FileStream stream = File.OpenRead(tablesFullName[i]);
-                byte[] hash = sha1.ComputeHash(stream);
-                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
-                hashTables[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
-                //Console.Write(HashTables[i]+"\n");
-            }
-            for (int i = 0; i < formsFullName.Length; i++) {
-                FileStream stream = File.OpenRead(formsFullName[i]);
-                byte[] hash = sha1.ComputeHash(stream);
-                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
-                hashForms[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
-            }
-            Console.WriteLine("Хэши таблиц: "+hashTables.Length+" "+ tablesFullName.Length);
-            Console.WriteLine("Хэши форм: " + hashForms.Length + " " + formsFullName.Length);
-
-        }
-
         public void Open(string[] TablesFullName, string[] FormsFullName) {
             tablesFullName = TablesFullName;
             formsFullName = FormsFullName;
@@ -157,6 +136,27 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 columnsType[j] = columnsType[j].Substring(length, columnsType[j].Length-length);
             }
             return columnsType;
+        }
+
+        private void CreateSHA1Prj() {
+            hashTables = new string[tablesFullName.Length];
+            hashForms = new string[formsFullName.Length];
+            for (int i = 0; i < tablesFullName.Length; i++) {
+                FileStream stream = File.OpenRead(tablesFullName[i]);
+                byte[] hash = sha1.ComputeHash(stream);
+                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
+                hashTables[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
+                //Console.Write(HashTables[i]+"\n");
+            }
+            for (int i = 0; i < formsFullName.Length; i++) {
+                FileStream stream = File.OpenRead(formsFullName[i]);
+                byte[] hash = sha1.ComputeHash(stream);
+                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
+                hashForms[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
+            }
+            Console.WriteLine("Хэши таблиц: " + hashTables.Length + " " + tablesFullName.Length);
+            Console.WriteLine("Хэши форм: " + hashForms.Length + " " + formsFullName.Length);
+
         }
 
         public string[] GetFormObjectsType(int FormTableIndex) {
