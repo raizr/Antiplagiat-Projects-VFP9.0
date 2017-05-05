@@ -15,7 +15,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public CDateBase DBase;
         private CVerification Verificator;
         public DataTable ViewTable;
-        public List<SCheckInfo> CheckOpenList;
+        public List<SCheckColumnInfo> CheckColumnList;
+        public bool[][] EqualColumnsInfo;
+        public List<SCheckCellInfo> CheckCellList;
         public CManager() {
             PathConf = Properties.Settings.Default.BDPath;
             InspectProject = new CVFPProject();
@@ -25,25 +27,41 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public string OpenProject(string PathPr) {
-            string[] TablesFullName = Directory.GetFiles(PathPr, "*.dbf",
+            /*string[] TablesFullName = Directory.GetFiles(PathPr, "*.dbf",
                                                          SearchOption.AllDirectories);
             string[] FormsFullName = Directory.GetFiles(PathPr, "*.scx",
-                                                     SearchOption.AllDirectories);
+                                                     SearchOption.AllDirectories);*/
             string[] NameProject = Directory.GetFiles(PathPr, "*.pjx",
                                                      SearchOption.AllDirectories);
-            InspectProject.Name = NameProject[0];
-            InspectProject.Open(TablesFullName, FormsFullName);
-            DataTable e = DBase.GenerateProjectTable(InspectProject);
-            CheckOpenList = Verificator.OpenCheck(e,
-                                    DBase.Projects);
-            foreach(SCheckInfo i in CheckOpenList) {
-                Console.WriteLine("№"+i.EqualNum+" "+i.FileName + " " + i.ProjectName+" "+i.StudentName);
+            InspectProject.Open(PathPr);
+            if (NameProject.Length == 0) {
+                Console.Write("Файл проекта отсутствует");
+                return null;
+            } else {
+                /*InspectProject.Name = NameProject[0];
+                InspectProject.Open(TablesFullName, FormsFullName);*/
+                //генерация файлов (имя файла, хэш-сумма)
+                DataTable e = DBase.GenerateProjectTable(InspectProject);
+                CheckColumnList = Verificator.OpenCheck(e,
+                                        DBase.Projects);
+                if (CheckColumnList != null)
+                    return InspectProject.Name;
+                else
+                    return "null";
             }
-            return InspectProject.Name;
+            
         }
 
-        public void CheckProject() {
-            
+        public bool[][] CheckProject() {
+            if (InspectProject.Name != null) {
+                EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
+                if (Verificator.ListCellInfo != null) {
+                    CheckCellList = Verificator.ListCellInfo;
+                }
+                return EqualColumnsInfo;
+            }
+            else
+                return null;
         }
 
         public void SaveOpenProjectToBD() {

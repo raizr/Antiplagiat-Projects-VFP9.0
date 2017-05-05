@@ -23,8 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("База КП");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Подсветка заимствованных элементов");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("База КП");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Подсветка заимствованных элементов");
             this.treeViewSettings = new System.Windows.Forms.TreeView();
             this.dataGridViewKP = new System.Windows.Forms.DataGridView();
             this.buttonOpenDBProjects = new System.Windows.Forms.Button();
@@ -39,23 +39,26 @@
             // 
             this.treeViewSettings.Location = new System.Drawing.Point(12, 12);
             this.treeViewSettings.Name = "treeViewSettings";
-            treeNode5.Name = "Узел0";
-            treeNode5.Text = "База КП";
-            treeNode6.Name = "Узел1";
-            treeNode6.Text = "Подсветка заимствованных элементов";
+            treeNode1.Name = "Узел0";
+            treeNode1.Text = "База КП";
+            treeNode2.Name = "Узел1";
+            treeNode2.Text = "Подсветка заимствованных элементов";
             this.treeViewSettings.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
+            treeNode1,
+            treeNode2});
             this.treeViewSettings.Size = new System.Drawing.Size(190, 389);
             this.treeViewSettings.TabIndex = 0;
             this.treeViewSettings.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // dataGridViewKP
             // 
+            this.dataGridViewKP.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridViewKP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewKP.Enabled = false;
+            this.dataGridViewKP.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridViewKP.Location = new System.Drawing.Point(208, 12);
             this.dataGridViewKP.Name = "dataGridViewKP";
+            this.dataGridViewKP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewKP.Size = new System.Drawing.Size(525, 305);
             this.dataGridViewKP.TabIndex = 1;
             this.dataGridViewKP.Visible = false;
@@ -114,7 +117,9 @@
             this.Controls.Add(this.buttonOpenDBProjects);
             this.Controls.Add(this.dataGridViewKP);
             this.Controls.Add(this.treeViewSettings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Settings";
+            this.ShowIcon = false;
             this.Text = "Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);

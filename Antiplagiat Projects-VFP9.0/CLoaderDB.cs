@@ -16,28 +16,26 @@ namespace Antiplagiat_Projects_VFP9._0 {
             oleDbConnection = new OleDbConnection("Provider=VFPOLEDB.1;"+
                                                   "Data Source=" + FileName);
             oleDbConnection.Open();
-            Console.WriteLine("ServerVersion: {0} \nDatabase: {1}",
+            /*Console.WriteLine("ServerVersion: {0} \nDatabase: {1}",
                               oleDbConnection.ServerVersion, oleDbConnection.DataSource);
-
+*/
             if (oleDbConnection.State == ConnectionState.Open) {
                 OleDbDataAdapter DataAdapter = new OleDbDataAdapter("select * from " +
                     Path.GetFileName(FileName), oleDbConnection);
                 DataSet ds = new DataSet();
                 DataAdapter.Fill(ds);
-                
                 AllTables = ds.Tables[0];
-
                 oleDbConnection.Close();
             }
         }
-
+        
         public DataTable OpenDB(string FileName) {
             oleDbConnection = new OleDbConnection("Provider=VFPOLEDB.1;" +
                                                  "Data Source=" + FileName);
             oleDbConnection.Open();
-            Console.WriteLine("ServerVersion: {0} \nDatabase: {1}",
+            /*Console.WriteLine("ServerVersion: {0} \nDatabase: {1}",
                               oleDbConnection.ServerVersion, oleDbConnection.DataSource);
-
+                              */
             if (oleDbConnection.State == ConnectionState.Open) {
                 //AllTables = oleDbConnection.GetSchema("Tables", new string[] { null, null, null, "TABLE" });
                 OleDbDataAdapter DataAdapter = new OleDbDataAdapter();
@@ -49,10 +47,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     Path.GetFileName(FileName), oleDbConnection);
                 }
                 DataSet ds = new DataSet();
-                Console.WriteLine(ds.Tables.Count);
                 DataAdapter.Fill(ds);
                 oleDbConnection.Close();
-
                 return ds.Tables[0];
             } else {
                 return null;

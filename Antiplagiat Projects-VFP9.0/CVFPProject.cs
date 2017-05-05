@@ -91,6 +91,28 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         }
         
+        public void Open(string Path) {
+            string[] TablesFullName = Directory.GetFiles(Path, "*.dbf",
+                                                         SearchOption.AllDirectories);
+            string[] FormsFullName = Directory.GetFiles(Path, "*.scx",
+                                                     SearchOption.AllDirectories);
+            string[] NameProject = Directory.GetFiles(Path, "*.pjx",
+                                                     SearchOption.AllDirectories);
+            Name = NameProject[0];
+            tablesFullName = TablesFullName;
+            formsFullName = FormsFullName;
+            tablesTables = new DataTable[tablesFullName.Length];
+            formTables = new DataTable[formsFullName.Length];
+
+            for (int i = 0; i < tablesFullName.Length; i++) {
+                OpenTables(i);
+            }
+            for (int i = 0; i < formsFullName.Length; i++) {
+                OpenForms(i);
+            }
+            CreateSHA1Prj();
+        }
+
         public void Open(string[] TablesFullName, string[] FormsFullName) {
             tablesFullName = TablesFullName;
             formsFullName = FormsFullName;
