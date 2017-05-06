@@ -13,11 +13,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public CVFPProject InspectProject;
         public CVFPProject ReferenceProject;
         public CDateBase DBase;
-        private CVerification Verificator;
+        public CVerification Verificator;
         public DataTable ViewTable;
         public List<SCheckColumnInfo> CheckColumnList;
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
+
         public CManager() {
             PathConf = Properties.Settings.Default.BDPath;
             InspectProject = new CVFPProject();
@@ -57,6 +58,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
                 if (Verificator.ListCellInfo != null) {
                     CheckCellList = Verificator.ListCellInfo;
+                    //Console.WriteLine(InspectProject.TablesTables.Length);
                 }
                 return EqualColumnsInfo;
             }
@@ -67,7 +69,5 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public void SaveOpenProjectToBD() {
             DBase.SaveProject(InspectProject, InspectProject.Name);
         }
-
-
     }
 }

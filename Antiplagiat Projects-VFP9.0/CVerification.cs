@@ -32,6 +32,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private List<SCheckColumnInfo> ListColumnInfo;
         public List<SCheckCellInfo> ListCellInfo;
 
+
         //Проверка при открытии по именам файлов и их хэш-суммам
         public List<SCheckColumnInfo> OpenCheck(DataTable InspectProject,
                                      DataTable Projects) {
@@ -59,24 +60,26 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             if (ReferenceTable.Rows[j][0].ToString() == InspectProject.Rows[k][0].ToString() ||
                                 // ... по хэш-сумме
                                 ReferenceTable.Rows[j][1].ToString() == InspectProject.Rows[k][1].ToString()) {
-                                SCheckColumnInfo Info = new SCheckColumnInfo();
-                                string pname = InspectProject.Rows[k][0].ToString();
-                                if (pname.Substring(pname.Length - 3, 3) == "dbf") {
-                                    Info.EqualNum = t++;
-                                    Info.IsTable = true;
-                                } else {
-                                    if(pname.Substring(pname.Length - 3, 3) == "scx") {
-                                        Info.EqualNum = f++;
-                                        Info.IsTable = false;
+                                List<SCheckColumnInfo> find = ListColumnInfo.FindAll(x => x.EqualNum == t);
+                                if (find.Count == 0) {
+                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                    string pname = InspectProject.Rows[k][0].ToString();
+                                    if (pname.Substring(pname.Length - 3, 3) == "dbf") {
+                                        Info.EqualNum = t++;
+                                        Info.IsTable = true;
+                                    } else {
+                                        if (pname.Substring(pname.Length - 3, 3) == "scx") {
+                                            Info.EqualNum = f++;
+                                            Info.IsTable = false;
+                                        }
+
                                     }
-                                    
+                                    Info.ProjectName = cell;
+                                    Info.StudentName = Projects.Rows[i][0].ToString();
+                                    Info.FileName = ReferenceTable.Rows[j][0].ToString();
+                                    Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                    ListColumnInfo.Add(Info);
                                 }
-                                Info.ProjectName = cell;
-                                Info.StudentName = Projects.Rows[i][0].ToString();
-                                Info.FileName = ReferenceTable.Rows[j][0].ToString();
-                                Info.Hash = ReferenceTable.Rows[j][1].ToString();
-                                ListColumnInfo.Add(Info);
-                                
                             }
                         }
                     }
@@ -84,7 +87,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
             }
             catch (System.IO.FileNotFoundException e) {
-                Console.WriteLine("\""+e.FileName + "\" не найден");
+                Console.WriteLine("\"" + e.FileName + "\" не найден");
                 return null;
             }
 
@@ -94,18 +97,18 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public bool[][] CheckTables(CVFPProject InspectProject, DataTable Projects) {
             ReferenceProject = new CVFPProject();
             bool[][] IsEqual = new bool[InspectProject.TablesTables.Length][];
-            for(int i = 0; i < InspectProject.TablesTables.Length; i++) {
-                    IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
+            for (int i = 0; i < InspectProject.TablesTables.Length; i++) {
+                IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
             }
             ListCellInfo = new List<SCheckCellInfo>();
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
-                for(int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
+                for (int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
                     for (int k = 0; k < InspectProject.TablesTables.Length; k++) {
                         DataTable RefTable = ReferenceProject.TablesTables[j];
                         DataTable InsTable = InspectProject.TablesTables[k];
                         foreach (DataColumn RefColumn in RefTable.Columns) {
-                            for(int n = 0; n < InsTable.Columns.Count;n++) {
+                            for (int n = 0; n < InsTable.Columns.Count; n++) {
                                 //IsEqual[k][n] = false;
                                 if (RefColumn.ColumnName == InsTable.Columns[n].ColumnName &&
                                     RefColumn.DataType == InsTable.Columns[n].DataType) {
@@ -115,29 +118,46 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             }
                         }
 
-                        for(int m = 0; m < RefTable.Rows.Count; m++) {
+                        for (int m = 0; m < RefTable.Rows.Count; m++) {
                             for (int b = 0; b < InsTable.Rows.Count; b++) {
                                 foreach (DataColumn colRef in RefTable.Columns) {
                                     foreach (DataColumn colIn in InsTable.Columns) {
                                         if (Equals(RefTable.Rows[m][colRef.ColumnName],
                                                     InsTable.Rows[b][colIn.ColumnName])) {
                                             SCheckCellInfo CheckCell = new SCheckCellInfo();
-                                            CheckCell.TableIndex = k;
-                                            CheckCell.rowIndex = b;
-                                            CheckCell.ColumnIndex = colIn.ColumnName;
-                                            CheckCell.FileName = ReferenceProject.TablesFullName[j];
-                                            CheckCell.ProjectName = Projects.Rows[i][1].ToString();
-                                            CheckCell.StudentName = Projects.Rows[i][0].ToString();
-                                            ListCellInfo.Add(CheckCell);
+                                            List<SCheckCellInfo> results = ListCellInfo.FindAll(x => (x.rowIndex == b && x.ColumnIndex == colIn.ColumnName));
+                                            if (results.Count == 0) {
+                                                CheckCell.TableIndex = k;
+                                                CheckCell.rowIndex = b;
+                                                CheckCell.ColumnIndex = colIn.ColumnName;
+                                                CheckCell.FileName = ReferenceProject.TablesFullName[j];
+                                                CheckCell.ProjectName = Projects.Rows[i][1].ToString();
+                                                CheckCell.StudentName = Projects.Rows[i][0].ToString();
+                                                ListCellInfo.Add(CheckCell);
+                                            }
+
                                         }
                                     }
                                 }
                             }
                         }
-                    }   
+                    }
                 }
             }
             return IsEqual;
+        }
+
+        public void CheckForms(CVFPProject InspectProject, DataTable Projects) {
+            ReferenceProject = new CVFPProject();
+            ListCellInfo = new List<SCheckCellInfo>();
+            for (int i = 0; i < Projects.Rows.Count; i++) {
+                ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
+                for (int j = 0; j < ReferenceProject.FormTables.Length; j++) {
+                    for (int k = 0; k < InspectProject.FormTables.Length; k++) {
+
+                    }
+                }
+            }
         }
     }
 }

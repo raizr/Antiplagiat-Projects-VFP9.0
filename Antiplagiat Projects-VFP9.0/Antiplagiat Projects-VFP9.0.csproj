@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CDateBase.cs" />
+    <Compile Include="SForm.cs" />
     <Compile Include="CLoaderDB.cs" />
     <Compile Include="CManager.cs" />
     <Compile Include="CVerification.cs" />

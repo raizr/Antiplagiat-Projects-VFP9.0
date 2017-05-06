@@ -23,8 +23,8 @@
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Файлы таблиц");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Файлы форм");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Файлы таблиц");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Файлы форм");
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,13 +71,13 @@
             // 
             this.treeViewProject.Location = new System.Drawing.Point(12, 84);
             this.treeViewProject.Name = "treeViewProject";
-            treeNode1.Name = "Tables";
-            treeNode1.Text = "Файлы таблиц";
-            treeNode2.Name = "Forms";
-            treeNode2.Text = "Файлы форм";
+            treeNode3.Name = "Tables";
+            treeNode3.Text = "Файлы таблиц";
+            treeNode4.Name = "Forms";
+            treeNode4.Text = "Файлы форм";
             this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.treeViewProject.ShowNodeToolTips = true;
             this.treeViewProject.Size = new System.Drawing.Size(225, 474);
             this.treeViewProject.TabIndex = 2;
@@ -90,7 +91,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(651, 41);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(507, 517);
+            this.dataGridView1.Size = new System.Drawing.Size(507, 260);
             this.dataGridView1.TabIndex = 3;
             // 
             // listView1
@@ -100,7 +101,7 @@
             this.columnHeader2});
             this.listView1.Location = new System.Drawing.Point(262, 41);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(199, 238);
+            this.listView1.Size = new System.Drawing.Size(199, 108);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -117,9 +118,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(262, 295);
+            this.richTextBox1.Location = new System.Drawing.Point(262, 177);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(199, 187);
+            this.richTextBox1.Size = new System.Drawing.Size(199, 91);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
@@ -194,11 +195,20 @@
             this.buttonCheck.UseVisualStyleBackColor = true;
             this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(243, 388);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(571, 170);
+            this.richTextBox2.TabIndex = 11;
+            this.richTextBox2.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1170, 570);
+            this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.buttonCheck);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
@@ -239,6 +249,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button buttonCheck;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

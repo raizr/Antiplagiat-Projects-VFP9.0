@@ -13,6 +13,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public partial class Form1 : Form {
         public Form1(CManager ptr) {
             InitializeComponent();
+            Console.SetOut(new Logger(richTextBox2));
             manager = ptr;
             manager.DBase.Load();
         }
@@ -135,7 +136,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     TableViewForm TVForm = new TableViewForm(manager);
                     //dataGridView1.Columns.Clear();
                     TVForm.dataGridView.DataSource = manager.InspectProject.TablesTables[e.Node.Index];
-                    Console.WriteLine(e.Node.Index);
                     if (ColumnsColor != null) {
                         for (int i = 0; i < ColumnsColor[e.Node.Index].Length; i++) {
                             if (ColumnsColor[e.Node.Index][i]) {
@@ -145,6 +145,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         }
                     }
                     TVForm.Show();
+                    Console.WriteLine(e.Node.Text);
+                    TVForm.Text = "Просмотр заимствований в таблице " + e.Node.Text;
                     if (manager.CheckCellList != null) {
                         for (int i = 0; i < manager.CheckCellList.Count; i++) {
                             if (manager.CheckCellList[i].TableIndex == e.Node.Index) {
@@ -163,4 +165,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
             }
         }
     }
-}
+
+    class Logger : System.IO.TextWriter {
+        private RichTextBox rtb;
+        public Logger(RichTextBox rtb) { this.rtb = rtb; }
+        public override Encoding Encoding { get { return null; } }
+        public override void Write(char value) {
+            if (value != '\r') rtb.AppendText(new string(value, 1));
+        }
+    }
+ }
