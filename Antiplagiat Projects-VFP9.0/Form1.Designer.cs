@@ -23,8 +23,8 @@
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Файлы таблиц");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Файлы форм");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Файлы таблиц");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Файлы форм");
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -71,13 +71,13 @@
             // 
             this.treeViewProject.Location = new System.Drawing.Point(12, 84);
             this.treeViewProject.Name = "treeViewProject";
-            treeNode3.Name = "Tables";
-            treeNode3.Text = "Файлы таблиц";
-            treeNode4.Name = "Forms";
-            treeNode4.Text = "Файлы форм";
+            treeNode1.Name = "Tables";
+            treeNode1.Text = "Файлы таблиц";
+            treeNode2.Name = "Forms";
+            treeNode2.Text = "Файлы форм";
             this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeViewProject.ShowNodeToolTips = true;
             this.treeViewProject.Size = new System.Drawing.Size(225, 474);
             this.treeViewProject.TabIndex = 2;
@@ -199,7 +199,7 @@
             // 
             this.richTextBox2.Location = new System.Drawing.Point(243, 388);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(571, 170);
+            this.richTextBox2.Size = new System.Drawing.Size(813, 170);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 

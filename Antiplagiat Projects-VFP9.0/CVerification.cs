@@ -23,7 +23,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public string ProjectName;
         public string StudentName;
         public string FileName;
-        public string Hash;
+    }
+
+    public struct SCheckFormInfo {
+        public int FormIndex;
+        public int RefFormIndex;
+        public string ProjectName;
+        public string StudentName;
+        public string FileName;
     }
 
     public class CVerification {
@@ -31,8 +38,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private CVFPProject ReferenceProject;
         private List<SCheckColumnInfo> ListColumnInfo;
         public List<SCheckCellInfo> ListCellInfo;
-
-
+        public List<SCheckFormInfo> ListFormInfo;
+        public List<SCheckFormInfo> ListCommandbutton;
+        public CVerification() {
+            ListColumnInfo = new List<SCheckColumnInfo>();
+            ListCellInfo = new List<SCheckCellInfo>();
+            ListFormInfo = new List<SCheckFormInfo>();
+            ListCommandbutton = new List<SCheckFormInfo>();
+        }
         //Проверка при открытии по именам файлов и их хэш-суммам
         public List<SCheckColumnInfo> OpenCheck(DataTable InspectProject,
                                      DataTable Projects) {
@@ -48,7 +61,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Hash";
             ReferenceTable.Columns.Add(column);
-            ListColumnInfo = new List<SCheckColumnInfo>();
+            ListColumnInfo.Clear();
             try {
                 for (int i = 0; i < Projects.Rows.Count; i++) {
                     string cell = Projects.Rows[i][1].ToString(); // Путь к проекту
@@ -60,25 +73,30 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             if (ReferenceTable.Rows[j][0].ToString() == InspectProject.Rows[k][0].ToString() ||
                                 // ... по хэш-сумме
                                 ReferenceTable.Rows[j][1].ToString() == InspectProject.Rows[k][1].ToString()) {
-                                List<SCheckColumnInfo> find = ListColumnInfo.FindAll(x => x.EqualNum == t);
-                                if (find.Count == 0) {
+                                List<SCheckColumnInfo> FindTable = ListColumnInfo.FindAll(x => (x.EqualNum == t && x.IsTable ==true));
+                                List<SCheckColumnInfo> FindForm = ListColumnInfo.FindAll(x => (x.EqualNum == f && x.IsTable == false));
+                                if (FindTable.Count == 0 || FindForm.Count == 0) {
                                     SCheckColumnInfo Info = new SCheckColumnInfo();
                                     string pname = InspectProject.Rows[k][0].ToString();
                                     if (pname.Substring(pname.Length - 3, 3) == "dbf") {
-                                        Info.EqualNum = t++;
-                                        Info.IsTable = true;
+                                        if (FindTable.Count == 0) {
+                                            Info.EqualNum = t++;
+                                            Info.IsTable = true;
+                                        }
                                     } else {
                                         if (pname.Substring(pname.Length - 3, 3) == "scx") {
-                                            Info.EqualNum = f++;
-                                            Info.IsTable = false;
+                                            if (FindForm.Count == 0) {
+                                                //Console.WriteLine("№Формы: " + f);
+                                                Info.EqualNum = f++;
+                                                Info.IsTable = false;
+                                            }
                                         }
-
                                     }
                                     Info.ProjectName = cell;
                                     Info.StudentName = Projects.Rows[i][0].ToString();
                                     Info.FileName = ReferenceTable.Rows[j][0].ToString();
                                     Info.Hash = ReferenceTable.Rows[j][1].ToString();
-                                    ListColumnInfo.Add(Info);
+                                    ListColumnInfo.Add(Info);   
                                 }
                             }
                         }
@@ -100,7 +118,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             for (int i = 0; i < InspectProject.TablesTables.Length; i++) {
                 IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
             }
-            ListCellInfo = new List<SCheckCellInfo>();
+            ListCellInfo.Clear();
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
@@ -135,7 +153,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 CheckCell.StudentName = Projects.Rows[i][0].ToString();
                                                 ListCellInfo.Add(CheckCell);
                                             }
-
                                         }
                                     }
                                 }
@@ -149,12 +166,62 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         public void CheckForms(CVFPProject InspectProject, DataTable Projects) {
             ReferenceProject = new CVFPProject();
-            ListCellInfo = new List<SCheckCellInfo>();
+            ListFormInfo.Clear();
+            ListCommandbutton.Clear();
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
-                for (int j = 0; j < ReferenceProject.FormTables.Length; j++) {
-                    for (int k = 0; k < InspectProject.FormTables.Length; k++) {
-
+                for (int j = 0; j < ReferenceProject.Forms.Count; j++) {
+                    for (int k = 0; k < InspectProject.Forms.Count; k++) {
+                        for(int n = 0; n < ReferenceProject.Forms[j].form.Count; n++) {
+                            for (int m = 0; m < InspectProject.Forms[k].form.Count; m++) {
+                                if(InspectProject.Forms[k].form[m].classname ==
+                                    ReferenceProject.Forms[j].form[n].classname &&
+                                    InspectProject.Forms[k].form[m].objname ==
+                                    ReferenceProject.Forms[j].form[n].objname &&
+                                    InspectProject.Forms[k].form[m].properties["Caption "] ==
+                                    ReferenceProject.Forms[j].form[n].properties["Caption "]) {
+                                    List<SCheckFormInfo> Info = 
+                                        ListFormInfo.FindAll(x => x.FormIndex == k);
+                                    /*Console.WriteLine(InspectProject.Forms[k].Name+" "+
+                                        ReferenceProject.Forms[j].Name);*/
+                                    if (Info.Count == 0) {
+                                       // Console.WriteLine(k + " " + j + " " + ReferenceProject.Forms[j].Name);
+                                        SCheckFormInfo FormInfo = new SCheckFormInfo();
+                                        FormInfo.FormIndex = k;
+                                        FormInfo.RefFormIndex = j;
+                                        FormInfo.ProjectName = Projects.Rows[i][1].ToString();
+                                        FormInfo.StudentName = Projects.Rows[i][0].ToString();
+                                        FormInfo.FileName = ReferenceProject.Forms[j].Name;
+                                        ListFormInfo.Add(FormInfo);
+                                    }
+                                }
+                            }
+                        }
+                        for (int n = 0; n < ReferenceProject.Forms[j].commandbutton.Count; n++) {
+                            for (int m = 0; m < InspectProject.Forms[k].commandbutton.Count; m++) {
+                                if (InspectProject.Forms[k].commandbutton[m].classname ==
+                                    ReferenceProject.Forms[j].commandbutton[n].classname &&
+                                    InspectProject.Forms[k].commandbutton[m].objname ==
+                                    ReferenceProject.Forms[j].commandbutton[n].objname &&
+                                    InspectProject.Forms[k].commandbutton[m].properties["Caption "] ==
+                                    ReferenceProject.Forms[j].commandbutton[n].properties["Caption "]) {
+                                    List<SCheckFormInfo> Info =
+                                        ListCommandbutton.FindAll(x => x.FormIndex == k);
+                                    /*Console.WriteLine(InspectProject.Forms[k].Name+" "+
+                                        ReferenceProject.Forms[j].Name);*/
+                                    if (Info.Count == 0) {
+                                        Console.WriteLine(InspectProject.Forms[k].commandbutton[m].classname);
+                                        SCheckFormInfo FormInfo = new SCheckFormInfo();
+                                        FormInfo.FormIndex = k;
+                                        FormInfo.RefFormIndex = j;
+                                        FormInfo.ProjectName = Projects.Rows[i][1].ToString();
+                                        FormInfo.StudentName = Projects.Rows[i][0].ToString();
+                                        FormInfo.FileName = ReferenceProject.Forms[j].Name;
+                                        ListCommandbutton.Add(FormInfo);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

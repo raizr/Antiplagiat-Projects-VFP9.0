@@ -68,7 +68,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 if (e.Node.Parent.Name == treeViewProject.Nodes[0].Name) {
                     dataGridView1.Columns.Clear();
                     dataGridView1.DataSource = manager.InspectProject.TablesTables[e.Node.Index];
-                    Console.WriteLine(e.Node.Index);
+                    //Console.WriteLine(e.Node.Index);
                     if (ColumnsColor != null) {
                         for(int i = 0; i < ColumnsColor[e.Node.Index].Length; i++) {
                             if (ColumnsColor[e.Node.Index][i]) {
@@ -145,7 +145,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         }
                     }
                     TVForm.Show();
-                    Console.WriteLine(e.Node.Text);
+                    //Console.WriteLine(e.Node.Text);
                     TVForm.Text = "Просмотр заимствований в таблице " + e.Node.Text;
                     if (manager.CheckCellList != null) {
                         for (int i = 0; i < manager.CheckCellList.Count; i++) {

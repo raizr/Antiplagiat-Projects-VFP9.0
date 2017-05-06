@@ -18,6 +18,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SCheckColumnInfo> CheckColumnList;
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
+        public List<SCheckFormInfo> CheckFormList;
 
         public CManager() {
             PathConf = Properties.Settings.Default.BDPath;
@@ -39,12 +40,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 Console.Write("Файл проекта отсутствует");
                 return null;
             } else {
-                /*InspectProject.Name = NameProject[0];
-                InspectProject.Open(TablesFullName, FormsFullName);*/
                 //генерация файлов (имя файла, хэш-сумма)
                 DataTable e = DBase.GenerateProjectTable(InspectProject);
                 CheckColumnList = Verificator.OpenCheck(e,
                                         DBase.Projects);
+                /*for(int i = 0; i < InspectProject.Forms.Count; i++) {
+                    Console.WriteLine(InspectProject.Forms[i].form[0].objname + " " +
+                                        InspectProject.Forms[i].editbox[0].objname + " " +
+                                        InspectProject.Forms[i].textbox[0].objname);
+                }*/
                 if (CheckColumnList != null)
                     return InspectProject.Name;
                 else
@@ -58,7 +62,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
                 if (Verificator.ListCellInfo != null) {
                     CheckCellList = Verificator.ListCellInfo;
-                    //Console.WriteLine(InspectProject.TablesTables.Length);
+                }
+                Verificator.CheckForms(InspectProject, DBase.Projects);
+                if (Verificator.ListFormInfo != null) {
+                    CheckFormList = Verificator.ListFormInfo;
+                    CheckFormList = Verificator.ListCommandbutton;
+                    Console.Write("\n\n");
+                    /*for(int i = 0;i < CheckFormList.Count; i++) {
+                        Console.WriteLine(CheckFormList[i].FormIndex + " " +
+                            CheckFormList[i].RefFormIndex + " "+ CheckFormList[i].FileName);
+                    }*/
                 }
                 return EqualColumnsInfo;
             }
