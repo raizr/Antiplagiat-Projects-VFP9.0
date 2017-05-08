@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.IO;
+using System.Reflection;
 
 namespace Antiplagiat_Projects_VFP9._0 {
     public struct SCheckColumnInfo {
@@ -171,57 +172,58 @@ namespace Antiplagiat_Projects_VFP9._0 {
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.Forms.Count; j++) {
+                    SForm RefFormStruct = ReferenceProject.Forms[j];
+                    Type Reftype = typeof(SForm);
+                    var Reffields = Reftype.GetFields();
                     for (int k = 0; k < InspectProject.Forms.Count; k++) {
-                        for(int n = 0; n < ReferenceProject.Forms[j].form.Count; n++) {
-                            for (int m = 0; m < InspectProject.Forms[k].form.Count; m++) {
-                                if(InspectProject.Forms[k].form[m].classname ==
-                                    ReferenceProject.Forms[j].form[n].classname &&
-                                    InspectProject.Forms[k].form[m].objname ==
-                                    ReferenceProject.Forms[j].form[n].objname &&
-                                    InspectProject.Forms[k].form[m].properties["Caption "] ==
-                                    ReferenceProject.Forms[j].form[n].properties["Caption "]) {
-                                    List<SCheckFormInfo> Info = 
-                                        ListFormInfo.FindAll(x => x.FormIndex == k);
-                                    /*Console.WriteLine(InspectProject.Forms[k].Name+" "+
-                                        ReferenceProject.Forms[j].Name);*/
-                                    if (Info.Count == 0) {
-                                       // Console.WriteLine(k + " " + j + " " + ReferenceProject.Forms[j].Name);
-                                        SCheckFormInfo FormInfo = new SCheckFormInfo();
-                                        FormInfo.FormIndex = k;
-                                        FormInfo.RefFormIndex = j;
-                                        FormInfo.ProjectName = Projects.Rows[i][1].ToString();
-                                        FormInfo.StudentName = Projects.Rows[i][0].ToString();
-                                        FormInfo.FileName = ReferenceProject.Forms[j].Name;
-                                        ListFormInfo.Add(FormInfo);
+                        SForm InsFormStruct = InspectProject.Forms[k];
+                        Type Instype = typeof(SForm);
+                        var Insfields = Instype.GetFields();
+                        foreach (FieldInfo Rfi in Reffields) {
+                            foreach (FieldInfo fi in Reffields) {
+                                if (Rfi.Name != "Name" && fi.Name != "Name") {
+                                    List<SObject> Reftlist = (List<SObject>)fi.GetValue(RefFormStruct);
+                                    List<SObject> Instlist = (List<SObject>)fi.GetValue(InsFormStruct);
+                                    for (int n = 0; n < Reftlist.Count; n++) {
+                                        for (int m = 0; m < Instlist.Count; m++) {
+                                            if (Instlist[m] ==
+                                                Reftlist[n] &&
+                                                Instlist[m].IsPlagiarism == false) {
+                                                SObject obj = ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m];
+                                               obj.IsPlagiarism = true;
+                                                obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m] = obj;
+                                            }
+                                        }
                                     }
+                                }
+                            }
+                                
+                        }
+                        /*for (int n = 0; n < ReferenceProject.Forms[j].form.Count; n++) {
+                            for (int m = 0; m < InspectProject.Forms[k].form.Count; m++) {
+                                if(InspectProject.Forms[k].form[m] ==
+                                    ReferenceProject.Forms[j].form[n] &&
+                                    InspectProject.Forms[k].form[m].IsPlagiarism == false) {
+                                    SObject obj = InspectProject.Forms[k].form[m];
+                                    obj.IsPlagiarism = true;
+                                    obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                    InspectProject.Forms[k].form[m] = obj;
                                 }
                             }
                         }
                         for (int n = 0; n < ReferenceProject.Forms[j].commandbutton.Count; n++) {
                             for (int m = 0; m < InspectProject.Forms[k].commandbutton.Count; m++) {
-                                if (InspectProject.Forms[k].commandbutton[m].classname ==
-                                    ReferenceProject.Forms[j].commandbutton[n].classname &&
-                                    InspectProject.Forms[k].commandbutton[m].objname ==
-                                    ReferenceProject.Forms[j].commandbutton[n].objname &&
-                                    InspectProject.Forms[k].commandbutton[m].properties["Caption "] ==
-                                    ReferenceProject.Forms[j].commandbutton[n].properties["Caption "]) {
-                                    List<SCheckFormInfo> Info =
-                                        ListCommandbutton.FindAll(x => x.FormIndex == k);
-                                    /*Console.WriteLine(InspectProject.Forms[k].Name+" "+
-                                        ReferenceProject.Forms[j].Name);*/
-                                    if (Info.Count == 0) {
-                                        Console.WriteLine(InspectProject.Forms[k].commandbutton[m].classname);
-                                        SCheckFormInfo FormInfo = new SCheckFormInfo();
-                                        FormInfo.FormIndex = k;
-                                        FormInfo.RefFormIndex = j;
-                                        FormInfo.ProjectName = Projects.Rows[i][1].ToString();
-                                        FormInfo.StudentName = Projects.Rows[i][0].ToString();
-                                        FormInfo.FileName = ReferenceProject.Forms[j].Name;
-                                        ListCommandbutton.Add(FormInfo);
-                                    }
+                                if (InspectProject.Forms[k].commandbutton[m] ==
+                                    ReferenceProject.Forms[j].commandbutton[n] &&
+                                    InspectProject.Forms[k].commandbutton[m].IsPlagiarism == false) {
+                                    SObject obj = InspectProject.Forms[k].commandbutton[m];
+                                    obj.IsPlagiarism = true;
+                                    obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                    InspectProject.Forms[k].commandbutton[m] = obj;
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }

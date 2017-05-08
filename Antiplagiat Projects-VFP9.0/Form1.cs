@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 
 namespace Antiplagiat_Projects_VFP9._0 {
     public partial class Form1 : Form {
@@ -161,6 +162,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             }
                         }
                     }
+                }
+                if (e.Node.Parent.Name == treeViewProject.Nodes[1].Name) {
+                    dataGridView1.Columns.Clear();
+                    FormView ViewForm = new FormView(manager, e.Node.Index);
+                    ViewForm.Text = "Просмотр заимствований в форме " + e.Node.Text;
+                    ViewForm.Show();
+                    //ViewForm.listViewObjects.Items.Add()
                 }
             }
         }

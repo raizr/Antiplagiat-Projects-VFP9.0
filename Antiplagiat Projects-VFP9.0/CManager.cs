@@ -68,10 +68,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     CheckFormList = Verificator.ListFormInfo;
                     CheckFormList = Verificator.ListCommandbutton;
                     Console.Write("\n\n");
-                    /*for(int i = 0;i < CheckFormList.Count; i++) {
+                    for(int i = 0;i < CheckFormList.Count; i++) {
                         Console.WriteLine(CheckFormList[i].FormIndex + " " +
                             CheckFormList[i].RefFormIndex + " "+ CheckFormList[i].FileName);
-                    }*/
+                    }
                 }
                 return EqualColumnsInfo;
             }
