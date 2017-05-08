@@ -150,7 +150,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
             form.header = new List<SObject>(); form.textbox = new List<SObject>();
             form.grid = new List<SObject>(); form.label = new List<SObject>();
             form.pageframe = new List<SObject>(); form.editbox = new List<SObject>();
-            form.spinner = new List<SObject>();
+            form.spinner = new List<SObject>(); form.optiongroup = new List<SObject>();
+            form.checkbox = new List<SObject>(); form.combobox = new List<SObject>();
             for (int j = 0; j < FormTable.Rows.Count; j++) {
                 SObject obj = new SObject();
                 // получение полей формы
@@ -193,6 +194,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                      break;
                         case "spinner": form.spinner.Add(obj);
                                      break;
+                        case "optiongroup":
+                                    form.optiongroup.Add(obj);
+                                    break;
+                        case "checkbox":
+                                    form.checkbox.Add(obj);
+                                    break;
+                        case "combobox":
+                                    form.combobox.Add(obj);
+                                    break;
                     }
                 }
             }
@@ -210,7 +220,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
             form.header = new List<SObject>(); form.textbox = new List<SObject>();
             form.grid = new List<SObject>(); form.label = new List<SObject>();
             form.pageframe = new List<SObject>(); form.editbox = new List<SObject>();
-            form.spinner = new List<SObject>();
+            form.spinner = new List<SObject>(); form.optiongroup = new List<SObject>();
+            form.checkbox = new List<SObject>(); form.combobox = new List<SObject>();
             for (int j = 0; j < FormTable.Rows.Count; j++) {
                 SObject obj = new SObject();
                 // получение полей формы
@@ -219,8 +230,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 obj.objname = FormTable.Rows[j]["objname"].ToString(); // имя объекта
                 obj.methods = FormTable.Rows[j]["methods"].ToString(); // методы объекта
                 string properties = FormTable.Rows[j]["properties"].ToString(); //свойства
-                                                                                //преобразование свойства из строки в пары (свойство - значение свойства)
-                                                                                // разделение одной строки свойств на строки с одним свойством
+                //преобразование свойства из строки в пары (свойство - значение свойства)
+                // разделение одной строки свойств на строки с одним свойством
                 string[] prop = properties.Split('\n');
                 obj.properties = new Dictionary<string, string>();
                 for (int k = 0; k < prop.Length - 1; k++) {
@@ -261,6 +272,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             break;
                         case "spinner":
                             form.spinner.Add(obj);
+                            break;
+                        case "optiongroup":
+                            form.optiongroup.Add(obj);
+                            break;
+                        case "checkbox":
+                            form.checkbox.Add(obj);
+                            break;
+                        case "combobox":
+                            form.combobox.Add(obj);
                             break;
                     }
                 }

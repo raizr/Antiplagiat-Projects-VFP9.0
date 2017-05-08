@@ -64,19 +64,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     CheckCellList = Verificator.ListCellInfo;
                 }
                 Verificator.CheckForms(InspectProject, DBase.Projects);
-                if (Verificator.ListFormInfo != null) {
-                    CheckFormList = Verificator.ListFormInfo;
-                    CheckFormList = Verificator.ListCommandbutton;
-                    Console.Write("\n\n");
-                    for(int i = 0;i < CheckFormList.Count; i++) {
-                        Console.WriteLine(CheckFormList[i].FormIndex + " " +
-                            CheckFormList[i].RefFormIndex + " "+ CheckFormList[i].FileName);
-                    }
-                }
                 return EqualColumnsInfo;
             }
             else
                 return null;
+        }
+
+        public List<SCheckColumnInfo> GetListFilesInfo() {
+            return Verificator.GetListFilesInfo();
         }
 
         public void SaveOpenProjectToBD() {

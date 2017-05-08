@@ -43,8 +43,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         }
                         treeViewProject.Nodes[1].Expand();
 
-                        List<SCheckColumnInfo> OpenInfo = manager.CheckColumnList;
-                        for (int i = 0; i < OpenInfo.Count; i++) {
+                        SetColorNodes(manager.CheckColumnList);
+                        /*for (int i = 0; i < OpenInfo.Count; i++) {
                             if (OpenInfo[i].IsTable) {
                                 treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
                                 treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
@@ -56,10 +56,28 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                     OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
                                     "\n" + OpenInfo[i].FileName;
                             }
-                        }
+                        }*/
                     
                     }
                 }   
+            }
+        }
+
+        private void SetColorNodes(List<SCheckColumnInfo> OpenInfo) {
+            if(OpenInfo != null) {
+                for (int i = 0; i < OpenInfo.Count; i++) {
+                    if (OpenInfo[i].IsTable) {
+                        treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
+                            OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
+                            "\n" + OpenInfo[i].FileName;
+                    } else {
+                        treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].ToolTipText =
+                            OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
+                            "\n" + OpenInfo[i].FileName;
+                    }
+                }
             }
         }
 
@@ -122,6 +140,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         private void buttonCheck_Click(object sender, EventArgs e) {
             ColumnsColor = manager.CheckProject();
+            SetColorNodes(manager.GetListFilesInfo());
             /*for(int i = 0; i< ColumnsColor.Length;i++) {
                 for(int j = 0; j < ColumnsColor.Length; j++) {
                     if(ColumnsColor[i][j] == true)

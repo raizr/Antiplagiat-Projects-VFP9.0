@@ -38,6 +38,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SObject> pageframe;
         public List<SObject> editbox;
         public List<SObject> spinner;
+        public List<SObject> optiongroup;
+        public List<SObject> checkbox;
+        public List<SObject> combobox;
 
         /*public static bool operator ==(SForm A, SForm B) {
             return (A.Name == B.Name &&

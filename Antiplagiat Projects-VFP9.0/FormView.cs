@@ -51,6 +51,44 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     List<SObject> list = (List<SObject>)fi.GetValue(FormStruct);
                     for (int i = 0; i < list.Count; i++) {
                         ListViewItem obj = new ListViewItem(list[i].classname);
+                        switch (fi.Name) {
+                            case "form":
+                                obj.Group = ListViewFormObjects.Groups[0];
+                                break;
+                            case "commandbutton":
+                                obj.Group = ListViewFormObjects.Groups[1];
+                                break;
+                            case "header":
+                                obj.Group = ListViewFormObjects.Groups[2];
+                                break;
+                            case "textbox":
+                                obj.Group = ListViewFormObjects.Groups[3];
+                                break;
+                            case "grid":
+                                obj.Group = ListViewFormObjects.Groups[4];
+                                break;
+                            case "label":
+                                obj.Group = ListViewFormObjects.Groups[5];
+                                break;
+                            case "pageframe":
+                                obj.Group = ListViewFormObjects.Groups[6];
+                                break;
+                            case "editbox":
+                                obj.Group = ListViewFormObjects.Groups[7];
+                                break;
+                            case "spinner":
+                                obj.Group = ListViewFormObjects.Groups[8];
+                                break;
+                            case "optiongroup":
+                                obj.Group = ListViewFormObjects.Groups[9];
+                                break;
+                            case "checkbox":
+                                obj.Group = ListViewFormObjects.Groups[10];
+                                break;
+                            case "combobox":
+                                obj.Group = ListViewFormObjects.Groups[11];
+                                break;
+                        }
                         obj.SubItems.Add(list[i].objname);
                         Prop.Add(list[i].properties);
                         if(list[i].RefFormFullName != null)
@@ -58,6 +96,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         if (list[i].IsPlagiarism)
                             obj.BackColor = Color.Red;
                         ListViewFormObjects.Items.Add(obj);
+
                     }
                 }
             }

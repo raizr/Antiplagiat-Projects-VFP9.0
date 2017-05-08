@@ -39,13 +39,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private CVFPProject ReferenceProject;
         private List<SCheckColumnInfo> ListColumnInfo;
         public List<SCheckCellInfo> ListCellInfo;
-        public List<SCheckFormInfo> ListFormInfo;
-        public List<SCheckFormInfo> ListCommandbutton;
         public CVerification() {
             ListColumnInfo = new List<SCheckColumnInfo>();
             ListCellInfo = new List<SCheckCellInfo>();
-            ListFormInfo = new List<SCheckFormInfo>();
-            ListCommandbutton = new List<SCheckFormInfo>();
+            /*ListFormInfo = new List<SCheckFormInfo>();
+            ListCommandbutton = new List<SCheckFormInfo>();*/
         }
         //Проверка при открытии по именам файлов и их хэш-суммам
         public List<SCheckColumnInfo> OpenCheck(DataTable InspectProject,
@@ -120,6 +118,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
             }
             ListCellInfo.Clear();
+            //ListColumnInfo.Clear();
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
@@ -132,8 +131,20 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                 if (RefColumn.ColumnName == InsTable.Columns[n].ColumnName &&
                                     RefColumn.DataType == InsTable.Columns[n].DataType) {
                                     IsEqual[k][n] = true;
-                                    //Console.WriteLine("true");
-                                }
+                                    List<SCheckColumnInfo> FindTable = 
+                                        ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == true));
+                                    if (FindTable.Count == 0) {
+                                        SCheckColumnInfo Info = new SCheckColumnInfo();
+                                        Info.EqualNum = k;
+                                        Info.IsTable = true;
+                                        Info.ProjectName = Projects.Rows[i][1].ToString();
+                                        Info.StudentName = Projects.Rows[i][0].ToString();
+                                        Info.FileName = ReferenceProject.TablesFullName[j];
+                                        //Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                        ListColumnInfo.Add(Info);
+                                    }
+                                        //Console.WriteLine("true");
+                                    }
                             }
                         }
 
@@ -153,6 +164,18 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 CheckCell.ProjectName = Projects.Rows[i][1].ToString();
                                                 CheckCell.StudentName = Projects.Rows[i][0].ToString();
                                                 ListCellInfo.Add(CheckCell);
+                                                List<SCheckColumnInfo> FindTable =
+                                                ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == true));
+                                                if (FindTable.Count == 0) {
+                                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                                    Info.EqualNum = k;
+                                                    Info.IsTable = true;
+                                                    Info.ProjectName = Projects.Rows[i][1].ToString();
+                                                    Info.StudentName = Projects.Rows[i][0].ToString();
+                                                    Info.FileName = ReferenceProject.TablesFullName[j];
+                                                    //Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                                    ListColumnInfo.Add(Info);
+                                                }
                                             }
                                         }
                                     }
@@ -167,8 +190,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         public void CheckForms(CVFPProject InspectProject, DataTable Projects) {
             ReferenceProject = new CVFPProject();
-            ListFormInfo.Clear();
-            ListCommandbutton.Clear();
+            /*ListFormInfo.Clear();
+            ListCommandbutton.Clear();*/
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.Forms.Count; j++) {
@@ -189,16 +212,102 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                             if (Instlist[m] ==
                                                 Reftlist[n] &&
                                                 Instlist[m].IsPlagiarism == false) {
-                                                SObject obj = ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m];
+                                                SObject obj = new SObject();
+                                                switch (fi.Name) {
+                                                    case "form":
+                                                        obj = InspectProject.Forms[k].form[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].form[m] = obj;
+                                                        break;
+                                                    case "commandbutton":
+                                                        obj = InspectProject.Forms[k].commandbutton[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].commandbutton[m] = obj;
+                                                        break;
+                                                    case "header":
+                                                        obj = InspectProject.Forms[k].header[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].header[m] = obj;
+                                                        break;
+                                                    case "textbox":
+                                                        obj = InspectProject.Forms[k].textbox[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].textbox[m] = obj;
+                                                        break;
+                                                    case "grid":
+                                                        obj = InspectProject.Forms[k].grid[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].grid[m] = obj;
+                                                        break;
+                                                    case "label":
+                                                        obj = InspectProject.Forms[k].label[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].label[m] = obj;
+                                                        break;
+                                                    case "pageframe":
+                                                        obj = InspectProject.Forms[k].pageframe[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].pageframe[m] = obj;
+                                                        break;
+                                                    case "editbox":
+                                                        obj = InspectProject.Forms[k].editbox[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].editbox[m] = obj;
+                                                        break;
+                                                    case "spinner":
+                                                        obj = InspectProject.Forms[k].spinner[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].spinner[m] = obj;
+                                                        break;
+                                                    case "optiongroup":
+                                                        obj = InspectProject.Forms[k].optiongroup[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].optiongroup[m] = obj;
+                                                        break;
+                                                    case "checkbox":
+                                                        obj = InspectProject.Forms[k].checkbox[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].checkbox[m] = obj;
+                                                        break;
+                                                    case "combobox":
+                                                        obj = InspectProject.Forms[k].combobox[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        InspectProject.Forms[k].combobox[m] = obj;
+                                                        break;
+                                                }
+                                                List<SCheckColumnInfo> FindTable =
+                                                 ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == false));
+                                                if (FindTable.Count == 0) {
+                                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                                    Info.EqualNum = k;
+                                                    Info.IsTable = true;
+                                                    Info.ProjectName = Projects.Rows[i][1].ToString();
+                                                    Info.StudentName = Projects.Rows[i][0].ToString();
+                                                    Info.FileName = ReferenceProject.TablesFullName[j];
+                                                    //Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                                    ListColumnInfo.Add(Info);
+                                                }
+                                                /*SObject obj = ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m];
                                                obj.IsPlagiarism = true;
                                                 obj.RefFormFullName = ReferenceProject.Forms[j].Name;
-                                                ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m] = obj;
+                                                ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m] = obj;*/
                                             }
                                         }
                                     }
                                 }
                             }
-                                
                         }
                         /*for (int n = 0; n < ReferenceProject.Forms[j].form.Count; n++) {
                             for (int m = 0; m < InspectProject.Forms[k].form.Count; m++) {
@@ -227,6 +336,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     }
                 }
             }
+        }
+
+        public List<SCheckColumnInfo> GetListFilesInfo() {
+            return ListColumnInfo;
         }
     }
 }
