@@ -42,8 +42,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             } else {
                 //генерация файлов (имя файла, хэш-сумма)
                 DataTable e = DBase.GenerateProjectTable(InspectProject);
-                CheckColumnList = Verificator.OpenCheck(e,
-                                        DBase.Projects);
+                CheckColumnList = Verificator.OpenCheck(e, DBase.Projects);
                 /*for(int i = 0; i < InspectProject.Forms.Count; i++) {
                     Console.WriteLine(InspectProject.Forms[i].form[0].objname + " " +
                                         InspectProject.Forms[i].editbox[0].objname + " " +

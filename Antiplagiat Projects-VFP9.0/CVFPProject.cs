@@ -107,7 +107,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             formsFullName = FormsFullName;
             tablesTables = new DataTable[tablesFullName.Length];
             formTables = new DataTable[formsFullName.Length];
-
+            Forms.Clear();
             for (int i = 0; i < tablesFullName.Length; i++) {
                 OpenTables(i);
             }
@@ -122,7 +122,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             formsFullName = FormsFullName;
             tablesTables = new DataTable[tablesFullName.Length];
             formTables = new DataTable[formsFullName.Length];
-            
+            Forms.Clear();
             for (int i = 0; i< tablesFullName.Length; i++) {
                 OpenTables(i);
             }

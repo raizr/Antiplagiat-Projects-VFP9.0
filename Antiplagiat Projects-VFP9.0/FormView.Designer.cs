@@ -23,27 +23,27 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Формы", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Кнопки", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Заголовки", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Поля ввода", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup5 = new System.Windows.Forms.ListViewGroup("Таблицы", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Label", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Вкладки(Pageframe)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Поле редактирования(EditBox)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("Spinner", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("Радио кнопки", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Чек боксы", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("Групповой контейнер", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup13 = new System.Windows.Forms.ListViewGroup("Формы", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup14 = new System.Windows.Forms.ListViewGroup("Кнопки", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup15 = new System.Windows.Forms.ListViewGroup("Заголовки", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup16 = new System.Windows.Forms.ListViewGroup("Поля ввода", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup17 = new System.Windows.Forms.ListViewGroup("Таблицы", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup18 = new System.Windows.Forms.ListViewGroup("Label", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup19 = new System.Windows.Forms.ListViewGroup("Вкладки(Pageframe)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup20 = new System.Windows.Forms.ListViewGroup("Поле редактирования(EditBox)", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup21 = new System.Windows.Forms.ListViewGroup("Spinner", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup22 = new System.Windows.Forms.ListViewGroup("Формы", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup23 = new System.Windows.Forms.ListViewGroup("Кнопки", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup24 = new System.Windows.Forms.ListViewGroup("Заголовки", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup25 = new System.Windows.Forms.ListViewGroup("Поля ввода", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup26 = new System.Windows.Forms.ListViewGroup("Таблицы", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup27 = new System.Windows.Forms.ListViewGroup("Label", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup28 = new System.Windows.Forms.ListViewGroup("Вкладки(Pageframe)", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup29 = new System.Windows.Forms.ListViewGroup("Поле редактирования(EditBox)", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup30 = new System.Windows.Forms.ListViewGroup("Spinner", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup31 = new System.Windows.Forms.ListViewGroup("Радио кнопки", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup32 = new System.Windows.Forms.ListViewGroup("Чек боксы", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup33 = new System.Windows.Forms.ListViewGroup("Групповой контейнер", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup34 = new System.Windows.Forms.ListViewGroup("Формы", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup35 = new System.Windows.Forms.ListViewGroup("Кнопки", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup36 = new System.Windows.Forms.ListViewGroup("Заголовки", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup37 = new System.Windows.Forms.ListViewGroup("Поля ввода", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup38 = new System.Windows.Forms.ListViewGroup("Таблицы", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup39 = new System.Windows.Forms.ListViewGroup("Label", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup40 = new System.Windows.Forms.ListViewGroup("Вкладки(Pageframe)", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup41 = new System.Windows.Forms.ListViewGroup("Поле редактирования(EditBox)", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup42 = new System.Windows.Forms.ListViewGroup("Spinner", System.Windows.Forms.HorizontalAlignment.Left);
             this.listViewObjects = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -65,6 +65,9 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.richTextBoxRefInfo = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -87,6 +90,10 @@
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
+            this.splitContainer6.Panel1.SuspendLayout();
+            this.splitContainer6.Panel2.SuspendLayout();
+            this.splitContainer6.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewObjects
@@ -96,47 +103,47 @@
             this.columnHeader2});
             this.listViewObjects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewObjects.FullRowSelect = true;
-            listViewGroup1.Header = "Формы";
-            listViewGroup1.Name = "Form";
-            listViewGroup2.Header = "Кнопки";
-            listViewGroup2.Name = "Commandbutton";
-            listViewGroup3.Header = "Заголовки";
-            listViewGroup3.Name = "Header";
-            listViewGroup4.Header = "Поля ввода";
-            listViewGroup4.Name = "Textbox";
-            listViewGroup5.Header = "Таблицы";
-            listViewGroup5.Name = "Grid";
-            listViewGroup6.Header = "Label";
-            listViewGroup6.Name = "Label";
-            listViewGroup7.Header = "Вкладки(Pageframe)";
-            listViewGroup7.Name = "Pageframe";
-            listViewGroup8.Header = "Поле редактирования(EditBox)";
-            listViewGroup8.Name = "Editbox";
-            listViewGroup9.Header = "Spinner";
-            listViewGroup9.Name = "Spinner";
-            listViewGroup10.Header = "Радио кнопки";
-            listViewGroup10.Name = "optiongroup";
-            listViewGroup11.Header = "Чек боксы";
-            listViewGroup11.Name = "checkbox";
-            listViewGroup12.Header = "Групповой контейнер";
-            listViewGroup12.Name = "combobox";
+            listViewGroup22.Header = "Формы";
+            listViewGroup22.Name = "Form";
+            listViewGroup23.Header = "Кнопки";
+            listViewGroup23.Name = "Commandbutton";
+            listViewGroup24.Header = "Заголовки";
+            listViewGroup24.Name = "Header";
+            listViewGroup25.Header = "Поля ввода";
+            listViewGroup25.Name = "Textbox";
+            listViewGroup26.Header = "Таблицы";
+            listViewGroup26.Name = "Grid";
+            listViewGroup27.Header = "Label";
+            listViewGroup27.Name = "Label";
+            listViewGroup28.Header = "Вкладки(Pageframe)";
+            listViewGroup28.Name = "Pageframe";
+            listViewGroup29.Header = "Поле редактирования(EditBox)";
+            listViewGroup29.Name = "Editbox";
+            listViewGroup30.Header = "Spinner";
+            listViewGroup30.Name = "Spinner";
+            listViewGroup31.Header = "Радио кнопки";
+            listViewGroup31.Name = "optiongroup";
+            listViewGroup32.Header = "Чек боксы";
+            listViewGroup32.Name = "checkbox";
+            listViewGroup33.Header = "Групповой контейнер";
+            listViewGroup33.Name = "combobox";
             this.listViewObjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2,
-            listViewGroup3,
-            listViewGroup4,
-            listViewGroup5,
-            listViewGroup6,
-            listViewGroup7,
-            listViewGroup8,
-            listViewGroup9,
-            listViewGroup10,
-            listViewGroup11,
-            listViewGroup12});
+            listViewGroup22,
+            listViewGroup23,
+            listViewGroup24,
+            listViewGroup25,
+            listViewGroup26,
+            listViewGroup27,
+            listViewGroup28,
+            listViewGroup29,
+            listViewGroup30,
+            listViewGroup31,
+            listViewGroup32,
+            listViewGroup33});
             this.listViewObjects.Location = new System.Drawing.Point(0, 0);
             this.listViewObjects.MultiSelect = false;
             this.listViewObjects.Name = "listViewObjects";
-            this.listViewObjects.Size = new System.Drawing.Size(226, 271);
+            this.listViewObjects.Size = new System.Drawing.Size(226, 255);
             this.listViewObjects.TabIndex = 0;
             this.listViewObjects.UseCompatibleStateImageBehavior = false;
             this.listViewObjects.View = System.Windows.Forms.View.Details;
@@ -160,7 +167,7 @@
             this.listViewProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewProperties.Location = new System.Drawing.Point(0, 0);
             this.listViewProperties.Name = "listViewProperties";
-            this.listViewProperties.Size = new System.Drawing.Size(200, 240);
+            this.listViewProperties.Size = new System.Drawing.Size(200, 226);
             this.listViewProperties.TabIndex = 1;
             this.listViewProperties.UseCompatibleStateImageBehavior = false;
             this.listViewProperties.View = System.Windows.Forms.View.Details;
@@ -201,7 +208,7 @@
             this.listViewRefProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRefProperties.Location = new System.Drawing.Point(0, 0);
             this.listViewRefProperties.Name = "listViewRefProperties";
-            this.listViewRefProperties.Size = new System.Drawing.Size(187, 240);
+            this.listViewRefProperties.Size = new System.Drawing.Size(187, 226);
             this.listViewRefProperties.TabIndex = 1;
             this.listViewRefProperties.UseCompatibleStateImageBehavior = false;
             this.listViewRefProperties.View = System.Windows.Forms.View.Details;
@@ -223,38 +230,38 @@
             this.columnHeader10});
             this.listViewRefObjects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRefObjects.FullRowSelect = true;
-            listViewGroup13.Header = "Формы";
-            listViewGroup13.Name = "Form";
-            listViewGroup14.Header = "Кнопки";
-            listViewGroup14.Name = "Commandbutton";
-            listViewGroup15.Header = "Заголовки";
-            listViewGroup15.Name = "Header";
-            listViewGroup16.Header = "Поля ввода";
-            listViewGroup16.Name = "Textbox";
-            listViewGroup17.Header = "Таблицы";
-            listViewGroup17.Name = "Grid";
-            listViewGroup18.Header = "Label";
-            listViewGroup18.Name = "Label";
-            listViewGroup19.Header = "Вкладки(Pageframe)";
-            listViewGroup19.Name = "Pageframe";
-            listViewGroup20.Header = "Поле редактирования(EditBox)";
-            listViewGroup20.Name = "Editbox";
-            listViewGroup21.Header = "Spinner";
-            listViewGroup21.Name = "Spinner";
+            listViewGroup34.Header = "Формы";
+            listViewGroup34.Name = "Form";
+            listViewGroup35.Header = "Кнопки";
+            listViewGroup35.Name = "Commandbutton";
+            listViewGroup36.Header = "Заголовки";
+            listViewGroup36.Name = "Header";
+            listViewGroup37.Header = "Поля ввода";
+            listViewGroup37.Name = "Textbox";
+            listViewGroup38.Header = "Таблицы";
+            listViewGroup38.Name = "Grid";
+            listViewGroup39.Header = "Label";
+            listViewGroup39.Name = "Label";
+            listViewGroup40.Header = "Вкладки(Pageframe)";
+            listViewGroup40.Name = "Pageframe";
+            listViewGroup41.Header = "Поле редактирования(EditBox)";
+            listViewGroup41.Name = "Editbox";
+            listViewGroup42.Header = "Spinner";
+            listViewGroup42.Name = "Spinner";
             this.listViewRefObjects.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup13,
-            listViewGroup14,
-            listViewGroup15,
-            listViewGroup16,
-            listViewGroup17,
-            listViewGroup18,
-            listViewGroup19,
-            listViewGroup20,
-            listViewGroup21});
+            listViewGroup34,
+            listViewGroup35,
+            listViewGroup36,
+            listViewGroup37,
+            listViewGroup38,
+            listViewGroup39,
+            listViewGroup40,
+            listViewGroup41,
+            listViewGroup42});
             this.listViewRefObjects.Location = new System.Drawing.Point(0, 0);
             this.listViewRefObjects.MultiSelect = false;
             this.listViewRefObjects.Name = "listViewRefObjects";
-            this.listViewRefObjects.Size = new System.Drawing.Size(229, 271);
+            this.listViewRefObjects.Size = new System.Drawing.Size(229, 255);
             this.listViewRefObjects.TabIndex = 3;
             this.listViewRefObjects.UseCompatibleStateImageBehavior = false;
             this.listViewRefObjects.View = System.Windows.Forms.View.Details;
@@ -283,7 +290,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer1.Size = new System.Drawing.Size(866, 290);
+            this.splitContainer1.Size = new System.Drawing.Size(866, 274);
             this.splitContainer1.SplitterDistance = 436;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -293,7 +300,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(436, 290);
+            this.groupBox3.Size = new System.Drawing.Size(436, 274);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Проверяемая форма";
@@ -311,7 +318,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(430, 271);
+            this.splitContainer2.Size = new System.Drawing.Size(430, 255);
             this.splitContainer2.SplitterDistance = 226;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -329,8 +336,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.listViewProperties);
-            this.splitContainer4.Size = new System.Drawing.Size(200, 271);
-            this.splitContainer4.SplitterDistance = 27;
+            this.splitContainer4.Size = new System.Drawing.Size(200, 255);
+            this.splitContainer4.SplitterDistance = 25;
             this.splitContainer4.TabIndex = 0;
             // 
             // groupBox4
@@ -339,7 +346,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(426, 290);
+            this.groupBox4.Size = new System.Drawing.Size(426, 274);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Эталонная форма";
@@ -357,7 +364,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(420, 271);
+            this.splitContainer3.Size = new System.Drawing.Size(420, 255);
             this.splitContainer3.SplitterDistance = 229;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -375,16 +382,52 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.listViewRefProperties);
-            this.splitContainer5.Size = new System.Drawing.Size(187, 271);
-            this.splitContainer5.SplitterDistance = 27;
+            this.splitContainer5.Size = new System.Drawing.Size(187, 255);
+            this.splitContainer5.SplitterDistance = 25;
             this.splitContainer5.TabIndex = 0;
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.splitContainer1);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.label3);
+            this.splitContainer6.Panel2.Controls.Add(this.richTextBoxRefInfo);
+            this.splitContainer6.Size = new System.Drawing.Size(866, 413);
+            this.splitContainer6.SplitterDistance = 274;
+            this.splitContainer6.TabIndex = 6;
+            // 
+            // richTextBoxRefInfo
+            // 
+            this.richTextBoxRefInfo.Location = new System.Drawing.Point(12, 26);
+            this.richTextBoxRefInfo.Name = "richTextBoxRefInfo";
+            this.richTextBoxRefInfo.Size = new System.Drawing.Size(842, 97);
+            this.richTextBoxRefInfo.TabIndex = 0;
+            this.richTextBoxRefInfo.Text = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(196, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Выбранный объект заимствован из: ";
             // 
             // FormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 290);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(866, 413);
+            this.Controls.Add(this.splitContainer6);
             this.Name = "FormView";
             this.Text = "Просмотр заимствований форм";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -411,6 +454,11 @@
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
+            this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel2.ResumeLayout(false);
+            this.splitContainer6.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
+            this.splitContainer6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -438,5 +486,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.SplitContainer splitContainer6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox richTextBoxRefInfo;
     }
 }

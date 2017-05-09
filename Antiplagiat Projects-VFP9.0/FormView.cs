@@ -14,14 +14,19 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private CManager manager;
         private List<IDictionary<string, string>> Properties;
         private List<IDictionary<string, string>> RefProperties;
+        private List<SObject> list;
         private List<string> RefFormList;
+        private List<SCheckColumnInfo> RefInfoList;
+        private int FormIndex;
         public FormView(CManager ptr, int FormIndex) {
             InitializeComponent();
             manager = ptr;
+            this.FormIndex = FormIndex;
             Properties = new List<IDictionary<string, string>>();
             RefFormList = new List<string>();
             Console.WriteLine("Индекс формы: " + FormIndex);
             Properties = SelectFormView(manager.InspectProject.Forms[FormIndex], listViewObjects);
+            RefInfoList = manager.GetListFilesInfo();
         }
 
         private void listViewObjects_DoubleClick(object sender, EventArgs e) {
@@ -39,6 +44,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     RefProperties = SelectFormView(manager.InspectProject.
                                     OpenForm(RefFormList[listViewObjects.SelectedIndices[0]]),
                                    listViewRefObjects);
+                if(RefInfoList != null && RefFormList.Count != 0) {
+                    SCheckColumnInfo find = RefInfoList.Find(x => x.EqualNum == FormIndex && x.IsTable == false);
+                    richTextBoxRefInfo.Text = "Имя проекта: " + find.ProjectName + "\n" +
+                        "Студента: " + find.StudentName + "\n"+
+                        "Название формы:"+ RefFormList[listViewObjects.SelectedIndices[0]];
+                }
             }
         }
 
@@ -48,7 +59,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             var fields = type.GetFields();
             foreach (FieldInfo fi in fields) {
                 if (fi.Name != "Name") {
-                    List<SObject> list = (List<SObject>)fi.GetValue(FormStruct);
+                    list = (List<SObject>)fi.GetValue(FormStruct);
                     for (int i = 0; i < list.Count; i++) {
                         ListViewItem obj = new ListViewItem(list[i].classname);
                         switch (fi.Name) {
@@ -96,7 +107,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         if (list[i].IsPlagiarism)
                             obj.BackColor = Color.Red;
                         ListViewFormObjects.Items.Add(obj);
-
                     }
                 }
             }

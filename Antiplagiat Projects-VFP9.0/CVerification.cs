@@ -81,6 +81,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                         if (FindTable.Count == 0) {
                                             Info.EqualNum = t++;
                                             Info.IsTable = true;
+                                            Info.ProjectName = cell;
+                                            Info.StudentName = Projects.Rows[i][0].ToString();
+                                            Info.FileName = ReferenceTable.Rows[j][0].ToString();
+                                            Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                            ListColumnInfo.Add(Info);
                                         }
                                     } else {
                                         if (pname.Substring(pname.Length - 3, 3) == "scx") {
@@ -88,14 +93,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 //Console.WriteLine("№Формы: " + f);
                                                 Info.EqualNum = f++;
                                                 Info.IsTable = false;
+                                                Info.ProjectName = cell;
+                                                Info.StudentName = Projects.Rows[i][0].ToString();
+                                                Info.FileName = ReferenceTable.Rows[j][0].ToString();
+                                                Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                                ListColumnInfo.Add(Info);
                                             }
                                         }
                                     }
-                                    Info.ProjectName = cell;
-                                    Info.StudentName = Projects.Rows[i][0].ToString();
-                                    Info.FileName = ReferenceTable.Rows[j][0].ToString();
-                                    Info.Hash = ReferenceTable.Rows[j][1].ToString();
-                                    ListColumnInfo.Add(Info);   
+                                    
                                 }
                             }
                         }
@@ -209,9 +215,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                     List<SObject> Instlist = (List<SObject>)fi.GetValue(InsFormStruct);
                                     for (int n = 0; n < Reftlist.Count; n++) {
                                         for (int m = 0; m < Instlist.Count; m++) {
-                                            if (Instlist[m] ==
-                                                Reftlist[n] &&
-                                                Instlist[m].IsPlagiarism == false) {
+                                            if (Instlist[m] == Reftlist[n] && Instlist[m].IsPlagiarism == false) {
                                                 SObject obj = new SObject();
                                                 switch (fi.Name) {
                                                     case "form":
@@ -292,10 +296,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 if (FindTable.Count == 0) {
                                                     SCheckColumnInfo Info = new SCheckColumnInfo();
                                                     Info.EqualNum = k;
-                                                    Info.IsTable = true;
+                                                    Info.IsTable = false;
                                                     Info.ProjectName = Projects.Rows[i][1].ToString();
                                                     Info.StudentName = Projects.Rows[i][0].ToString();
-                                                    Info.FileName = ReferenceProject.TablesFullName[j];
+                                                    Info.FileName = ReferenceProject.Forms[j].Name;
                                                     //Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                                     ListColumnInfo.Add(Info);
                                                 }
