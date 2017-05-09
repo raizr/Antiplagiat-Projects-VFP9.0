@@ -29,12 +29,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public string OpenProject(string PathPr) {
-            /*string[] TablesFullName = Directory.GetFiles(PathPr, "*.dbf",
-                                                         SearchOption.AllDirectories);
-            string[] FormsFullName = Directory.GetFiles(PathPr, "*.scx",
-                                                     SearchOption.AllDirectories);*/
             string[] NameProject = Directory.GetFiles(PathPr, "*.pjx",
                                                      SearchOption.AllDirectories);
+            Console.WriteLine("Открытие проекта\n");
             InspectProject.Open(PathPr);
             if (NameProject.Length == 0) {
                 Console.Write("Файл проекта отсутствует");
@@ -43,11 +40,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 //генерация файлов (имя файла, хэш-сумма)
                 DataTable e = DBase.GenerateProjectTable(InspectProject);
                 CheckColumnList = Verificator.OpenCheck(e, DBase.Projects);
-                /*for(int i = 0; i < InspectProject.Forms.Count; i++) {
-                    Console.WriteLine(InspectProject.Forms[i].form[0].objname + " " +
-                                        InspectProject.Forms[i].editbox[0].objname + " " +
-                                        InspectProject.Forms[i].textbox[0].objname);
-                }*/
+                Console.WriteLine("Заимствованных таблиц: " + Verificator.PerOpenTables + "\n" +
+                 "Заимствованных таблиц: " + Verificator.PerOpenForms+ "\n\n");
                 if (CheckColumnList != null)
                     return InspectProject.Name;
                 else
@@ -57,12 +51,21 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public bool[][] CheckProject() {
+            Console.WriteLine("Проверка проекта начата...");
             if (InspectProject.Name != null) {
                 EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
+                Console.WriteLine("Проверено таблиц: " + InspectProject.TablesTables.Length + "\n" +
+                    "Заимствованых полей в таблицах: "+Verificator.PerTablesColumns+" из "+
+                    Verificator.AllTablesColumns + "\n"+
+                    "Заимствованых записей в таблицах: " + Verificator.PerTablesCells + " из " +
+                    Verificator.AllTablesCells);
                 if (Verificator.ListCellInfo != null) {
                     CheckCellList = Verificator.ListCellInfo;
                 }
                 Verificator.CheckForms(InspectProject, DBase.Projects);
+                Console.WriteLine("Проверено форм: " + InspectProject.Forms.Count + "\n" +
+                    "Заимствованых объектов форм: " + Verificator.PerForms + " из "+
+                    InspectProject.AllObjectsCounter+ "\n\n");
                 return EqualColumnsInfo;
             }
             else

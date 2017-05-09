@@ -39,6 +39,18 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private CVFPProject ReferenceProject;
         private List<SCheckColumnInfo> ListColumnInfo;
         public List<SCheckCellInfo> ListCellInfo;
+        public delegate void MethodContainer();
+        public int PerOpenTables = 0;
+        public int PerOpenForms = 0;
+        public int PerTables = 0;
+        public int AllTablesColumns = 0;
+        public int PerTablesColumns = 0;
+        public int AllTablesCells = 0;
+        public int PerTablesCells = 0;
+        public int PerForms = 0;
+        public int AllObjects = 0;
+        public int PerObjects = 0;
+        public event MethodContainer onCount = delegate { };
         public CVerification() {
             ListColumnInfo = new List<SCheckColumnInfo>();
             ListCellInfo = new List<SCheckCellInfo>();
@@ -61,6 +73,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
             column.ColumnName = "Hash";
             ReferenceTable.Columns.Add(column);
             ListColumnInfo.Clear();
+            PerOpenTables = 0;
+            PerOpenForms = 0;
             try {
                 for (int i = 0; i < Projects.Rows.Count; i++) {
                     string cell = Projects.Rows[i][1].ToString(); // Путь к проекту
@@ -86,6 +100,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                             Info.FileName = ReferenceTable.Rows[j][0].ToString();
                                             Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                             ListColumnInfo.Add(Info);
+                                            PerOpenTables++;
                                         }
                                     } else {
                                         if (pname.Substring(pname.Length - 3, 3) == "scx") {
@@ -98,6 +113,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 Info.FileName = ReferenceTable.Rows[j][0].ToString();
                                                 Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                                 ListColumnInfo.Add(Info);
+                                                PerOpenForms++;
                                             }
                                         }
                                     }
@@ -124,13 +140,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
             }
             ListCellInfo.Clear();
-            //ListColumnInfo.Clear();
+            PerTablesColumns = 0; AllTablesColumns = 0;
+            PerTablesCells = 0; AllTablesCells = 0;
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
+                onCount();
                 for (int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
                     for (int k = 0; k < InspectProject.TablesTables.Length; k++) {
                         DataTable RefTable = ReferenceProject.TablesTables[j];
                         DataTable InsTable = InspectProject.TablesTables[k];
+                        AllTablesColumns = InsTable.Columns.Count;
                         foreach (DataColumn RefColumn in RefTable.Columns) {
                             for (int n = 0; n < InsTable.Columns.Count; n++) {
                                 //IsEqual[k][n] = false;
@@ -148,13 +167,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                         Info.FileName = ReferenceProject.TablesFullName[j];
                                         //Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                         ListColumnInfo.Add(Info);
+                                        PerTablesColumns++;
                                     }
                                         //Console.WriteLine("true");
                                     }
                             }
                         }
-
                         for (int m = 0; m < RefTable.Rows.Count; m++) {
+                            AllTablesCells = InsTable.Rows.Count;
                             for (int b = 0; b < InsTable.Rows.Count; b++) {
                                 foreach (DataColumn colRef in RefTable.Columns) {
                                     foreach (DataColumn colIn in InsTable.Columns) {
@@ -181,6 +201,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                     Info.FileName = ReferenceProject.TablesFullName[j];
                                                     //Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                                     ListColumnInfo.Add(Info);
+                                                    PerTablesCells++;
                                                 }
                                             }
                                         }
@@ -196,9 +217,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         public void CheckForms(CVFPProject InspectProject, DataTable Projects) {
             ReferenceProject = new CVFPProject();
-            /*ListFormInfo.Clear();
-            ListCommandbutton.Clear();*/
+            PerForms = 0;
             for (int i = 0; i < Projects.Rows.Count; i++) {
+                onCount();
                 ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.Forms.Count; j++) {
                     SForm RefFormStruct = ReferenceProject.Forms[j];
@@ -291,6 +312,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                         InspectProject.Forms[k].combobox[m] = obj;
                                                         break;
                                                 }
+                                                PerForms++;
                                                 List<SCheckColumnInfo> FindTable =
                                                  ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == false));
                                                 if (FindTable.Count == 0) {
@@ -303,40 +325,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                     //Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                                     ListColumnInfo.Add(Info);
                                                 }
-                                                /*SObject obj = ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m];
-                                               obj.IsPlagiarism = true;
-                                                obj.RefFormFullName = ReferenceProject.Forms[j].Name;
-                                                ((List<SObject>)InspectProject.Forms[k].GetType().GetField(fi.Name).GetValue(Instlist))[m] = obj;*/
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                        /*for (int n = 0; n < ReferenceProject.Forms[j].form.Count; n++) {
-                            for (int m = 0; m < InspectProject.Forms[k].form.Count; m++) {
-                                if(InspectProject.Forms[k].form[m] ==
-                                    ReferenceProject.Forms[j].form[n] &&
-                                    InspectProject.Forms[k].form[m].IsPlagiarism == false) {
-                                    SObject obj = InspectProject.Forms[k].form[m];
-                                    obj.IsPlagiarism = true;
-                                    obj.RefFormFullName = ReferenceProject.Forms[j].Name;
-                                    InspectProject.Forms[k].form[m] = obj;
-                                }
-                            }
-                        }
-                        for (int n = 0; n < ReferenceProject.Forms[j].commandbutton.Count; n++) {
-                            for (int m = 0; m < InspectProject.Forms[k].commandbutton.Count; m++) {
-                                if (InspectProject.Forms[k].commandbutton[m] ==
-                                    ReferenceProject.Forms[j].commandbutton[n] &&
-                                    InspectProject.Forms[k].commandbutton[m].IsPlagiarism == false) {
-                                    SObject obj = InspectProject.Forms[k].commandbutton[m];
-                                    obj.IsPlagiarism = true;
-                                    obj.RefFormFullName = ReferenceProject.Forms[j].Name;
-                                    InspectProject.Forms[k].commandbutton[m] = obj;
-                                }
-                            }
-                        }*/
                     }
                 }
             }

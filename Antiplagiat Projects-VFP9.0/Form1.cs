@@ -21,17 +21,34 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private CManager manager;
         private bool[][] ColumnsColor;
         private void button1_Click(object sender, EventArgs e) {
+            OpenProject();
+        }
+
+        private void OpenProject() {
             if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                toolStripStatusLabel.Text = "Открытие проекта";
+                toolStripProgressBar.Minimum = 0;
+                string[] TablesFullName = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.dbf",
+                                                         SearchOption.AllDirectories);
+                string[] FormsFullName = Directory.GetFiles(folderBrowserDialog1.SelectedPath, "*.scx",
+                                                         SearchOption.AllDirectories);
+                toolStripProgressBar.Step = 1;
+                toolStripProgressBar.Maximum = TablesFullName.Length + FormsFullName.Length;
+                manager.InspectProject.onCount += ChangeProgressBar;
                 string ProjectName = manager.OpenProject(folderBrowserDialog1.SelectedPath);
-                if(ProjectName == null) {
+                richTextBox2.ScrollToCaret();
+                toolStripStatusLabel.Text = "Проект открыт";
+                toolStripProgressBar.Value = 0;
+                if (ProjectName == null) {
                     MessageBox.Show("Файл проекта не найден");
                 } else {
-                    if(ProjectName == "null") {
+                    if (ProjectName == "null") {
                         MessageBox.Show("Ошибка открытия проекта из БД КП\n Проверьте БД");
-                    }else {
+                    } else {
                         label1.Text = Path.GetFileName(ProjectName);
                         string[] TablesName = manager.InspectProject.TablesFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
                         string[] FormsName = manager.InspectProject.FormsFullName.Select(file => Path.GetFileNameWithoutExtension(file)).ToArray();
+
                         treeViewProject.Nodes[0].Nodes.Clear();
                         treeViewProject.Nodes[1].Nodes.Clear();
                         for (int i = 0; i < TablesName.Length; i++) {
@@ -42,25 +59,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             treeViewProject.Nodes[1].Nodes.Add(FormsName[i].ToString());
                         }
                         treeViewProject.Nodes[1].Expand();
-
                         SetColorNodes(manager.CheckColumnList);
-                        /*for (int i = 0; i < OpenInfo.Count; i++) {
-                            if (OpenInfo[i].IsTable) {
-                                treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
-                                treeViewProject.Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
-                                    OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
-                                    "\n" + OpenInfo[i].FileName;
-                            } else {
-                                treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
-                                treeViewProject.Nodes[1].Nodes[OpenInfo[i].EqualNum].ToolTipText =
-                                    OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
-                                    "\n" + OpenInfo[i].FileName;
-                            }
-                        }*/
-                    
                     }
-                }   
+                }
             }
+        }
+
+        public void ChangeProgressBar() {
+            toolStripProgressBar.PerformStep();
         }
 
         private void SetColorNodes(List<SCheckColumnInfo> OpenInfo) {
@@ -139,8 +145,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         private void buttonCheck_Click(object sender, EventArgs e) {
+            toolStripStatusLabel.Text = "Проверка проекта";
+            toolStripProgressBar.Minimum = 0;
+            toolStripProgressBar.Maximum = manager.DBase.Projects.Rows.Count;
+            manager.Verificator.onCount += ChangeProgressBar;
             ColumnsColor = manager.CheckProject();
+            richTextBox2.ScrollToCaret();
             SetColorNodes(manager.GetListFilesInfo());
+            toolStripStatusLabel.Text = "Проект проверен";
+            toolStripProgressBar.Value = 0;
             /*for(int i = 0; i< ColumnsColor.Length;i++) {
                 for(int j = 0; j < ColumnsColor.Length; j++) {
                     if(ColumnsColor[i][j] == true)
@@ -191,6 +204,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
             }
         }
+        
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e) {
+            OpenProject();
+        }
     }
 
     class Logger : System.IO.TextWriter {
@@ -198,7 +215,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public Logger(RichTextBox rtb) { this.rtb = rtb; }
         public override Encoding Encoding { get { return null; } }
         public override void Write(char value) {
-            if (value != '\r') rtb.AppendText(new string(value, 1));
+            if (value != '\r')
+                rtb.AppendText(new string(value, 1));
         }
     }
  }

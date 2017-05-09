@@ -89,8 +89,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public List<SForm> Forms;
-        
-
+        public int AllObjectsCounter = 0;
+        public delegate void MethodContainer();
+        public event MethodContainer onCount = delegate { };
         public CVFPProject() {
             Forms = new List<SForm>();
         }
@@ -108,11 +109,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
             tablesTables = new DataTable[tablesFullName.Length];
             formTables = new DataTable[formsFullName.Length];
             Forms.Clear();
+            AllObjectsCounter = 0;
             for (int i = 0; i < tablesFullName.Length; i++) {
                 OpenTables(i);
+                onCount();
             }
             for (int i = 0; i < formsFullName.Length; i++) {
                 OpenForms(i);
+                onCount();
             }
             CreateSHA1Prj();
         }
@@ -123,14 +127,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
             tablesTables = new DataTable[tablesFullName.Length];
             formTables = new DataTable[formsFullName.Length];
             Forms.Clear();
+            AllObjectsCounter = 0;
             for (int i = 0; i< tablesFullName.Length; i++) {
                 OpenTables(i);
+                onCount();
             }
             for (int i = 0; i < formsFullName.Length; i++) {
                 OpenForms(i);
+                onCount();
             }
             CreateSHA1Prj();
-            
         }
 
         public DataTable OpenTables(int i) {
@@ -171,7 +177,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         if(PropAndValue.Length > 1) {
                             obj.properties.Add(PropAndValue[0], PropAndValue[1]);
                         }
-                }
+                    }
+                AllObjectsCounter++;
                 if (obj.classname.Length > 0 && obj.objname.Length > 0 &&
                     obj.properties.Count > 0) {
                     // запись в структуру объекта формы в зависимости от класса объекта
@@ -242,6 +249,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         obj.properties.Add(PropAndValue[0], PropAndValue[1]);
                     }
                 }
+                AllObjectsCounter++;
                 if (obj.classname.Length > 0 && obj.objname.Length > 0 &&
                     obj.properties.Count > 0) {
                     // запись в структуру объекта формы в зависимости от класса объекта
