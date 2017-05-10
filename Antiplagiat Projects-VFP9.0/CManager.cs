@@ -19,7 +19,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
         public List<SCheckFormInfo> CheckFormList;
-
         public CManager() {
             PathConf = Properties.Settings.Default.BDPath;
             InspectProject = new CVFPProject();
@@ -74,6 +73,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         public List<SCheckColumnInfo> GetListFilesInfo() {
             return Verificator.GetListFilesInfo();
+        }
+
+        public List<CRowReport> GetReport() {
+            CReport Report = new CReport(InspectProject.Name,
+                                InspectProject.TablesFullName,
+                                InspectProject.FormsFullName,
+                                Verificator.GetListFilesInfo());
+            return Report.GetSource();
         }
 
         public void SaveOpenProjectToBD() {

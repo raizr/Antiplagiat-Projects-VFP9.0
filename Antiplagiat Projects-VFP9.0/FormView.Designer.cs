@@ -66,8 +66,8 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
-            this.richTextBoxRefInfo = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.richTextBoxRefInfo = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -405,14 +405,6 @@
             this.splitContainer6.SplitterDistance = 274;
             this.splitContainer6.TabIndex = 6;
             // 
-            // richTextBoxRefInfo
-            // 
-            this.richTextBoxRefInfo.Location = new System.Drawing.Point(12, 26);
-            this.richTextBoxRefInfo.Name = "richTextBoxRefInfo";
-            this.richTextBoxRefInfo.Size = new System.Drawing.Size(842, 97);
-            this.richTextBoxRefInfo.TabIndex = 0;
-            this.richTextBoxRefInfo.Text = "";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -421,6 +413,14 @@
             this.label3.Size = new System.Drawing.Size(196, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Выбранный объект заимствован из: ";
+            // 
+            // richTextBoxRefInfo
+            // 
+            this.richTextBoxRefInfo.Location = new System.Drawing.Point(12, 26);
+            this.richTextBoxRefInfo.Name = "richTextBoxRefInfo";
+            this.richTextBoxRefInfo.Size = new System.Drawing.Size(842, 97);
+            this.richTextBoxRefInfo.TabIndex = 0;
+            this.richTextBoxRefInfo.Text = "";
             // 
             // FormView
             // 

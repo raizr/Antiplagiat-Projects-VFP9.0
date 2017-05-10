@@ -23,8 +23,8 @@
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Файлы таблиц");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Файлы форм");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Файлы таблиц");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Файлы форм");
             this.button1 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -46,6 +46,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonReportOpen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -76,13 +77,13 @@
             // 
             this.treeViewProject.Location = new System.Drawing.Point(12, 57);
             this.treeViewProject.Name = "treeViewProject";
-            treeNode3.Name = "Tables";
-            treeNode3.Text = "Файлы таблиц";
-            treeNode4.Name = "Forms";
-            treeNode4.Text = "Файлы форм";
+            treeNode1.Name = "Tables";
+            treeNode1.Text = "Файлы таблиц";
+            treeNode2.Name = "Forms";
+            treeNode2.Text = "Файлы форм";
             this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
+            treeNode1,
+            treeNode2});
             this.treeViewProject.ShowNodeToolTips = true;
             this.treeViewProject.Size = new System.Drawing.Size(225, 488);
             this.treeViewProject.TabIndex = 2;
@@ -192,6 +193,7 @@
             this.button3.TabIndex = 9;
             this.button3.Text = "Открыть";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // buttonCheck
@@ -234,11 +236,22 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(108, 17);
             this.toolStripStatusLabel.Text = "Отркытие проекта";
             // 
+            // buttonReportOpen
+            // 
+            this.buttonReportOpen.Location = new System.Drawing.Point(508, 266);
+            this.buttonReportOpen.Name = "buttonReportOpen";
+            this.buttonReportOpen.Size = new System.Drawing.Size(103, 23);
+            this.buttonReportOpen.TabIndex = 13;
+            this.buttonReportOpen.Text = "Открыть отчет";
+            this.buttonReportOpen.UseVisualStyleBackColor = true;
+            this.buttonReportOpen.Click += new System.EventHandler(this.buttonReportOpen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1170, 570);
+            this.Controls.Add(this.buttonReportOpen);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.buttonCheck);
@@ -287,6 +300,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        private System.Windows.Forms.Button buttonReportOpen;
     }
 }
 

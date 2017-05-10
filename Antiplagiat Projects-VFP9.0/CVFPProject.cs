@@ -72,7 +72,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             }
         }
         private string[] columnsCaption;
-        private string[] ColumnsCaption
+        public string[] ColumnsCaption
         {
             get
             {

@@ -208,6 +208,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e) {
             OpenProject();
         }
+
+        private void buttonReportOpen_Click(object sender, EventArgs e) {
+            FormReport FormRep = new FormReport();
+            FormRep.Show();
+            FormRep.cRowReportBindingSource.DataSource = manager.GetReport();
+        }
     }
 
     class Logger : System.IO.TextWriter {
