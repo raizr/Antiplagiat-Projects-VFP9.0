@@ -12,16 +12,17 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public string classname;
         public string objname;
         public Dictionary<string,string> properties;
+        public int RefObjectIndex;
         public string methods;
 
         public static bool operator ==(SObject A, SObject B) {
-            return (A.classname == B.classname &&
+            return (/*A.classname == B.classname &&*/
                 A.objname == B.objname &&
                 Enumerable.SequenceEqual(A.properties, B.properties));
         }
 
         public static bool operator !=(SObject A, SObject B) {
-            return (A.classname != B.classname &&
+            return (/*A.classname != B.classname &&*/
                     A.objname != B.objname &&
                     !Enumerable.SequenceEqual(A.properties, B.properties));
         }
@@ -41,7 +42,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SObject> optiongroup;
         public List<SObject> checkbox;
         public List<SObject> combobox;
-
+        public List<SObject> listbox;
         /*public static bool operator ==(SForm A, SForm B) {
             return (A.Name == B.Name &&
             new HashSet<SObject>(A.form, new SObjectEqualityComparer()).SetEquals(B.form) &&

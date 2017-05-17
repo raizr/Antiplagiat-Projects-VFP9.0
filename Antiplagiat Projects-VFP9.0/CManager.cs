@@ -8,7 +8,6 @@ using System.Data;
 
 namespace Antiplagiat_Projects_VFP9._0 {
    public class CManager {
-
         private string PathConf;
         public CVFPProject InspectProject;
         public CVFPProject ReferenceProject;
@@ -18,7 +17,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SCheckColumnInfo> CheckColumnList;
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
-        public List<SCheckFormInfo> CheckFormList;
+        //public List<SCheckFormInfo> CheckFormList;
         public CManager() {
             PathConf = Properties.Settings.Default.BDPath;
             InspectProject = new CVFPProject();
@@ -31,11 +30,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
             string[] NameProject = Directory.GetFiles(PathPr, "*.pjx",
                                                      SearchOption.AllDirectories);
             Console.WriteLine("Открытие проекта\n");
-            InspectProject.Open(PathPr);
             if (NameProject.Length == 0) {
                 Console.Write("Файл проекта отсутствует");
                 return null;
             } else {
+                InspectProject.Open(PathPr);
                 //генерация файлов (имя файла, хэш-сумма)
                 DataTable e = DBase.GenerateProjectTable(InspectProject);
                 CheckColumnList = Verificator.OpenCheck(e, DBase.Projects);
@@ -46,12 +45,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 else
                     return "null";
             }
-            
         }
 
         public bool[][] CheckProject() {
-            Console.WriteLine("Проверка проекта начата...");
             if (InspectProject.Name != null) {
+                Console.WriteLine("Проверка проекта начата...");
                 EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
                 Console.WriteLine("Проверено таблиц: " + InspectProject.TablesTables.Length + "\n" +
                     "Заимствованых полей в таблицах: "+Verificator.PerTablesColumns+" из "+
@@ -66,9 +64,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     "Заимствованых объектов форм: " + Verificator.PerForms + " из "+
                     InspectProject.AllObjectsCounter+ "\n\n");
                 return EqualColumnsInfo;
-            }
-            else
+            } else {
+                Console.WriteLine("Для начала проверки необходимо открыть проект...");
                 return null;
+            }
+                
         }
 
         public List<SCheckColumnInfo> GetListFilesInfo() {
@@ -76,15 +76,25 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public List<CRowReport> GetReport() {
-            CReport Report = new CReport(InspectProject.Name,
+            if (InspectProject.Name == null) {
+                return null;
+            } else {
+                CReport Report = new CReport(InspectProject.Name,
                                 InspectProject.TablesFullName,
                                 InspectProject.FormsFullName,
                                 Verificator.GetListFilesInfo());
-            return Report.GetSource();
+                return Report.GetSource();
+            }
         }
 
-        public void SaveOpenProjectToBD() {
-            DBase.SaveProject(InspectProject, InspectProject.Name);
+        public int SaveOpenProjectToBD() {
+            if(InspectProject.Name == null) {
+                Console.WriteLine("Для сохранения проекта необходимо его открыть");
+                return 1;
+            }else {
+                DBase.SaveProject(InspectProject, InspectProject.Name);
+                return 0;
+            }
         }
     }
 }

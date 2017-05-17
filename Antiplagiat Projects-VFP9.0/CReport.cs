@@ -68,9 +68,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
                        List<SCheckColumnInfo> ListColumnInfo*/) {
             /*this.ListCellInfo = ListCellInfo;
             this.ListColumnInfo = ListColumnInfo;*/
-            for(int i = 0; i < TablesName.Length; i++) {
+            List<SCheckColumnInfo> FindTable = FilesInfo.FindAll(x => x.IsTable == true);
+            for (int i = 0; i < TablesName.Length; i++) {
                 CRowReport row = new CRowReport(NameProject, TablesName[i],
-                                                FilesInfo[i].StudentName, FilesInfo[i].FileName,0);
+                                                FindTable[i].StudentName, FindTable[i].FileName,0);
+                RowsReport.Add(row);
+            }
+            List<SCheckColumnInfo> FindForms = FilesInfo.FindAll(x => x.IsTable == false);
+            for (int i = 0; i < FormsName.Length; i++) {
+                CRowReport row = new CRowReport(NameProject, FormsName[i],
+                                                FindForms[i].StudentName, FindForms[i].FileName, 0);
                 RowsReport.Add(row);
             }
         }

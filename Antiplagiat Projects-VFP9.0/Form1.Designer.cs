@@ -23,45 +23,46 @@
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Файлы таблиц");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Файлы форм");
-            this.button1 = new System.Windows.Forms.Button();
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Файлы таблиц");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Файлы форм");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Имя проекта", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.treeViewProject = new System.Windows.Forms.TreeView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.базаКПToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.подсветкаЭлементовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.buttonReportOpen = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(485, 150);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Открыть папку проекта";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // openFileDialog1
             // 
@@ -75,60 +76,22 @@
             // 
             // treeViewProject
             // 
-            this.treeViewProject.Location = new System.Drawing.Point(12, 57);
+            this.treeViewProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewProject.Location = new System.Drawing.Point(0, 0);
             this.treeViewProject.Name = "treeViewProject";
-            treeNode1.Name = "Tables";
-            treeNode1.Text = "Файлы таблиц";
-            treeNode2.Name = "Forms";
-            treeNode2.Text = "Файлы форм";
+            treeNode4.Name = "Tables";
+            treeNode4.Text = "Файлы таблиц";
+            treeNode5.Name = "Forms";
+            treeNode5.Text = "Файлы форм";
+            treeNode6.Name = "Узел0";
+            treeNode6.Text = "Имя проекта";
             this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode6});
             this.treeViewProject.ShowNodeToolTips = true;
-            this.treeViewProject.Size = new System.Drawing.Size(225, 488);
+            this.treeViewProject.Size = new System.Drawing.Size(232, 524);
             this.treeViewProject.TabIndex = 2;
             this.treeViewProject.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewProject_AfterSelect);
             this.treeViewProject.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewProject_NodeMouseDoubleClick);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(651, 41);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(507, 260);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.Location = new System.Drawing.Point(262, 41);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(199, 108);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Имя поля";
-            this.columnHeader1.Width = 121;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Тип поля";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(262, 177);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(199, 91);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
             // 
             // menuStrip1
             // 
@@ -160,47 +123,42 @@
             // 
             // настройкиToolStripMenuItem
             // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.базаКПToolStripMenuItem,
+            this.подсветкаЭлементовToolStripMenuItem});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
+            // 
+            // базаКПToolStripMenuItem
+            // 
+            this.базаКПToolStripMenuItem.Name = "базаКПToolStripMenuItem";
+            this.базаКПToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.базаКПToolStripMenuItem.Text = "База КП";
+            this.базаКПToolStripMenuItem.Click += new System.EventHandler(this.базаКПToolStripMenuItem_Click);
+            // 
+            // подсветкаЭлементовToolStripMenuItem
+            // 
+            this.подсветкаЭлементовToolStripMenuItem.Name = "подсветкаЭлементовToolStripMenuItem";
+            this.подсветкаЭлементовToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.подсветкаЭлементовToolStripMenuItem.Text = "Подсветка элементов";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(536, 41);
+            this.button2.Location = new System.Drawing.Point(11, 57);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 34);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Сохранить";
+            this.button2.Text = "Сохранить проект в БД";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Имя проекта";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(536, 71);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Открыть";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // buttonCheck
             // 
-            this.buttonCheck.Location = new System.Drawing.Point(536, 210);
+            this.buttonCheck.Location = new System.Drawing.Point(11, 19);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(75, 23);
+            this.buttonCheck.Size = new System.Drawing.Size(100, 23);
             this.buttonCheck.TabIndex = 10;
             this.buttonCheck.Text = "Проверить проект";
             this.buttonCheck.UseVisualStyleBackColor = true;
@@ -208,9 +166,10 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(243, 388);
+            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(813, 157);
+            this.richTextBox2.Size = new System.Drawing.Size(934, 125);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 
@@ -234,73 +193,139 @@
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(108, 17);
-            this.toolStripStatusLabel.Text = "Отркытие проекта";
+            this.toolStripStatusLabel.Text = "Открытие проекта";
             // 
             // buttonReportOpen
             // 
-            this.buttonReportOpen.Location = new System.Drawing.Point(508, 266);
+            this.buttonReportOpen.Location = new System.Drawing.Point(11, 111);
             this.buttonReportOpen.Name = "buttonReportOpen";
-            this.buttonReportOpen.Size = new System.Drawing.Size(103, 23);
+            this.buttonReportOpen.Size = new System.Drawing.Size(100, 23);
             this.buttonReportOpen.TabIndex = 13;
             this.buttonReportOpen.Text = "Открыть отчет";
             this.buttonReportOpen.UseVisualStyleBackColor = true;
             this.buttonReportOpen.Click += new System.EventHandler(this.buttonReportOpen_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeViewProject);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(1170, 524);
+            this.splitContainer1.SplitterDistance = 232;
+            this.splitContainer1.TabIndex = 14;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.richTextBox2);
+            this.splitContainer2.Size = new System.Drawing.Size(934, 524);
+            this.splitContainer2.SplitterDistance = 395;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer3.IsSplitterFixed = true;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainer3.Size = new System.Drawing.Size(934, 395);
+            this.splitContainer3.SplitterDistance = 116;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.buttonCheck);
+            this.groupBox1.Controls.Add(this.buttonReportOpen);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(116, 395);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Инструменты";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1170, 570);
-            this.Controls.Add(this.buttonReportOpen);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.buttonCheck);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.treeViewProject);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "ИПК Антиплагиат пректов Базы Данных VFP9.0";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "ИПК Антиплагиат пректов Баз Данных VFP9.0";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TreeView treeViewProject;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button buttonCheck;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.Button buttonReportOpen;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolStripMenuItem базаКПToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem подсветкаЭлементовToolStripMenuItem;
     }
 }
 

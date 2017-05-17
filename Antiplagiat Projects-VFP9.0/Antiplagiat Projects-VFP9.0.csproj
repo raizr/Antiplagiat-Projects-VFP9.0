@@ -61,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CDateBase.cs" />
+    <Compile Include="CodeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CodeView.Designer.cs">
+      <DependentUpon>CodeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CReport.cs" />
     <Compile Include="FormReport.cs">
       <SubType>Form</SubType>
@@ -99,6 +105,9 @@
     <Compile Include="TableViewForm.Designer.cs">
       <DependentUpon>TableViewForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CodeView.resx">
+      <DependentUpon>CodeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

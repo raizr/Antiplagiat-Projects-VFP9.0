@@ -16,10 +16,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
             manager = ptr;
             textBoxPathDBKP.Text = Properties.Settings.Default.BDPath;
             Console.WriteLine(Properties.Settings.Default.BDPath);
+            if (dataGridViewKP.DataSource != null)
+                ((DataTable)dataGridViewKP.DataSource).Clear();
+            dataGridViewKP.DataSource = manager.DBase.Load();
+            
         }
 
         private CManager manager;
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
+        /*private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
             if (e.Node.Text == "База КП") {
                 dataGridViewKP.Enabled = true;
                 buttonAddKP.Enabled = true;
@@ -30,11 +34,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 buttonDelProject.Visible = true;
                 buttonOpenDBProjects.Visible = true;
                     
-                if(dataGridViewKP.DataSource != null)
-                    ((DataTable)dataGridViewKP.DataSource).Clear();
-                dataGridViewKP.DataSource = manager.DBase.Load();
-                dataGridViewKP.AutoResizeColumns(
-                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                
             } else {
                 manager.DBase.Save();
                 dataGridViewKP.Enabled = false;
@@ -46,7 +46,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 buttonDelProject.Visible = false;
                 buttonOpenDBProjects.Visible = false;
             }
-        }
+        }*/
 
         private void dataSetProjectsBindingSource_CurrentChanged(object sender, EventArgs e) {
 
@@ -102,6 +102,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
                 dataGridViewKP.Refresh();
             }
+        }
+
+        private void Settings_Shown(object sender, EventArgs e) {
+            dataGridViewKP.AutoResizeColumns(
+                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }
     }
 }

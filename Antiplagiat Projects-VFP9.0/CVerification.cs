@@ -21,14 +21,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public int TableIndex;
         public int rowIndex;
         public string ColumnIndex;
-        public string ProjectName;
-        public string StudentName;
-        public string FileName;
-    }
-
-    public struct SCheckFormInfo {
-        public int FormIndex;
-        public int RefFormIndex;
+        public int RefrowIndex;
+        public string RefColumnIndex;
         public string ProjectName;
         public string StudentName;
         public string FileName;
@@ -54,8 +48,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public CVerification() {
             ListColumnInfo = new List<SCheckColumnInfo>();
             ListCellInfo = new List<SCheckCellInfo>();
-            /*ListFormInfo = new List<SCheckFormInfo>();
-            ListCommandbutton = new List<SCheckFormInfo>();*/
         }
         //Проверка при открытии по именам файлов и их хэш-суммам
         public List<SCheckColumnInfo> OpenCheck(DataTable InspectProject,
@@ -189,6 +181,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 CheckCell.FileName = ReferenceProject.TablesFullName[j];
                                                 CheckCell.ProjectName = Projects.Rows[i][1].ToString();
                                                 CheckCell.StudentName = Projects.Rows[i][0].ToString();
+                                                CheckCell.RefrowIndex = m;
+                                                CheckCell.RefColumnIndex = colRef.ColumnName;
                                                 ListCellInfo.Add(CheckCell);
                                                 List<SCheckColumnInfo> FindTable =
                                                 ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == true));
@@ -243,73 +237,92 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                         obj = InspectProject.Forms[k].form[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].form[m] = obj;
                                                         break;
                                                     case "commandbutton":
                                                         obj = InspectProject.Forms[k].commandbutton[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].commandbutton[m] = obj;
                                                         break;
                                                     case "header":
                                                         obj = InspectProject.Forms[k].header[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].header[m] = obj;
                                                         break;
                                                     case "textbox":
                                                         obj = InspectProject.Forms[k].textbox[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].textbox[m] = obj;
                                                         break;
                                                     case "grid":
                                                         obj = InspectProject.Forms[k].grid[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].grid[m] = obj;
                                                         break;
                                                     case "label":
                                                         obj = InspectProject.Forms[k].label[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].label[m] = obj;
                                                         break;
                                                     case "pageframe":
                                                         obj = InspectProject.Forms[k].pageframe[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].pageframe[m] = obj;
                                                         break;
                                                     case "editbox":
                                                         obj = InspectProject.Forms[k].editbox[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].editbox[m] = obj;
                                                         break;
                                                     case "spinner":
                                                         obj = InspectProject.Forms[k].spinner[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].spinner[m] = obj;
                                                         break;
                                                     case "optiongroup":
                                                         obj = InspectProject.Forms[k].optiongroup[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].optiongroup[m] = obj;
                                                         break;
                                                     case "checkbox":
                                                         obj = InspectProject.Forms[k].checkbox[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].checkbox[m] = obj;
                                                         break;
                                                     case "combobox":
                                                         obj = InspectProject.Forms[k].combobox[m];
                                                         obj.IsPlagiarism = true;
                                                         obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
                                                         InspectProject.Forms[k].combobox[m] = obj;
+                                                        break;
+                                                    case "listbox":
+                                                        obj = InspectProject.Forms[k].listbox[m];
+                                                        obj.IsPlagiarism = true;
+                                                        obj.RefFormFullName = ReferenceProject.Forms[j].Name;
+                                                        obj.RefObjectIndex = n;
+                                                        InspectProject.Forms[k].listbox[m] = obj;
                                                         break;
                                                 }
                                                 PerForms++;

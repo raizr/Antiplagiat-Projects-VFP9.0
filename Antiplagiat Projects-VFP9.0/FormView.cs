@@ -16,6 +16,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private List<IDictionary<string, string>> RefProperties;
         private List<SObject> list;
         private List<string> RefFormList;
+        private List<int> RefFormIndex;
         private List<SCheckColumnInfo> RefInfoList;
         private int FormIndex;
         public FormView(CManager ptr, int FormIndex) {
@@ -24,9 +25,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
             this.FormIndex = FormIndex;
             Properties = new List<IDictionary<string, string>>();
             RefFormList = new List<string>();
+            RefFormIndex = new List<int>();
             Console.WriteLine("Индекс формы: " + FormIndex);
             Properties = SelectFormView(manager.InspectProject.Forms[FormIndex], listViewObjects);
-            RefInfoList = manager.GetListFilesInfo();
+            RefInfoList = manager.GetListFilesInfo().FindAll(x => x.IsTable == false);
         }
 
         private void listViewObjects_DoubleClick(object sender, EventArgs e) {
@@ -40,16 +42,22 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     listViewProperties.Items.Add(property);
                 }
                 listViewRefObjects.Items.Clear();
-                if (RefFormList.Count > 0)
+                if (RefFormList.Count > 0 && RefFormIndex.Count > listViewObjects.SelectedIndices[0] &&
+                    RefInfoList != null) {
                     RefProperties = SelectFormView(manager.InspectProject.
                                     OpenForm(RefFormList[listViewObjects.SelectedIndices[0]]),
                                    listViewRefObjects);
-                if(RefInfoList != null && RefFormList.Count != 0) {
+                    listViewRefObjects.
+                        Items[RefFormIndex[listViewObjects.SelectedIndices[0]]].BackColor =
+                        Color.Gray;
                     SCheckColumnInfo find = RefInfoList.Find(x => x.EqualNum == FormIndex && x.IsTable == false);
                     richTextBoxRefInfo.Text = "Имя проекта: " + find.ProjectName + "\n" +
-                        "Студента: " + find.StudentName + "\n"+
-                        "Название формы:"+ RefFormList[listViewObjects.SelectedIndices[0]];
+                        "Студента: " + find.StudentName + "\n" +
+                        "Название формы:" + RefFormList[listViewObjects.SelectedIndices[0]];
                 }
+                /*if(RefInfoList != null && RefFormList.Count != 0) {
+                    
+                }*/
             }
         }
 
@@ -99,11 +107,16 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             case "combobox":
                                 obj.Group = ListViewFormObjects.Groups[11];
                                 break;
+                            case "listbox":
+                                obj.Group = ListViewFormObjects.Groups[12];
+                                break;
                         }
                         obj.SubItems.Add(list[i].objname);
                         Prop.Add(list[i].properties);
-                        if(list[i].RefFormFullName != null)
+                        if(list[i].RefFormFullName != null) {
                             RefFormList.Add(list[i].RefFormFullName);
+                            RefFormIndex.Add(list[i].RefObjectIndex);
+                        }
                         if (list[i].IsPlagiarism)
                             obj.BackColor = Color.Red;
                         ListViewFormObjects.Items.Add(obj);
