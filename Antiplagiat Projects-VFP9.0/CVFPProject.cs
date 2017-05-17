@@ -160,7 +160,26 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 obj.IsPlagiarism = false; obj.RefObjectIndex = -1;
                 obj.classname = FormTable.Rows[j]["baseclass"].ToString(); // имя класса
                 obj.objname = FormTable.Rows[j]["objname"].ToString(); // имя объекта
-                obj.methods = FormTable.Rows[j]["methods"].ToString(); // методы объекта
+                string methods = FormTable.Rows[j]["methods"].ToString(); // методы объекта
+                obj.methods = new List<string>();
+                string[] strMethods = methods.Split('\n');
+                string MethodList = "";
+                
+                for (int k = 0; k < strMethods.Length; k++) {
+                    strMethods[k] = strMethods[k].Trim('\r');
+                    string[] method = strMethods[k].Split(' ');
+                    for (int i = 0; i < method.Length; i++) {
+                        if(method[i] != "ENDPROC") {
+                            MethodList += method[i]+" ";
+                        } else {
+                            MethodList += method[i];
+                            obj.methods.Add(MethodList);
+                            MethodList = "";
+                        }
+                    }
+                    MethodList += "\n";
+                }
+                    //obj.methods = 
                 string properties = FormTable.Rows[j]["properties"].ToString(); //свойства
                 //преобразование свойства из строки в пары (свойство - значение свойства)
                 // разделение одной строки свойств на строки с одним свойством

@@ -25,11 +25,11 @@
         private void InitializeComponent() {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.richInsText = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.richRefText = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -57,7 +57,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox3);
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBoxInfo);
             this.splitContainer1.Size = new System.Drawing.Size(800, 335);
             this.splitContainer1.SplitterDistance = 261;
             this.splitContainer1.TabIndex = 0;
@@ -79,36 +79,9 @@
             this.splitContainer2.SplitterDistance = 405;
             this.splitContainer2.TabIndex = 0;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(399, 242);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(3, 16);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(385, 242);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox3.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(800, 70);
-            this.richTextBox3.TabIndex = 0;
-            this.richTextBox3.Text = "";
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.richTextBox1);
+            this.groupBox1.Controls.Add(this.richInsText);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -117,9 +90,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Проверяемый метод";
             // 
+            // richInsText
+            // 
+            this.richInsText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richInsText.Location = new System.Drawing.Point(3, 16);
+            this.richInsText.Name = "richInsText";
+            this.richInsText.Size = new System.Drawing.Size(399, 242);
+            this.richInsText.TabIndex = 0;
+            this.richInsText.Text = "";
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.richTextBox2);
+            this.groupBox2.Controls.Add(this.richRefText);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
@@ -127,6 +109,24 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Эталонный метод";
+            // 
+            // richRefText
+            // 
+            this.richRefText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richRefText.Location = new System.Drawing.Point(3, 16);
+            this.richRefText.Name = "richRefText";
+            this.richRefText.Size = new System.Drawing.Size(385, 242);
+            this.richRefText.TabIndex = 0;
+            this.richRefText.Text = "";
+            // 
+            // richTextBoxInfo
+            // 
+            this.richTextBoxInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxInfo.Location = new System.Drawing.Point(0, 0);
+            this.richTextBoxInfo.Name = "richTextBoxInfo";
+            this.richTextBoxInfo.Size = new System.Drawing.Size(800, 70);
+            this.richTextBoxInfo.TabIndex = 0;
+            this.richTextBoxInfo.Text = "";
             // 
             // CodeView
             // 
@@ -155,9 +155,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.RichTextBox richInsText;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
+        public System.Windows.Forms.RichTextBox richRefText;
+        public System.Windows.Forms.RichTextBox richTextBoxInfo;
     }
 }

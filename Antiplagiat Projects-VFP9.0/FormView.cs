@@ -16,6 +16,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private List<IDictionary<string, string>> RefProperties;
         private List<SObject> list;
         private List<string> RefFormList;
+        private List<List<string>> methods;
         private List<int> RefFormIndex;
         private List<SCheckColumnInfo> RefInfoList;
         private int FormIndex;
@@ -24,9 +25,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
             manager = ptr;
             this.FormIndex = FormIndex;
             Properties = new List<IDictionary<string, string>>();
+            methods = new List<List<string>>();
             RefFormList = new List<string>();
             RefFormIndex = new List<int>();
-            Console.WriteLine("Индекс формы: " + FormIndex);
+            //Console.WriteLine("Индекс формы: " + FormIndex);
             Properties = SelectFormView(manager.InspectProject.Forms[FormIndex], listViewObjects);
             RefInfoList = manager.GetListFilesInfo().FindAll(x => x.IsTable == false);
         }
@@ -40,6 +42,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     ListViewItem property = new ListViewItem(kvp.Key);
                     property.SubItems.Add(kvp.Value);
                     listViewProperties.Items.Add(property);
+                }
+                List<string> ObjMethods = methods[listViewObjects.SelectedIndices[0]];
+                foreach (string method in ObjMethods) {
+                    string[] str = method.Split(' ');
+                    ListViewItem ObjMethod = new ListViewItem(str[0]);
+                    ObjMethod.SubItems.Add(str[1]);
+                    listViewProperties.Items.Add(ObjMethod);
                 }
                 listViewRefObjects.Items.Clear();
                 if (RefFormList.Count > 0 && RefFormIndex.Count > listViewObjects.SelectedIndices[0] &&
@@ -111,7 +120,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         }
                         obj.SubItems.Add(list[i].objname);
                         Prop.Add(list[i].properties);
-                        if(list[i].RefFormFullName != null) {
+                        methods.Add(list[i].methods);
+                        if (list[i].RefFormFullName != null) {
                             RefFormList.Add(list[i].RefFormFullName);
                         } else {
                             RefFormList.Add("");
@@ -135,6 +145,19 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     ListViewItem property = new ListViewItem(kvp.Key);
                     property.SubItems.Add(kvp.Value);
                     listViewRefProperties.Items.Add(property);
+                }
+            }
+        }
+
+        private void listViewProperties_DoubleClick(object sender, EventArgs e) {
+            ListView listview = (ListView)sender;
+            if (listViewProperties.SelectedIndices.Count > 0) {
+                if (listview.Items[listViewProperties.SelectedIndices[0]].Text == "PROCEDURE") {
+                    CodeView FormCode = new CodeView();
+                    List < string > ObjMethods = methods[listViewObjects.SelectedIndices[0]];
+                    //string ObjMethod = ObjMethods[0];
+                    FormCode.richInsText.Text = ObjMethods[0];
+                    FormCode.Show();
                 }
             }
         }

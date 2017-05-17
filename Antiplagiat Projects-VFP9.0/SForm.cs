@@ -13,7 +13,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public string objname;
         public Dictionary<string,string> properties;
         public int RefObjectIndex;
-        public string methods;
+        public List<string> methods;
 
         public static bool operator ==(SObject A, SObject B) {
             return (/*A.classname == B.classname &&*/
