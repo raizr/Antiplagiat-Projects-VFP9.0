@@ -157,7 +157,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             for (int j = 0; j < FormTable.Rows.Count; j++) {
                 SObject obj = new SObject();
                 // получение полей формы
-                obj.IsPlagiarism = false;
+                obj.IsPlagiarism = false; obj.RefObjectIndex = -1;
                 obj.classname = FormTable.Rows[j]["baseclass"].ToString(); // имя класса
                 obj.objname = FormTable.Rows[j]["objname"].ToString(); // имя объекта
                 obj.methods = FormTable.Rows[j]["methods"].ToString(); // методы объекта

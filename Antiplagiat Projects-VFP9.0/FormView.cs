@@ -43,21 +43,19 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
                 listViewRefObjects.Items.Clear();
                 if (RefFormList.Count > 0 && RefFormIndex.Count > listViewObjects.SelectedIndices[0] &&
-                    RefInfoList != null) {
+                    RefInfoList != null && RefFormList[listViewObjects.SelectedIndices[0]].Length > 0) {
                     RefProperties = SelectFormView(manager.InspectProject.
                                     OpenForm(RefFormList[listViewObjects.SelectedIndices[0]]),
                                    listViewRefObjects);
-                    listViewRefObjects.
-                        Items[RefFormIndex[listViewObjects.SelectedIndices[0]]].BackColor =
-                        Color.Gray;
+                    if(RefFormIndex[listViewObjects.SelectedIndices[0]] >= 0)
+                        listViewRefObjects.
+                            Items[RefFormIndex[listViewObjects.SelectedIndices[0]]].BackColor =
+                            Color.Gray;
                     SCheckColumnInfo find = RefInfoList.Find(x => x.EqualNum == FormIndex && x.IsTable == false);
                     richTextBoxRefInfo.Text = "Имя проекта: " + find.ProjectName + "\n" +
                         "Студента: " + find.StudentName + "\n" +
                         "Название формы:" + RefFormList[listViewObjects.SelectedIndices[0]];
                 }
-                /*if(RefInfoList != null && RefFormList.Count != 0) {
-                    
-                }*/
             }
         }
 
@@ -115,8 +113,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         Prop.Add(list[i].properties);
                         if(list[i].RefFormFullName != null) {
                             RefFormList.Add(list[i].RefFormFullName);
-                            RefFormIndex.Add(list[i].RefObjectIndex);
+                        } else {
+                            RefFormList.Add("");
                         }
+                        RefFormIndex.Add(list[i].RefObjectIndex);
                         if (list[i].IsPlagiarism)
                             obj.BackColor = Color.Red;
                         ListViewFormObjects.Items.Add(obj);
