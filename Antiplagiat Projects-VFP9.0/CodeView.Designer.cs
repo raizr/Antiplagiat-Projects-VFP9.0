@@ -135,6 +135,7 @@
             this.ClientSize = new System.Drawing.Size(800, 335);
             this.Controls.Add(this.splitContainer1);
             this.Name = "CodeView";
+            this.ShowIcon = false;
             this.Text = "Просмотр заимствованного кода";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

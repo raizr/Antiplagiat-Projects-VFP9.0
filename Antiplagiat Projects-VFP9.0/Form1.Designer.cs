@@ -143,6 +143,7 @@
             this.подсветкаЭлементовToolStripMenuItem.Name = "подсветкаЭлементовToolStripMenuItem";
             this.подсветкаЭлементовToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.подсветкаЭлементовToolStripMenuItem.Text = "Подсветка элементов";
+            this.подсветкаЭлементовToolStripMenuItem.Click += new System.EventHandler(this.подсветкаЭлементовToolStripMenuItem_Click);
             // 
             // button2
             // 
@@ -283,6 +284,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "ИПК Антиплагиат пректов Баз Данных VFP9.0";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

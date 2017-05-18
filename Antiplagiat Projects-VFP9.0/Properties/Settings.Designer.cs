@@ -34,5 +34,65 @@ namespace Antiplagiat_Projects_VFP9._0.Properties {
                 this["BDPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color OpenColor {
+            get {
+                return ((global::System.Drawing.Color)(this["OpenColor"]));
+            }
+            set {
+                this["OpenColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color ColorCell {
+            get {
+                return ((global::System.Drawing.Color)(this["ColorCell"]));
+            }
+            set {
+                this["ColorCell"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color RefColorCell {
+            get {
+                return ((global::System.Drawing.Color)(this["RefColorCell"]));
+            }
+            set {
+                this["RefColorCell"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color FormObjColor {
+            get {
+                return ((global::System.Drawing.Color)(this["FormObjColor"]));
+            }
+            set {
+                this["FormObjColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color RefFormObjColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RefFormObjColor"]));
+            }
+            set {
+                this["RefFormObjColor"] = value;
+            }
+        }
     }
 }

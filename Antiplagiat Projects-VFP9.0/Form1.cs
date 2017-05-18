@@ -204,6 +204,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
             form.Owner = this;
             form.ShowDialog();
         }
+
+        private void подсветкаЭлементовToolStripMenuItem_Click(object sender, EventArgs e) {
+            SettingsColor ColorForm = new SettingsColor();
+            ColorForm.Show();
+        }
     }
 
     class Logger : System.IO.TextWriter {
