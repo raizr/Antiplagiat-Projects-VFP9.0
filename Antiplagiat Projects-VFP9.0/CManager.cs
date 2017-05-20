@@ -14,7 +14,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public CDateBase DBase;
         public CVerification Verificator;
         public DataTable ViewTable;
-        public List<SCheckColumnInfo> CheckColumnList;
+        public List<SCheckElementInfo> CheckColumnList;
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
         //public List<SCheckFormInfo> CheckFormList;
@@ -71,7 +71,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 
         }
 
-        public List<SCheckColumnInfo> GetListFilesInfo() {
+        public List<SCheckElementInfo> GetListFilesInfo() {
             return Verificator.GetListFilesInfo();
         }
 

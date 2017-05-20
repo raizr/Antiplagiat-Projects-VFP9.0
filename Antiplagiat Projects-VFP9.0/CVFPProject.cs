@@ -111,11 +111,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
             Forms.Clear();
             AllObjectsCounter = 0;
             for (int i = 0; i < tablesFullName.Length; i++) {
-                OpenTables(i);
+                OpenTable(i);
                 onCount();
             }
             for (int i = 0; i < formsFullName.Length; i++) {
-                OpenForms(i);
+                OpenForm(i);
                 onCount();
             }
             CreateSHA1Prj();
@@ -129,17 +129,31 @@ namespace Antiplagiat_Projects_VFP9._0 {
             Forms.Clear();
             AllObjectsCounter = 0;
             for (int i = 0; i< tablesFullName.Length; i++) {
-                OpenTables(i);
+                OpenTable(i);
                 onCount();
             }
             for (int i = 0; i < formsFullName.Length; i++) {
-                OpenForms(i);
+                OpenForm(i);
                 onCount();
             }
             CreateSHA1Prj();
         }
 
-        public DataTable OpenTables(int i) {
+        public int OpenTables(string Path) {
+            string[] TablesFullName = Directory.GetFiles(Path, "*.dbf",
+                                                         SearchOption.AllDirectories);
+            string[] NameProject = Directory.GetFiles(Path, "*.pjx",
+                                                     SearchOption.AllDirectories);
+            Name = NameProject[0];
+            tablesFullName = TablesFullName;
+            tablesTables = new DataTable[tablesFullName.Length];
+            for (int i = 0; i < tablesFullName.Length; i++) {
+                OpenTable(i);
+            }
+            return 0;
+        }
+
+        public DataTable OpenTable(int i) {
             //string DirectoryName = Path.GetDirectoryName(tablesFullName[0]);
             TablesTables[i] = loaderDb.OpenDB(tablesFullName[i]);
             return TablesTables[i];
@@ -193,49 +207,49 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         obj.properties.Add(PropAndValue[0], PropAndValue[1]);
                     }
                 }
-                AllObjectsCounter++;
                 if (obj.classname.Length > 0 && obj.objname.Length > 0 &&
                     obj.properties.Count > 0) {
+                    
                     // запись в структуру объекта формы в зависимости от класса объекта
                     switch (obj.classname) {
                         case "form":
-                            form.form.Add(obj);
+                            form.form.Add(obj); AllObjectsCounter++;
                             break;
                         case "commandbutton":
-                            form.commandbutton.Add(obj);
+                            form.commandbutton.Add(obj); AllObjectsCounter++;
                             break;
                         case "header":
-                            form.header.Add(obj);
+                            form.header.Add(obj); AllObjectsCounter++;
                             break;
                         case "textbox":
-                            form.textbox.Add(obj);
+                            form.textbox.Add(obj); AllObjectsCounter++;
                             break;
                         case "grid":
-                            form.grid.Add(obj);
+                            form.grid.Add(obj); AllObjectsCounter++;
                             break;
                         case "label":
-                            form.label.Add(obj);
+                            form.label.Add(obj); AllObjectsCounter++;
                             break;
                         case "pageframe":
-                            form.pageframe.Add(obj);
+                            form.pageframe.Add(obj); AllObjectsCounter++;
                             break;
                         case "editbox":
-                            form.editbox.Add(obj);
+                            form.editbox.Add(obj); AllObjectsCounter++;
                             break;
                         case "spinner":
-                            form.spinner.Add(obj);
+                            form.spinner.Add(obj); AllObjectsCounter++;
                             break;
                         case "optiongroup":
-                            form.optiongroup.Add(obj);
+                            form.optiongroup.Add(obj); AllObjectsCounter++;
                             break;
                         case "checkbox":
-                            form.checkbox.Add(obj);
+                            form.checkbox.Add(obj); AllObjectsCounter++;
                             break;
                         case "combobox":
-                            form.combobox.Add(obj);
+                            form.combobox.Add(obj); AllObjectsCounter++;
                             break;
                         case "listbox":
-                            form.listbox.Add(obj);
+                            form.listbox.Add(obj); AllObjectsCounter++;
                             break;
                     }
                 }
@@ -243,7 +257,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             return form;
         }
 
-        public DataTable OpenForms(int i) {
+        public DataTable OpenForm(int i) {
             DataTable FormTable = loaderDb.OpenDB(formsFullName[i]);
             FormTables[i] = FormTable;
             Forms.Add(FormOpen(formsFullName[i], FormTable));
@@ -255,8 +269,21 @@ namespace Antiplagiat_Projects_VFP9._0 {
             return FormOpen(FormFullName, FormTable);
         }
 
-        private void FormOpen() {
-
+        public int OpenForms(string Path) {
+            string[] FormsFullName = Directory.GetFiles(Path, "*.scx",
+                                                     SearchOption.AllDirectories);
+            string[] NameProject = Directory.GetFiles(Path, "*.pjx",
+                                                     SearchOption.AllDirectories);
+            Name = NameProject[0];
+            formsFullName = FormsFullName;
+            formTables = new DataTable[formsFullName.Length];
+            Forms.Clear();
+            AllObjectsCounter = 0;
+            for (int i = 0; i < formsFullName.Length; i++) {
+                OpenForm(i);
+                onCount();
+            }
+            return 0;
         }
 
         public string[] GetColumnsName(int TableIndex) {

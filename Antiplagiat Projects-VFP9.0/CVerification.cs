@@ -8,9 +8,9 @@ using System.IO;
 using System.Reflection;
 
 namespace Antiplagiat_Projects_VFP9._0 {
-    public struct SCheckColumnInfo {
+    public struct SCheckElementInfo {
         public int EqualNum;
-        public bool IsTable;
+        public char Type;
         public string ProjectName;
         public string StudentName;
         public string FileName;
@@ -31,7 +31,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public class CVerification {
         private DataTable ReferenceTable;
         private CVFPProject ReferenceProject;
-        private List<SCheckColumnInfo> ListColumnInfo;
+        private List<SCheckElementInfo> ListColumnInfo;
         public List<SCheckCellInfo> ListCellInfo;
         public delegate void MethodContainer();
         public int PerOpenTables = 0;
@@ -46,11 +46,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public int PerObjects = 0;
         public event MethodContainer onCount = delegate { };
         public CVerification() {
-            ListColumnInfo = new List<SCheckColumnInfo>();
+            ListColumnInfo = new List<SCheckElementInfo>();
             ListCellInfo = new List<SCheckCellInfo>();
         }
         //Проверка при открытии по именам файлов и их хэш-суммам
-        public List<SCheckColumnInfo> OpenCheck(DataTable InspectProject,
+        public List<SCheckElementInfo> OpenCheck(DataTable InspectProject,
                                      DataTable Projects) {
             DataColumn column;
             column = new DataColumn();
@@ -78,15 +78,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             if (ReferenceTable.Rows[j][0].ToString() == InspectProject.Rows[k][0].ToString() ||
                                 // ... по хэш-сумме
                                 ReferenceTable.Rows[j][1].ToString() == InspectProject.Rows[k][1].ToString()) {
-                                List<SCheckColumnInfo> FindTable = ListColumnInfo.FindAll(x => (x.EqualNum == t && x.IsTable ==true));
-                                List<SCheckColumnInfo> FindForm = ListColumnInfo.FindAll(x => (x.EqualNum == f && x.IsTable == false));
+                                List<SCheckElementInfo> FindTable = ListColumnInfo.FindAll(x => (x.EqualNum == t && x.Type == 'R'));
+                                List<SCheckElementInfo> FindForm = ListColumnInfo.FindAll(x => (x.EqualNum == f && x.Type == 'O'));
                                 if (FindTable.Count == 0 || FindForm.Count == 0) {
-                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                    SCheckElementInfo Info = new SCheckElementInfo();
                                     string pname = InspectProject.Rows[k][0].ToString();
                                     if (pname.Substring(pname.Length - 3, 3) == "dbf") {
                                         if (FindTable.Count == 0) {
                                             Info.EqualNum = t++;
-                                            Info.IsTable = true;
+                                            Info.Type = 'R';
                                             Info.ProjectName = cell;
                                             Info.StudentName = Projects.Rows[i][0].ToString();
                                             Info.FileName = ReferenceTable.Rows[j][0].ToString();
@@ -99,7 +99,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                             if (FindForm.Count == 0) {
                                                 //Console.WriteLine("№Формы: " + f);
                                                 Info.EqualNum = f++;
-                                                Info.IsTable = false;
+                                                Info.Type = 'O';
                                                 Info.ProjectName = cell;
                                                 Info.StudentName = Projects.Rows[i][0].ToString();
                                                 Info.FileName = ReferenceTable.Rows[j][0].ToString();
@@ -132,41 +132,54 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 IsEqual[i] = new bool[InspectProject.TablesTables[i].Columns.Count];
             }
             ListCellInfo.Clear();
-            PerTablesColumns = 0; AllTablesColumns = 0;
-            PerTablesCells = 0; AllTablesCells = 0;
+            PerTablesColumns = 0; 
+            PerTablesCells = 0; 
             for (int i = 0; i < Projects.Rows.Count; i++) {
-                ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
+                ReferenceProject.OpenTables(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 onCount();
                 for (int j = 0; j < ReferenceProject.TablesTables.Length; j++) {
+                    AllTablesColumns = 0; AllTablesCells = 0;
                     for (int k = 0; k < InspectProject.TablesTables.Length; k++) {
                         DataTable RefTable = ReferenceProject.TablesTables[j];
                         DataTable InsTable = InspectProject.TablesTables[k];
-                        AllTablesColumns = InsTable.Columns.Count;
+                        AllTablesColumns += InsTable.Columns.Count;
                         foreach (DataColumn RefColumn in RefTable.Columns) {
                             for (int n = 0; n < InsTable.Columns.Count; n++) {
                                 //IsEqual[k][n] = false;
                                 if (RefColumn.ColumnName == InsTable.Columns[n].ColumnName &&
                                     RefColumn.DataType == InsTable.Columns[n].DataType) {
-                                    IsEqual[k][n] = true;
-                                    List<SCheckColumnInfo> FindTable = 
-                                        ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == true));
-                                    if (FindTable.Count == 0) {
-                                        SCheckColumnInfo Info = new SCheckColumnInfo();
-                                        Info.EqualNum = k;
-                                        Info.IsTable = true;
-                                        Info.ProjectName = Projects.Rows[i][1].ToString();
-                                        Info.StudentName = Projects.Rows[i][0].ToString();
-                                        Info.FileName = ReferenceProject.TablesFullName[j];
-                                        //Info.Hash = ReferenceTable.Rows[j][1].ToString();
-                                        ListColumnInfo.Add(Info);
+                                    SCheckCellInfo CheckCell = new SCheckCellInfo();
+                                    List<SCheckCellInfo> results = ListCellInfo.FindAll(x => (x.rowIndex == -1 && x.ColumnIndex == InsTable.Columns[n].ColumnName));
+                                    if (results.Count == 0) {
+                                        CheckCell.TableIndex = k;
+                                        CheckCell.rowIndex = -1;
+                                        CheckCell.ColumnIndex = InsTable.Columns[n].ColumnName;
+                                        CheckCell.FileName = ReferenceProject.TablesFullName[j];
+                                        CheckCell.ProjectName = Projects.Rows[i][1].ToString();
+                                        CheckCell.StudentName = Projects.Rows[i][0].ToString();
+                                        CheckCell.RefrowIndex = -1;
+                                        CheckCell.RefColumnIndex = RefColumn.ColumnName;
+                                        ListCellInfo.Add(CheckCell);
                                         PerTablesColumns++;
-                                    }
-                                        //Console.WriteLine("true");
-                                    }
+                                        List<SCheckElementInfo> FindTable =
+                                            ListColumnInfo.FindAll(x => (x.EqualNum == k && x.Type == 'C'));
+                                        if (FindTable.Count == 0) {
+                                            SCheckElementInfo Info = new SCheckElementInfo();
+                                            Info.EqualNum = k;
+                                            Info.Type = 'C';
+                                            Info.ProjectName = Projects.Rows[i][1].ToString();
+                                            Info.StudentName = Projects.Rows[i][0].ToString();
+                                            Info.FileName = ReferenceProject.TablesFullName[j];
+                                            //Info.Hash = ReferenceTable.Rows[j][1].ToString();
+                                            ListColumnInfo.Add(Info);
+
+                                        }
+                                    } //Console.WriteLine("true");
+                                }
                             }
                         }
+                        AllTablesCells += InsTable.Rows.Count*InsTable.Columns.Count;
                         for (int m = 0; m < RefTable.Rows.Count; m++) {
-                            AllTablesCells = InsTable.Rows.Count;
                             for (int b = 0; b < InsTable.Rows.Count; b++) {
                                 foreach (DataColumn colRef in RefTable.Columns) {
                                     foreach (DataColumn colIn in InsTable.Columns) {
@@ -175,6 +188,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                             SCheckCellInfo CheckCell = new SCheckCellInfo();
                                             List<SCheckCellInfo> results = ListCellInfo.FindAll(x => (x.rowIndex == b && x.ColumnIndex == colIn.ColumnName));
                                             if (results.Count == 0) {
+                                                PerTablesCells++;
                                                 CheckCell.TableIndex = k;
                                                 CheckCell.rowIndex = b;
                                                 CheckCell.ColumnIndex = colIn.ColumnName;
@@ -184,18 +198,18 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                 CheckCell.RefrowIndex = m;
                                                 CheckCell.RefColumnIndex = colRef.ColumnName;
                                                 ListCellInfo.Add(CheckCell);
-                                                List<SCheckColumnInfo> FindTable =
-                                                ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == true));
+                                                List<SCheckElementInfo> FindTable =
+                                                ListColumnInfo.FindAll(x => (x.EqualNum == k && x.Type == 'R'));
                                                 if (FindTable.Count == 0) {
-                                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                                    SCheckElementInfo Info = new SCheckElementInfo();
                                                     Info.EqualNum = k;
-                                                    Info.IsTable = true;
+                                                    Info.Type = 'R';
                                                     Info.ProjectName = Projects.Rows[i][1].ToString();
                                                     Info.StudentName = Projects.Rows[i][0].ToString();
                                                     Info.FileName = ReferenceProject.TablesFullName[j];
                                                     //Info.Hash = ReferenceTable.Rows[j][1].ToString();
                                                     ListColumnInfo.Add(Info);
-                                                    PerTablesCells++;
+                                                    
                                                 }
                                             }
                                         }
@@ -214,11 +228,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
             PerForms = 0;
             for (int i = 0; i < Projects.Rows.Count; i++) {
                 onCount();
-                ReferenceProject.Open(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
+                ReferenceProject.OpenForms(Path.GetDirectoryName(Projects.Rows[i][1].ToString()));
                 for (int j = 0; j < ReferenceProject.Forms.Count; j++) {
                     SForm RefFormStruct = ReferenceProject.Forms[j];
                     Type Reftype = typeof(SForm);
                     var Reffields = Reftype.GetFields();
+                    AllObjects = 0;
                     for (int k = 0; k < InspectProject.Forms.Count; k++) {
                         SForm InsFormStruct = InspectProject.Forms[k];
                         Type Instype = typeof(SForm);
@@ -229,9 +244,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                 if (Rfi.Name != "Name" && fi.Name != "Name") {
                                     List<SObject> Reftlist = (List<SObject>)fi.GetValue(RefFormStruct);
                                     List<SObject> Instlist = (List<SObject>)fi.GetValue(InsFormStruct);
+                                    //AllObjects += Instlist.Count;
                                     for (int n = 0; n < Reftlist.Count; n++, RefIndexCount++) {
                                         for (int m = 0; m < Instlist.Count; m++) {
                                             if (Instlist[m] == Reftlist[n] && Instlist[m].IsPlagiarism == false) {
+                                                PerForms++;
                                                 SObject obj = new SObject();
                                                 switch (fi.Name) {
                                                     case "form":
@@ -326,13 +343,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                                         InspectProject.Forms[k].listbox[m] = obj;
                                                         break;
                                                 }
-                                                PerForms++;
-                                                List<SCheckColumnInfo> FindTable =
-                                                 ListColumnInfo.FindAll(x => (x.EqualNum == k && x.IsTable == false));
+                                                List<SCheckElementInfo> FindTable =
+                                                 ListColumnInfo.FindAll(x => (x.EqualNum == k && x.Type == 'O'));
                                                 if (FindTable.Count == 0) {
-                                                    SCheckColumnInfo Info = new SCheckColumnInfo();
+                                                    SCheckElementInfo Info = new SCheckElementInfo();
                                                     Info.EqualNum = k;
-                                                    Info.IsTable = false;
+                                                    Info.Type = 'O';
                                                     Info.ProjectName = Projects.Rows[i][1].ToString();
                                                     Info.StudentName = Projects.Rows[i][0].ToString();
                                                     Info.FileName = ReferenceProject.Forms[j].Name;
@@ -350,7 +366,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             }
         }
 
-        public List<SCheckColumnInfo> GetListFilesInfo() {
+        public List<SCheckElementInfo> GetListFilesInfo() {
             return ListColumnInfo;
         }
     }

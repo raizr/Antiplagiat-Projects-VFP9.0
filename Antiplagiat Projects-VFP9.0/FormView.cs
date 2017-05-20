@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using System.Reflection;
 
@@ -18,7 +19,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private List<string> RefFormList;
         private List<List<string>> methods;
         private List<int> RefFormIndex;
-        private List<SCheckColumnInfo> RefInfoList;
+        private List<SCheckElementInfo> RefInfoList;
         private int FormIndex;
         public FormView(CManager ptr, int FormIndex) {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             RefFormIndex = new List<int>();
             //Console.WriteLine("Индекс формы: " + FormIndex);
             Properties = SelectFormView(manager.InspectProject.Forms[FormIndex], listViewObjects);
-            RefInfoList = manager.GetListFilesInfo().FindAll(x => x.IsTable == false);
+            RefInfoList = manager.GetListFilesInfo().FindAll(x => x.Type == 'O');
         }
 
         private void listViewObjects_DoubleClick(object sender, EventArgs e) {
@@ -60,10 +61,11 @@ namespace Antiplagiat_Projects_VFP9._0 {
                         listViewRefObjects.
                             Items[RefFormIndex[listViewObjects.SelectedIndices[0]]].BackColor =
                             Color.Gray;
-                    SCheckColumnInfo find = RefInfoList.Find(x => x.EqualNum == FormIndex && x.IsTable == false);
-                    richTextBoxRefInfo.Text = "Имя проекта: " + find.ProjectName + "\n" +
+                    SCheckElementInfo find = RefInfoList.Find(x => x.EqualNum == FormIndex && x.Type == 'O');
+                    richTextBoxRefInfo.Text = "Имя проекта: " + Path.GetFileNameWithoutExtension(find.ProjectName) + "\n" +
                         "Студента: " + find.StudentName + "\n" +
-                        "Название формы:" + RefFormList[listViewObjects.SelectedIndices[0]];
+                        "Название формы:" + 
+                        Path.GetFileNameWithoutExtension(RefFormList[listViewObjects.SelectedIndices[0]]);
                 }
             }
         }

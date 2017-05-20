@@ -71,10 +71,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
             toolStripProgressBar.PerformStep();
         }
 
-        private void SetColorNodes(List<SCheckColumnInfo> OpenInfo) {
+        private void SetColorNodes(List<SCheckElementInfo> OpenInfo) {
             if(OpenInfo != null) {
                 for (int i = 0; i < OpenInfo.Count; i++) {
-                    if (OpenInfo[i].IsTable) {
+                    if (OpenInfo[i].Type == 'R' || OpenInfo[i].Type == 'C') {
                         treeViewProject.Nodes[0].Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
                         treeViewProject.Nodes[0].Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
                             OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +

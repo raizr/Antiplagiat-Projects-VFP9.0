@@ -63,18 +63,18 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public CReport(string NameProject, 
                        string[] TablesName,
                        string[] FormsName,
-                       List<SCheckColumnInfo> FilesInfo/*,
+                       List<SCheckElementInfo> FilesInfo/*,
                        List<SCheckCellInfo> ListCellInfo,
                        List<SCheckColumnInfo> ListColumnInfo*/) {
             /*this.ListCellInfo = ListCellInfo;
             this.ListColumnInfo = ListColumnInfo;*/
-            List<SCheckColumnInfo> FindTable = FilesInfo.FindAll(x => x.IsTable == true);
+            List<SCheckElementInfo> FindTable = FilesInfo.FindAll(x => x.Type == 'R');
             for (int i = 0; i < TablesName.Length; i++) {
                 CRowReport row = new CRowReport(NameProject, TablesName[i],
                                                 FindTable[i].StudentName, FindTable[i].FileName,0);
                 RowsReport.Add(row);
             }
-            List<SCheckColumnInfo> FindForms = FilesInfo.FindAll(x => x.IsTable == false);
+            List<SCheckElementInfo> FindForms = FilesInfo.FindAll(x => x.Type == 'O');
             for (int i = 0; i < FormsName.Length; i++) {
                 CRowReport row = new CRowReport(NameProject, FormsName[i],
                                                 FindForms[i].StudentName, FindForms[i].FileName, 0);
