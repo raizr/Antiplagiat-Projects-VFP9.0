@@ -34,6 +34,8 @@
             this.buttonFormObjColor = new System.Windows.Forms.Button();
             this.buttonRefColorCell = new System.Windows.Forms.Button();
             this.buttonRefFormObjColor = new System.Windows.Forms.Button();
+            this.buttonInsMethodColor = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -87,7 +89,7 @@
             this.buttonOpenColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonOpenColor.FlatAppearance.BorderSize = 0;
             this.buttonOpenColor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonOpenColor.Location = new System.Drawing.Point(249, 22);
+            this.buttonOpenColor.Location = new System.Drawing.Point(249, 24);
             this.buttonOpenColor.Margin = new System.Windows.Forms.Padding(0);
             this.buttonOpenColor.Name = "buttonOpenColor";
             this.buttonOpenColor.Size = new System.Drawing.Size(18, 18);
@@ -115,7 +117,7 @@
             this.buttonFormObjColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonFormObjColor.FlatAppearance.BorderSize = 0;
             this.buttonFormObjColor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonFormObjColor.Location = new System.Drawing.Point(249, 108);
+            this.buttonFormObjColor.Location = new System.Drawing.Point(249, 106);
             this.buttonFormObjColor.Margin = new System.Windows.Forms.Padding(0);
             this.buttonFormObjColor.Name = "buttonFormObjColor";
             this.buttonFormObjColor.Size = new System.Drawing.Size(18, 18);
@@ -129,7 +131,7 @@
             this.buttonRefColorCell.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonRefColorCell.FlatAppearance.BorderSize = 0;
             this.buttonRefColorCell.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonRefColorCell.Location = new System.Drawing.Point(249, 83);
+            this.buttonRefColorCell.Location = new System.Drawing.Point(249, 78);
             this.buttonRefColorCell.Margin = new System.Windows.Forms.Padding(0);
             this.buttonRefColorCell.Name = "buttonRefColorCell";
             this.buttonRefColorCell.Size = new System.Drawing.Size(18, 18);
@@ -143,7 +145,7 @@
             this.buttonRefFormObjColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.buttonRefFormObjColor.FlatAppearance.BorderSize = 0;
             this.buttonRefFormObjColor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonRefFormObjColor.Location = new System.Drawing.Point(249, 138);
+            this.buttonRefFormObjColor.Location = new System.Drawing.Point(249, 133);
             this.buttonRefFormObjColor.Margin = new System.Windows.Forms.Padding(0);
             this.buttonRefFormObjColor.Name = "buttonRefFormObjColor";
             this.buttonRefFormObjColor.Size = new System.Drawing.Size(18, 18);
@@ -151,11 +153,35 @@
             this.buttonRefFormObjColor.UseVisualStyleBackColor = false;
             this.buttonRefFormObjColor.Click += new System.EventHandler(this.buttonRefFormObjColor_Click);
             // 
+            // buttonInsMethodColor
+            // 
+            this.buttonInsMethodColor.BackColor = System.Drawing.Color.Red;
+            this.buttonInsMethodColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.buttonInsMethodColor.FlatAppearance.BorderSize = 0;
+            this.buttonInsMethodColor.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.buttonInsMethodColor.Location = new System.Drawing.Point(249, 163);
+            this.buttonInsMethodColor.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonInsMethodColor.Name = "buttonInsMethodColor";
+            this.buttonInsMethodColor.Size = new System.Drawing.Size(18, 18);
+            this.buttonInsMethodColor.TabIndex = 11;
+            this.buttonInsMethodColor.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 168);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(198, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Цвето заимствованных токенов кода";
+            // 
             // SettingsColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 192);
+            this.Controls.Add(this.buttonInsMethodColor);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonRefFormObjColor);
             this.Controls.Add(this.buttonRefColorCell);
             this.Controls.Add(this.buttonFormObjColor);
@@ -187,5 +213,7 @@
         private System.Windows.Forms.Button buttonFormObjColor;
         private System.Windows.Forms.Button buttonRefColorCell;
         private System.Windows.Forms.Button buttonRefFormObjColor;
+        private System.Windows.Forms.Button buttonInsMethodColor;
+        private System.Windows.Forms.Label label6;
     }
 }

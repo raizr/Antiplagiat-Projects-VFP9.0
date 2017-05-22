@@ -158,7 +158,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     CodeView FormCode = new CodeView();
                     List < string > ObjMethods = methods[listViewObjects.SelectedIndices[0]];
                     //string ObjMethod = ObjMethods[0];
-                    FormCode.richInsText.Text = ObjMethods[0];
+                    //FormCode.richInsText.Text = ObjMethods[0];
                     FormCode.Show();
                 }
             }
