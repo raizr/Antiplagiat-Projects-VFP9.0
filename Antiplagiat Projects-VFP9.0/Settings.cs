@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 
 namespace Antiplagiat_Projects_VFP9._0 {
-    public partial class Settings : Form {
-        public Settings(CManager ptr) {
+    public partial class SettingsDB : Form {
+        public SettingsDB(CManager ptr) {
             InitializeComponent();
             manager = ptr;
             textBoxPathDBKP.Text = Properties.Settings.Default.BDPath;

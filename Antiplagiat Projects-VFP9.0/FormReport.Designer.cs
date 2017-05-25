@@ -25,10 +25,14 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.cRowReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.cRowReportBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cRowReportBindingSource
+            // 
+            this.cRowReportBindingSource.DataSource = typeof(Antiplagiat_Projects_VFP9._0.CRowReport);
             // 
             // reportViewer
             // 
@@ -42,10 +46,6 @@
             this.reportViewer.Size = new System.Drawing.Size(746, 276);
             this.reportViewer.TabIndex = 0;
             // 
-            // cRowReportBindingSource
-            // 
-            this.cRowReportBindingSource.DataSource = typeof(Antiplagiat_Projects_VFP9._0.CRowReport);
-            // 
             // FormReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -53,6 +53,7 @@
             this.ClientSize = new System.Drawing.Size(746, 276);
             this.Controls.Add(this.reportViewer);
             this.Name = "FormReport";
+            this.ShowIcon = false;
             this.Text = "Просмотр отчета";
             this.Load += new System.EventHandler(this.FormReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.cRowReportBindingSource)).EndInit();

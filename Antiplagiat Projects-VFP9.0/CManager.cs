@@ -8,7 +8,6 @@ using System.Data;
 
 namespace Antiplagiat_Projects_VFP9._0 {
    public class CManager {
-        private string PathConf;
         public CVFPProject InspectProject;
         public CVFPProject ReferenceProject;
         public CDateBase DBase;
@@ -19,7 +18,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SCheckCellInfo> CheckCellList;
         //public List<SCheckFormInfo> CheckFormList;
         public CManager() {
-            PathConf = Properties.Settings.Default.BDPath;
             InspectProject = new CVFPProject();
             ReferenceProject = new CVFPProject();
             DBase = new CDateBase();
@@ -82,7 +80,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 CReport Report = new CReport(InspectProject.Name,
                                 InspectProject.TablesFullName,
                                 InspectProject.FormsFullName,
-                                Verificator.GetListFilesInfo());
+                                Verificator.GetListFilesInfo(),
+                                CheckCellList,
+                                InspectProject.Forms);
                 return Report.GetSource();
             }
         }

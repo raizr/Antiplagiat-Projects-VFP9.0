@@ -9,7 +9,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public class CDateBase {
 
         public DataTable Projects; // таблица всех проектов
-        public DataTable FilesProjectHash; // таблиц файлов одного проекта с их хэшами
+        private DataTable FilesProjectHash; // таблиц файлов одного проекта с их хэшами
         public CDateBase() {
             Projects = new DataTable("Projects Path");
 

@@ -15,7 +15,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             CManager manager = new CManager();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(manager));
+            Application.Run(new MainForm(manager));
         }
     }
 }

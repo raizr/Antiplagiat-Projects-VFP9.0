@@ -24,64 +24,64 @@
         /// </summary>
         private void InitializeComponent() {
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelOpen = new System.Windows.Forms.Label();
+            this.labelCell = new System.Windows.Forms.Label();
+            this.labelRefCell = new System.Windows.Forms.Label();
+            this.labelRefObject = new System.Windows.Forms.Label();
+            this.labelObject = new System.Windows.Forms.Label();
             this.buttonOpenColor = new System.Windows.Forms.Button();
             this.buttonColorCell = new System.Windows.Forms.Button();
             this.buttonFormObjColor = new System.Windows.Forms.Button();
             this.buttonRefColorCell = new System.Windows.Forms.Button();
             this.buttonRefFormObjColor = new System.Windows.Forms.Button();
             this.buttonInsMethodColor = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelMethod = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelOpen
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Цвет заимствованного файла";
+            this.labelOpen.AutoSize = true;
+            this.labelOpen.Location = new System.Drawing.Point(12, 27);
+            this.labelOpen.Name = "labelOpen";
+            this.labelOpen.Size = new System.Drawing.Size(160, 13);
+            this.labelOpen.TabIndex = 0;
+            this.labelOpen.Text = "Цвет заимствованного файла";
             // 
-            // label2
+            // labelCell
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Цвето заимствованного элемента таблицы";
+            this.labelCell.AutoSize = true;
+            this.labelCell.Location = new System.Drawing.Point(12, 56);
+            this.labelCell.Name = "labelCell";
+            this.labelCell.Size = new System.Drawing.Size(229, 13);
+            this.labelCell.TabIndex = 1;
+            this.labelCell.Text = "Цвето заимствованного элемента таблицы";
             // 
-            // label3
+            // labelRefCell
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Цвето эталонного элемента таблицы";
+            this.labelRefCell.AutoSize = true;
+            this.labelRefCell.Location = new System.Drawing.Point(12, 83);
+            this.labelRefCell.Name = "labelRefCell";
+            this.labelRefCell.Size = new System.Drawing.Size(197, 13);
+            this.labelRefCell.TabIndex = 2;
+            this.labelRefCell.Text = "Цвето эталонного элемента таблицы";
             // 
-            // label4
+            // labelRefObject
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 138);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(190, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Цвето эталонного элемента формы";
+            this.labelRefObject.AutoSize = true;
+            this.labelRefObject.Location = new System.Drawing.Point(12, 138);
+            this.labelRefObject.Name = "labelRefObject";
+            this.labelRefObject.Size = new System.Drawing.Size(190, 13);
+            this.labelRefObject.TabIndex = 4;
+            this.labelRefObject.Text = "Цвето эталонного элемента формы";
             // 
-            // label5
+            // labelObject
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 111);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Цвето заимствованного элемента формы";
+            this.labelObject.AutoSize = true;
+            this.labelObject.Location = new System.Drawing.Point(12, 111);
+            this.labelObject.Name = "labelObject";
+            this.labelObject.Size = new System.Drawing.Size(222, 13);
+            this.labelObject.TabIndex = 3;
+            this.labelObject.Text = "Цвето заимствованного элемента формы";
             // 
             // buttonOpenColor
             // 
@@ -166,14 +166,14 @@
             this.buttonInsMethodColor.TabIndex = 11;
             this.buttonInsMethodColor.UseVisualStyleBackColor = false;
             // 
-            // label6
+            // labelMethod
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 168);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(198, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Цвето заимствованных токенов кода";
+            this.labelMethod.AutoSize = true;
+            this.labelMethod.Location = new System.Drawing.Point(12, 168);
+            this.labelMethod.Name = "labelMethod";
+            this.labelMethod.Size = new System.Drawing.Size(198, 13);
+            this.labelMethod.TabIndex = 10;
+            this.labelMethod.Text = "Цвето заимствованных токенов кода";
             // 
             // SettingsColor
             // 
@@ -181,17 +181,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 192);
             this.Controls.Add(this.buttonInsMethodColor);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelMethod);
             this.Controls.Add(this.buttonRefFormObjColor);
             this.Controls.Add(this.buttonRefColorCell);
             this.Controls.Add(this.buttonFormObjColor);
             this.Controls.Add(this.buttonColorCell);
             this.Controls.Add(this.buttonOpenColor);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelRefObject);
+            this.Controls.Add(this.labelObject);
+            this.Controls.Add(this.labelRefCell);
+            this.Controls.Add(this.labelCell);
+            this.Controls.Add(this.labelOpen);
             this.Name = "SettingsColor";
             this.ShowIcon = false;
             this.Text = "Настройки цвета";
@@ -203,17 +203,17 @@
         #endregion
 
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelOpen;
+        private System.Windows.Forms.Label labelCell;
+        private System.Windows.Forms.Label labelRefCell;
+        private System.Windows.Forms.Label labelRefObject;
+        private System.Windows.Forms.Label labelObject;
         private System.Windows.Forms.Button buttonOpenColor;
         private System.Windows.Forms.Button buttonColorCell;
         private System.Windows.Forms.Button buttonFormObjColor;
         private System.Windows.Forms.Button buttonRefColorCell;
         private System.Windows.Forms.Button buttonRefFormObjColor;
         private System.Windows.Forms.Button buttonInsMethodColor;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelMethod;
     }
 }

@@ -1,2 +1,163 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Antiplagiat_Projects_VFP9._0.CDateBase" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAACAAAAAAAQCAAAAgAAAAAAgQA=</HashCode>
+      <FileName>CDateBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CLoaderDB" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAARAAAAAIAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>CLoaderDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CManager" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAEAAgBAABCCAgIQAAAAAAAAABIAAAA=</HashCode>
+      <FileName>CManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CodeView">
+    <Position X="12.25" Y="13.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAQCAAAACAAAAAQAAACAAAAAACAA=</HashCode>
+      <FileName>CodeView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CRowReport" Collapsed="true">
+    <Position X="14.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAACAAAEAAAAAAACAAQAACAAAABgAAIAQAAAAAAAAA=</HashCode>
+      <FileName>CReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CReport" Collapsed="true">
+    <Position X="13" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAIA=</HashCode>
+      <FileName>CReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CVerification" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIBAAAUCAiIAEQAAQICIABABAAAAAAQAAAABCAAAA=</HashCode>
+      <FileName>CVerification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.CVFPProject">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Antiplagiat_Projects_VFP9._0.CVFPProject.MethodContainer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CVFPProject.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAgAAAEAAAAJCAAgBAgQoQRAEIBAAAABQAAAAQQAAA=</HashCode>
+      <FileName>CVFPProject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.MainForm" Collapsed="true">
+    <Position X="2" Y="10.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>QQQAgAACAKAAIQAAAQCAUKAmAwUCAQgACGAAAIAgJAE=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.Logger">
+    <Position X="11.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAEAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.FormReport" Collapsed="true">
+    <Position X="12.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAQCAAACCAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>FormReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.FormView">
+    <Position X="5.25" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgIAACABAAAARACAAAT/AwIgAQBAgCADQQACAAE=</HashCode>
+      <FileName>FormView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.Program">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.SettingsDB" Collapsed="true">
+    <Position X="7.5" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAQICCAAAEAAACAAAAmAEIgAAACIQAAABAAAAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.SettingsColor" Collapsed="true">
+    <Position X="10" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEEAAAgACCACAAAIAASAAASCAAAIAIACAQAADQAIAAA=</HashCode>
+      <FileName>SettingsColor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.TableViewForm" Collapsed="true">
+    <Position X="7.5" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAAAAACARAFgAAACAAAAGEAAAAQAAgCARAAAAAAA=</HashCode>
+      <FileName>TableViewForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.Properties.Resources">
+    <Position X="9.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Antiplagiat_Projects_VFP9._0.Properties.Settings">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAkAgAAAAAAAAAAIAAAAQABAAAAAAAAAAAAIAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Antiplagiat_Projects_VFP9._0.SCheckElementInfo">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAIAAAAgCAAAAAAAAAAAAAAAAQAAAABAAAA=</HashCode>
+      <FileName>CVerification.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Antiplagiat_Projects_VFP9._0.SCheckCellInfo">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAEAAQAAAAiAAAAAAAAABAAAIAAAAAAABAAAA=</HashCode>
+      <FileName>CVerification.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Antiplagiat_Projects_VFP9._0.SObject">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAIAAAACAAAAAAgAAAAAAAAAAAAAAAAAAQgAAAiA=</HashCode>
+      <FileName>SForm.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Antiplagiat_Projects_VFP9._0.SForm">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAAAQAAgLAABAQAAAAAAQAIAAQAAAAAAAAAAEAgAA=</HashCode>
+      <FileName>SForm.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

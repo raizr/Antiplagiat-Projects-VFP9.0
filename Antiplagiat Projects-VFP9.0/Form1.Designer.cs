@@ -1,5 +1,5 @@
 ﻿namespace Antiplagiat_Projects_VFP9._0 {
-    partial class Form1 {
+    partial class MainForm {
         /// <summary>
         /// Обязательная переменная конструктора.
         /// </summary>
@@ -37,9 +37,9 @@
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.базаКПToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.подсветкаЭлементовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSaveToBD = new System.Windows.Forms.Button();
             this.buttonCheck = new System.Windows.Forms.Button();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextLogger = new System.Windows.Forms.RichTextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -145,15 +145,15 @@
             this.подсветкаЭлементовToolStripMenuItem.Text = "Подсветка элементов";
             this.подсветкаЭлементовToolStripMenuItem.Click += new System.EventHandler(this.подсветкаЭлементовToolStripMenuItem_Click);
             // 
-            // button2
+            // buttonSaveToBD
             // 
-            this.button2.Location = new System.Drawing.Point(11, 57);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 34);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Сохранить проект в БД";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonSaveToBD.Location = new System.Drawing.Point(11, 57);
+            this.buttonSaveToBD.Name = "buttonSaveToBD";
+            this.buttonSaveToBD.Size = new System.Drawing.Size(100, 34);
+            this.buttonSaveToBD.TabIndex = 7;
+            this.buttonSaveToBD.Text = "Сохранить проект в БД";
+            this.buttonSaveToBD.UseVisualStyleBackColor = true;
+            this.buttonSaveToBD.Click += new System.EventHandler(this.button2_Click);
             // 
             // buttonCheck
             // 
@@ -165,14 +165,14 @@
             this.buttonCheck.UseVisualStyleBackColor = true;
             this.buttonCheck.Click += new System.EventHandler(this.buttonCheck_Click);
             // 
-            // richTextBox2
+            // richTextLogger
             // 
-            this.richTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(934, 125);
-            this.richTextBox2.TabIndex = 11;
-            this.richTextBox2.Text = "";
+            this.richTextLogger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextLogger.Location = new System.Drawing.Point(0, 0);
+            this.richTextLogger.Name = "richTextLogger";
+            this.richTextLogger.Size = new System.Drawing.Size(934, 125);
+            this.richTextLogger.TabIndex = 11;
+            this.richTextLogger.Text = "";
             // 
             // statusStrip
             // 
@@ -237,7 +237,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.richTextBox2);
+            this.splitContainer2.Panel2.Controls.Add(this.richTextLogger);
             this.splitContainer2.Size = new System.Drawing.Size(934, 524);
             this.splitContainer2.SplitterDistance = 395;
             this.splitContainer2.TabIndex = 0;
@@ -265,7 +265,7 @@
             // 
             this.groupBox1.Controls.Add(this.buttonCheck);
             this.groupBox1.Controls.Add(this.buttonReportOpen);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.buttonSaveToBD);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
@@ -274,7 +274,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Инструменты";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -283,7 +283,7 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "ИПК Антиплагиат пректов Баз Данных VFP9.0";
             this.menuStrip1.ResumeLayout(false);
@@ -315,9 +315,9 @@
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSaveToBD;
         private System.Windows.Forms.Button buttonCheck;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox richTextLogger;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;

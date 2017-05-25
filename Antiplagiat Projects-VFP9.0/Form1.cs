@@ -11,10 +11,10 @@ using System.IO;
 using System.Reflection;
 
 namespace Antiplagiat_Projects_VFP9._0 {
-    public partial class Form1 : Form {
-        public Form1(CManager ptr) {
+    public partial class MainForm : Form {
+        public MainForm(CManager ptr) {
             InitializeComponent();
-            Console.SetOut(new Logger(richTextBox2));
+            Console.SetOut(new Logger(richTextLogger));
             manager = ptr;
             manager.DBase.Load();
         }
@@ -35,7 +35,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 toolStripProgressBar.Maximum = TablesFullName.Length + FormsFullName.Length;
                 manager.InspectProject.onCount += ChangeProgressBar;
                 string ProjectName = manager.OpenProject(folderBrowserDialog1.SelectedPath);
-                richTextBox2.ScrollToCaret();
+                richTextLogger.ScrollToCaret();
                 toolStripStatusLabel.Text = "Проект открыт";
                 toolStripProgressBar.Value = 0;
                 if (ProjectName == null) {
@@ -142,8 +142,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 richTextBox1.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text;
             }
         }*/
-        
 
+        /// <summary>
+        ///  Сохранение проекта в БД
+        ///    </summary>
         private void button2_Click(object sender, EventArgs e) {
             if (manager.SaveOpenProjectToBD() == 1) {
                 MessageBox.Show(this, "Для сохранения проекта необходимо открыть проект", "Ошибка",
@@ -161,11 +163,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
             toolStripProgressBar.Minimum = 0;
             toolStripProgressBar.Maximum = manager.DBase.Projects.Rows.Count;
             manager.Verificator.onCount += ChangeProgressBar;
-            /*ColumnsColor = */
             if (manager.CheckProject() == null)
                 MessageBox.Show(this, "Для начала проверки необходимо открыть проект", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            richTextBox2.ScrollToCaret();
+            richTextLogger.ScrollToCaret();
             SetColorNodes(manager.GetListFilesInfo());
             toolStripStatusLabel.Text = "Проект проверен";
             toolStripProgressBar.Value = 0;
@@ -200,7 +201,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         private void базаКПToolStripMenuItem_Click(object sender, EventArgs e) {
-            Settings form = new Settings(manager);
+            SettingsDB form = new SettingsDB(manager);
             form.Owner = this;
             form.ShowDialog();
         }

@@ -1,5 +1,5 @@
 ﻿namespace Antiplagiat_Projects_VFP9._0 {
-    partial class Settings {
+    partial class SettingsDB {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -80,7 +80,7 @@
             this.textBoxPathDBKP.Size = new System.Drawing.Size(199, 20);
             this.textBoxPathDBKP.TabIndex = 5;
             // 
-            // Settings
+            // SettingsDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,7 +91,7 @@
             this.Controls.Add(this.buttonOpenDBProjects);
             this.Controls.Add(this.dataGridViewKP);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Settings";
+            this.Name = "SettingsDB";
             this.ShowIcon = false;
             this.Text = "База курсовых проектов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);

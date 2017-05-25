@@ -100,7 +100,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Имя файла эталонного проекта</Value>
+                              <Value>Имя файла эталонного элемента</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

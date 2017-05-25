@@ -71,7 +71,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 return formTables;
             }
         }
-        private string[] columnsCaption;
+       /* private string[] columnsCaption;
         public string[] ColumnsCaption
         {
             get
@@ -87,7 +87,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 return ColumnsType;
             }
         }
-
+        */
         public List<SForm> Forms;
         public int AllObjectsCounter = 0;
         public delegate void MethodContainer();
@@ -286,6 +286,24 @@ namespace Antiplagiat_Projects_VFP9._0 {
             return 0;
         }
 
+        private void CreateSHA1Prj() {
+            hashTables = new string[tablesFullName.Length];
+            hashForms = new string[formsFullName.Length];
+            for (int i = 0; i < tablesFullName.Length; i++) {
+                FileStream stream = File.OpenRead(tablesFullName[i]);
+                byte[] hash = sha1.ComputeHash(stream);
+                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
+                hashTables[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
+                //Console.Write(HashTables[i]+"\n");
+            }
+            for (int i = 0; i < formsFullName.Length; i++) {
+                FileStream stream = File.OpenRead(formsFullName[i]);
+                byte[] hash = sha1.ComputeHash(stream);
+                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
+                hashForms[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
+            }
+        }
+        /*
         public string[] GetColumnsName(int TableIndex) {
             columnsCaption = new string[TablesTables[TableIndex].Columns.Count];
             for(int j = 0; j< TablesTables[TableIndex].Columns.Count; j++) {
@@ -304,28 +322,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
             }
             return columnsType;
         }
+        */
 
-        private void CreateSHA1Prj() {
-            hashTables = new string[tablesFullName.Length];
-            hashForms = new string[formsFullName.Length];
-            for (int i = 0; i < tablesFullName.Length; i++) {
-                FileStream stream = File.OpenRead(tablesFullName[i]);
-                byte[] hash = sha1.ComputeHash(stream);
-                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
-                hashTables[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
-                //Console.Write(HashTables[i]+"\n");
-            }
-            for (int i = 0; i < formsFullName.Length; i++) {
-                FileStream stream = File.OpenRead(formsFullName[i]);
-                byte[] hash = sha1.ComputeHash(stream);
-                //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));
-                hashForms[i] = BitConverter.ToString(hash).Replace("-", String.Empty);
-            }
-            /*Console.WriteLine("Хэши таблиц: " + hashTables.Length + " " + tablesFullName.Length);
-            Console.WriteLine("Хэши форм: " + hashForms.Length + " " + formsFullName.Length);
-            */
-        }
-
+        /*
         public string[] GetFormObjectsType(int FormTableIndex) {
             string[] ObjectsType = new string[FormTables[FormTableIndex].Rows.Count];
             for (int j = 0; j < FormTables[FormTableIndex].Rows.Count; j++) {
@@ -340,6 +339,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 ObjectsProperties[j] = FormTables[FormTableIndex].Rows[j]["Properties"].ToString();
             }
             return ObjectsProperties;
-        }
+        }*/
     }
 }
