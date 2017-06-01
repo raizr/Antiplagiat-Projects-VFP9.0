@@ -12,7 +12,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public partial class CodeView : Form {
         public CodeView() {
             InitializeComponent();
-            string[] tokens = richRefText.Text.Trim('\r').Split('\n',' ');
+            /*string[] tokens = richRefText.Text.Trim('\r').Split('\n',' ');
             richTextBoxInfo.AppendText("Имя проекта: AudioDiller\n"
                 + "Студента: Павленко Д.В.И532\n" +
                 "Название формы: post_new_zak\n"+
@@ -31,7 +31,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     richInsText.SelectionLength = token.Length;
                     richInsText.SelectionColor = Color.Red;
                 }
-            }
+            }*/
             
         }
     }

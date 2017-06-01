@@ -250,6 +250,17 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                             if (Instlist[m] == Reftlist[n] && Instlist[m].IsPlagiarism == false) {
                                                 PerForms++;
                                                 SObject obj = new SObject();
+                                                for (int t = 0; t < Instlist[m].methods.Count; t++) {
+                                                    if (Enumerable.SequenceEqual(Instlist[m].methods[t].Hash, Reftlist[n].methods[t].Hash)) {
+                                                        SMethod method = new SMethod();
+                                                        method.Method = Instlist[m].methods[t].Method;
+                                                        method.Hash = Instlist[m].methods[t].Hash;
+                                                        method.RefMethod = Reftlist[m].methods[t].Method;
+                                                        //obj.methods = new List<SMethod>();
+                                                        obj.methods = Instlist[m].methods;
+                                                        obj.methods[t] = method;
+                                                    }
+                                                }
                                                 switch (fi.Name) {
                                                     case "form":
                                                         obj = InspectProject.Forms[k].form[m];

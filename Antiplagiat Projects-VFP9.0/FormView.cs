@@ -17,7 +17,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private List<IDictionary<string, string>> RefProperties;
         private List<SObject> list;
         private List<string> RefFormList;
-        private List<List<string>> methods;
+        private List<List<SMethod>> methods;
         private List<int> RefFormIndex;
         private List<SCheckElementInfo> RefInfoList;
         private int FormIndex;
@@ -26,7 +26,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             manager = ptr;
             this.FormIndex = FormIndex;
             Properties = new List<IDictionary<string, string>>();
-            methods = new List<List<string>>();
+            methods = new List<List<SMethod>>();
             RefFormList = new List<string>();
             RefFormIndex = new List<int>();
             //Console.WriteLine("Индекс формы: " + FormIndex);
@@ -42,13 +42,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 foreach (KeyValuePair<string, string> kvp in prop) {
                     ListViewItem property = new ListViewItem(kvp.Key);
                     property.SubItems.Add(kvp.Value);
+                    property.Group = listViewProperties.Groups[0];
                     listViewProperties.Items.Add(property);
                 }
-                List<string> ObjMethods = methods[listViewObjects.SelectedIndices[0]];
-                foreach (string method in ObjMethods) {
-                    string[] str = method.Split(' ');
+                List<SMethod> ObjMethods = methods[listViewObjects.SelectedIndices[0]];
+                foreach (SMethod method in ObjMethods) {
+                    string[] str = method.Method.Trim('\r', '\n').Split(' ');
                     ListViewItem ObjMethod = new ListViewItem(str[0]);
                     ObjMethod.SubItems.Add(str[1]);
+                    ObjMethod.Group = listViewProperties.Groups[1];
                     listViewProperties.Items.Add(ObjMethod);
                 }
                 listViewRefObjects.Items.Clear();
@@ -154,11 +156,21 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private void listViewProperties_DoubleClick(object sender, EventArgs e) {
             ListView listview = (ListView)sender;
             if (listViewProperties.SelectedIndices.Count > 0) {
-                if (listview.Items[listViewProperties.SelectedIndices[0]].Text == "PROCEDURE") {
+                if (listview.Items[listViewProperties.SelectedIndices[0]].Group == 
+                    listview.Groups[1]) {
                     CodeView FormCode = new CodeView();
-                    List < string > ObjMethods = methods[listViewObjects.SelectedIndices[0]];
+                    List < SMethod > ObjMethods = methods[listViewObjects.SelectedIndices[0]];
                     //string ObjMethod = ObjMethods[0];
-                    //FormCode.richInsText.Text = ObjMethods[0];
+                    SMethod ObjMethod = ObjMethods[listViewProperties.SelectedIndices[0] -
+                        listViewProperties.Groups[0].Items.Count];
+                    string hash = "";
+                    for(int i = 0; i < ObjMethod.Hash.Count; i++) {
+                        hash += ObjMethod.Hash[i].ToString() + "\n";
+                    }
+                    FormCode.richInsText.Text = ObjMethod.Method+"\n\n"+ hash;
+                    if(ObjMethod.RefMethod != null) {
+                        FormCode.richRefText.Text = ObjMethod.RefMethod;
+                    }
                     FormCode.Show();
                 }
             }

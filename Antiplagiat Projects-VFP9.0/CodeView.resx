@@ -117,32 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richInsText.Text" xml:space="preserve">
-    <value>IF (ThisForm.Spinner1.Value &lt;= 0)
-	MESSAGEBOX("Количество товара должно быть отлично от нуля!",0+48+256,"Внимание!")
-	ThisForm.Spinner1.SetFocus()
-ELSE
-	SELECT z_tov_na_post
-	GO BOTTOM
-	INSERT INTO z_tov_na_post (z_id_tov, z_zak_numb, z_kolvo, z_cost);
-	Values(post_tov.p_id_tov, z_na_post.zak_numb, ThisForm.Spinner1.Value, post_tov.p_cost_ed*(ThisForm.Spinner1.Value))	
-	=TABLEUPDATE(.T., .T.)
-ENDIF
-
-THisForm.temp.Value = "100"
-
-ThisForm.Grid2.Refresh()</value>
-  </data>
-  <data name="richRefText.Text" xml:space="preserve">
-    <value>IF (ThisForm.Spinner1.Value &lt;= 0)
-	ThisForm.Spinner1.SetFocus()
-ELSE
-	SELECT z_tov
-	GO BOTTOM
-	INSERT INTO z_tov (z_id, z_zak, z, z_cost);
-	Values(post_tov.p_id_tov, z_na_post.zak_numb, ThisForm.Spinner1.Value, post_tov.p_cost_ed*(ThisForm.Spinner1.Value))	
-	=TABLEUPDATE(.T., .T.)
-ENDIF
-ThisForm.Grid2.Refresh()</value>
-  </data>
 </root>

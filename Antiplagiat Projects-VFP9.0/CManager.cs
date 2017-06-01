@@ -16,6 +16,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<SCheckElementInfo> CheckColumnList;
         public bool[][] EqualColumnsInfo;
         public List<SCheckCellInfo> CheckCellList;
+        private int proc = 0;
         //public List<SCheckFormInfo> CheckFormList;
         public CManager() {
             InspectProject = new CVFPProject();
@@ -36,8 +37,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 //генерация файлов (имя файла, хэш-сумма)
                 DataTable e = DBase.GenerateProjectTable(InspectProject);
                 CheckColumnList = Verificator.OpenCheck(e, DBase.Projects);
-                Console.WriteLine("Заимствованных таблиц: " + Verificator.PerOpenTables + "\n" +
-                 "Заимствованных таблиц: " + Verificator.PerOpenForms+ "\n\n");
+                Console.WriteLine("Предварительная проверка проекта:\n"+
+                                    "Заимствованных таблиц: " + Verificator.PerOpenTables + "\n" +
+                                    "Заимствованных таблиц: " + Verificator.PerOpenForms+ "\n\n");
+                proc = Convert.ToInt32((double)(Verificator.PerOpenTables + Verificator.PerOpenForms) /
+                    (InspectProject.FormsFullName.Length + InspectProject.TablesFullName.Length) * 100);
+                Console.WriteLine("Процент заимствования: " + proc + "%");
                 if (CheckColumnList != null)
                     return InspectProject.Name;
                 else
@@ -61,6 +66,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 Console.WriteLine("Проверено форм: " + InspectProject.Forms.Count + "\n" +
                     "Заимствованых объектов форм: " + Verificator.PerForms + " из "+
                     InspectProject.AllObjectsCounter+ "\n\n");
+                proc = Convert.ToInt32(((double)(Verificator.PerTablesColumns + Verificator.PerTablesCells + Verificator.PerForms) /
+                    (Verificator.AllTablesColumns + Verificator.AllTablesCells + InspectProject.AllObjectsCounter)) * 100);
+                Console.WriteLine("Процент заимствования: "+ proc+"%");
                 return EqualColumnsInfo;
             } else {
                 Console.WriteLine("Для начала проверки необходимо открыть проект...");
@@ -82,7 +90,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                 InspectProject.FormsFullName,
                                 Verificator.GetListFilesInfo(),
                                 CheckCellList,
-                                InspectProject.Forms);
+                                InspectProject.Forms,
+                                proc);
                 return Report.GetSource();
             }
         }

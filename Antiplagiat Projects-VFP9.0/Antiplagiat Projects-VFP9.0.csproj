@@ -97,6 +97,7 @@
     <Compile Include="FormView.Designer.cs">
       <DependentUpon>FormView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parser.cs" />
     <Compile Include="SettingsColor.cs">
       <SubType>Form</SubType>
     </Compile>

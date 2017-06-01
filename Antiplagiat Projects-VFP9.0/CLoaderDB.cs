@@ -33,12 +33,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
             oleDbConnection = new OleDbConnection("Provider=VFPOLEDB.1;" +
                                                  "Data Source=" + FileName);
             oleDbConnection.Open();
-            /*Console.WriteLine("ServerVersion: {0} \nDatabase: {1}",
-                              oleDbConnection.ServerVersion, oleDbConnection.DataSource);
-                              */
+
             if (oleDbConnection.State == ConnectionState.Open) {
-                //AllTables = oleDbConnection.GetSchema("Tables", new string[] { null, null, null, "TABLE" });
-                OleDbDataAdapter DataAdapter = new OleDbDataAdapter();
+                 OleDbDataAdapter DataAdapter = new OleDbDataAdapter();
                 if (FileName.Substring(FileName.Length-3, 3) == "scx") {
                     DataAdapter = new OleDbDataAdapter("select Platform, Uniqueid, Class,Baseclass, Objname, Properties, Methods from " +
                     Path.GetFileName(FileName), oleDbConnection);

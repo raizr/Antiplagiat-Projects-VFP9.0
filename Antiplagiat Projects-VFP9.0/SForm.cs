@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 using System.Data;
 
 namespace Antiplagiat_Projects_VFP9._0 {
+    public struct SMethod {
+        public string Method;
+        public List<int> Hash;
+        public string RefMethod;
+    }
+
     public struct SObject {
         public bool IsPlagiarism;
         public string RefFormFullName;
@@ -13,7 +19,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public string objname;
         public Dictionary<string,string> properties;
         public int RefObjectIndex;
-        public List<string> methods;
+        public List<SMethod> methods;
 
         public static bool operator ==(SObject A, SObject B) {
             return (/*A.classname == B.classname &&*/

@@ -19,7 +19,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
             if (dataGridViewKP.DataSource != null)
                 ((DataTable)dataGridViewKP.DataSource).Clear();
             dataGridViewKP.DataSource = manager.DBase.Load();
-            
         }
 
         private CManager manager;

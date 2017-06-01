@@ -23,15 +23,14 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeView));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richInsText = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.richRefText = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.richTextBoxInfo = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,7 +99,7 @@
             this.richInsText.Name = "richInsText";
             this.richInsText.Size = new System.Drawing.Size(399, 256);
             this.richInsText.TabIndex = 0;
-            this.richInsText.Text = resources.GetString("richInsText.Text");
+            this.richInsText.Text = "";
             // 
             // groupBox2
             // 
@@ -120,15 +119,7 @@
             this.richRefText.Name = "richRefText";
             this.richRefText.Size = new System.Drawing.Size(385, 256);
             this.richRefText.TabIndex = 0;
-            this.richRefText.Text = resources.GetString("richRefText.Text");
-            // 
-            // richTextBoxInfo
-            // 
-            this.richTextBoxInfo.Location = new System.Drawing.Point(0, 24);
-            this.richTextBoxInfo.Name = "richTextBoxInfo";
-            this.richTextBoxInfo.Size = new System.Drawing.Size(800, 77);
-            this.richTextBoxInfo.TabIndex = 0;
-            this.richTextBoxInfo.Text = "";
+            this.richRefText.Text = "";
             // 
             // label1
             // 
@@ -138,6 +129,14 @@
             this.label1.Size = new System.Drawing.Size(170, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Данный метод заимствован из:";
+            // 
+            // richTextBoxInfo
+            // 
+            this.richTextBoxInfo.Location = new System.Drawing.Point(0, 24);
+            this.richTextBoxInfo.Name = "richTextBoxInfo";
+            this.richTextBoxInfo.Size = new System.Drawing.Size(800, 77);
+            this.richTextBoxInfo.TabIndex = 0;
+            this.richTextBoxInfo.Text = "";
             // 
             // CodeView
             // 

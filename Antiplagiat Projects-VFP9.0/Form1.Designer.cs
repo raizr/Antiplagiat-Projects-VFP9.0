@@ -23,11 +23,11 @@
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Файлы таблиц");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Файлы форм");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Имя проекта", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Файлы таблиц");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Файлы форм");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Имя проекта", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.treeViewProject = new System.Windows.Forms.TreeView();
@@ -79,14 +79,14 @@
             this.treeViewProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewProject.Location = new System.Drawing.Point(0, 0);
             this.treeViewProject.Name = "treeViewProject";
-            treeNode4.Name = "Tables";
-            treeNode4.Text = "Файлы таблиц";
-            treeNode5.Name = "Forms";
-            treeNode5.Text = "Файлы форм";
-            treeNode6.Name = "Узел0";
-            treeNode6.Text = "Имя проекта";
+            treeNode1.Name = "Tables";
+            treeNode1.Text = "Файлы таблиц";
+            treeNode2.Name = "Forms";
+            treeNode2.Text = "Файлы форм";
+            treeNode3.Name = "Узел0";
+            treeNode3.Text = "Имя проекта";
             this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode3});
             this.treeViewProject.ShowNodeToolTips = true;
             this.treeViewProject.Size = new System.Drawing.Size(232, 524);
             this.treeViewProject.TabIndex = 2;
@@ -147,7 +147,7 @@
             // 
             // buttonSaveToBD
             // 
-            this.buttonSaveToBD.Location = new System.Drawing.Point(11, 57);
+            this.buttonSaveToBD.Location = new System.Drawing.Point(11, 65);
             this.buttonSaveToBD.Name = "buttonSaveToBD";
             this.buttonSaveToBD.Size = new System.Drawing.Size(100, 34);
             this.buttonSaveToBD.TabIndex = 7;
@@ -159,7 +159,7 @@
             // 
             this.buttonCheck.Location = new System.Drawing.Point(11, 19);
             this.buttonCheck.Name = "buttonCheck";
-            this.buttonCheck.Size = new System.Drawing.Size(100, 23);
+            this.buttonCheck.Size = new System.Drawing.Size(100, 40);
             this.buttonCheck.TabIndex = 10;
             this.buttonCheck.Text = "Проверить проект";
             this.buttonCheck.UseVisualStyleBackColor = true;

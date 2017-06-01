@@ -92,8 +92,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public int AllObjectsCounter = 0;
         public delegate void MethodContainer();
         public event MethodContainer onCount = delegate { };
+        private Parser parser;
         public CVFPProject() {
             Forms = new List<SForm>();
+            parser = new Parser();
         }
         
         public void Open(string Path) {
@@ -175,25 +177,35 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 obj.classname = FormTable.Rows[j]["baseclass"].ToString(); // имя класса
                 obj.objname = FormTable.Rows[j]["objname"].ToString(); // имя объекта
                 string methods = FormTable.Rows[j]["methods"].ToString(); // методы объекта
-                obj.methods = new List<string>();
-                string[] strMethods = methods.Split('\n');
+                obj.methods = new List<SMethod>();
+                string[] strMethods = methods.Trim('\r').Split('\n');
                 string MethodList = "";
-                
                 for (int k = 0; k < strMethods.Length; k++) {
                     strMethods[k] = strMethods[k].Trim('\r');
                     string[] method = strMethods[k].Split(' ');
                     for (int i = 0; i < method.Length; i++) {
+                        
+                        //Console.Write("("+method[i]+")");
                         if(method[i] != "ENDPROC") {
-                            MethodList += method[i]+" ";
+                            MethodList += method[i]+
+                                "("+ parser.Find(method[i]) +") ";
                         } else {
                             MethodList += method[i];
-                            obj.methods.Add(MethodList);
+                            SMethod sMeth = new SMethod();
+                            sMeth.Method = MethodList;
+                            sMeth.Hash = new List<int>();
+                            sMeth.Hash.AddRange(parser.InsHashWord);
+                            Console.WriteLine("Кол-во: " + sMeth.Hash.Count + "\n");
+                            obj.methods.Add(sMeth);
                             MethodList = "";
+                            parser.InsHashWord.Clear();
                         }
                     }
                     MethodList += "\n";
                 }
-                    //obj.methods = 
+                //obj.methods(parser.GetHashWord());
+                //Console.WriteLine(parser.InsHashWord.Count);
+                //obj.methods = 
                 string properties = FormTable.Rows[j]["properties"].ToString(); //свойства
                 //преобразование свойства из строки в пары (свойство - значение свойства)
                 // разделение одной строки свойств на строки с одним свойством
