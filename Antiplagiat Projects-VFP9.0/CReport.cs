@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data;
 using System.Reflection;
 
 namespace Antiplagiat_Projects_VFP9._0 {
@@ -63,14 +64,14 @@ namespace Antiplagiat_Projects_VFP9._0 {
         public List<CRowReport> RowsReport = new List<CRowReport>();
 
         public CReport(string NameProject,
-                       string[] TablesName,
+                       List<string> TablesName,
                        string[] FormsName,
                        List<SCheckElementInfo> FilesInfo,
                        List<SCheckCellInfo> ListCellInfo, List<SForm> Forms,
                        int proc) {
             List<SCheckElementInfo> FindTable = FilesInfo.FindAll(x => x.Type == 'R' || x.Type == 'C');
             if (FindTable.Count > 0) {
-                for (int i = 0; i < TablesName.Length; i++) {
+                for (int i = 0; i < TablesName.Count; i++) {
                     CRowReport row = new CRowReport(Path.GetFileNameWithoutExtension(NameProject),
                                                     Path.GetFileNameWithoutExtension(TablesName[i]),
                                                     FindTable[i].StudentName,

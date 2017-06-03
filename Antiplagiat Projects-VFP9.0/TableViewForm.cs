@@ -70,7 +70,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     if(RefCellInfo[i].rowIndex >= 0) {
                         dataGridView.Rows[RefCellInfo[i].rowIndex].
                         Cells[RefCellInfo[i].ColumnIndex].
-                        Style.BackColor = Color.Red;
+                        Style.BackColor = Properties.Settings.Default.ColorCell;
                         dataGridView.Rows[RefCellInfo[i].rowIndex].
                             Cells[RefCellInfo[i].ColumnIndex].ToolTipText =
                             RefCellInfo[i].StudentName + "\n" +
@@ -78,7 +78,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             Path.GetFileNameWithoutExtension(RefCellInfo[i].FileName);
                     }else {
                         dataGridView.Columns[RefCellInfo[i].ColumnIndex].
-                            HeaderCell.Style.BackColor = Color.Red;
+                            HeaderCell.Style.BackColor = Properties.Settings.Default.ColorCell;
                         dataGridView.Columns[RefCellInfo[i].ColumnIndex].ToolTipText =
                             RefCellInfo[i].StudentName + "\n" +
                             Path.GetFileNameWithoutExtension(RefCellInfo[i].ProjectName) + "\n" +
@@ -102,9 +102,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                                    HeaderCell.Style.BackColor = Color.White;
                 //устанавливаем цвет заимствованного column в эталонной таблице
                 dataGridViewRef.Columns[cellinfo.RefColumnIndex].
-                                    HeaderCell.Style.BackColor = Color.Gray;
-                    // запоминаем закрашенный column
-                    RColumnIndex = e.ColumnIndex;
+                                    HeaderCell.Style.BackColor = Properties.Settings.Default.RefColorCell;
+                // запоминаем закрашенный column
+                RColumnIndex = e.ColumnIndex;
                     richTextBoxRefInfo.Text = "Имя проекта: " + Path.GetFileNameWithoutExtension(cellinfo.ProjectName) + "\n" +
                         "Студента: " + cellinfo.StudentName + "\n" +
                         "Название формы:" + Path.GetFileNameWithoutExtension(cellinfo.FileName);

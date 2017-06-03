@@ -52,36 +52,36 @@
             this.labelCell.AutoSize = true;
             this.labelCell.Location = new System.Drawing.Point(12, 56);
             this.labelCell.Name = "labelCell";
-            this.labelCell.Size = new System.Drawing.Size(229, 13);
+            this.labelCell.Size = new System.Drawing.Size(223, 13);
             this.labelCell.TabIndex = 1;
-            this.labelCell.Text = "Цвето заимствованного элемента таблицы";
+            this.labelCell.Text = "Цвет заимствованного элемента таблицы";
             // 
             // labelRefCell
             // 
             this.labelRefCell.AutoSize = true;
             this.labelRefCell.Location = new System.Drawing.Point(12, 83);
             this.labelRefCell.Name = "labelRefCell";
-            this.labelRefCell.Size = new System.Drawing.Size(197, 13);
+            this.labelRefCell.Size = new System.Drawing.Size(191, 13);
             this.labelRefCell.TabIndex = 2;
-            this.labelRefCell.Text = "Цвето эталонного элемента таблицы";
+            this.labelRefCell.Text = "Цвет эталонного элемента таблицы";
             // 
             // labelRefObject
             // 
             this.labelRefObject.AutoSize = true;
             this.labelRefObject.Location = new System.Drawing.Point(12, 138);
             this.labelRefObject.Name = "labelRefObject";
-            this.labelRefObject.Size = new System.Drawing.Size(190, 13);
+            this.labelRefObject.Size = new System.Drawing.Size(184, 13);
             this.labelRefObject.TabIndex = 4;
-            this.labelRefObject.Text = "Цвето эталонного элемента формы";
+            this.labelRefObject.Text = "Цвет эталонного элемента формы";
             // 
             // labelObject
             // 
             this.labelObject.AutoSize = true;
             this.labelObject.Location = new System.Drawing.Point(12, 111);
             this.labelObject.Name = "labelObject";
-            this.labelObject.Size = new System.Drawing.Size(222, 13);
+            this.labelObject.Size = new System.Drawing.Size(216, 13);
             this.labelObject.TabIndex = 3;
-            this.labelObject.Text = "Цвето заимствованного элемента формы";
+            this.labelObject.Text = "Цвет заимствованного элемента формы";
             // 
             // buttonOpenColor
             // 
@@ -165,15 +165,16 @@
             this.buttonInsMethodColor.Size = new System.Drawing.Size(18, 18);
             this.buttonInsMethodColor.TabIndex = 11;
             this.buttonInsMethodColor.UseVisualStyleBackColor = false;
+            this.buttonInsMethodColor.Click += new System.EventHandler(this.buttonInsMethodColor_Click);
             // 
             // labelMethod
             // 
             this.labelMethod.AutoSize = true;
             this.labelMethod.Location = new System.Drawing.Point(12, 168);
             this.labelMethod.Name = "labelMethod";
-            this.labelMethod.Size = new System.Drawing.Size(198, 13);
+            this.labelMethod.Size = new System.Drawing.Size(192, 13);
             this.labelMethod.TabIndex = 10;
-            this.labelMethod.Text = "Цвето заимствованных токенов кода";
+            this.labelMethod.Text = "Цвет заимствованных токенов кода";
             // 
             // SettingsColor
             // 

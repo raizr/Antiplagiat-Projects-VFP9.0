@@ -13,8 +13,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
     public class CVFPProject {
 
         public string Name;
-        private string[] tablesFullName;
-        public string[] TablesFullName
+        private List<string> tablesFullName;
+        public List<string> TablesFullName
         {
             set
             {
@@ -55,8 +55,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
             }
         }
         private CLoaderDB loaderDb = new CLoaderDB();
-        private DataTable[] tablesTables;
-        public DataTable[] TablesTables
+        private List<DataTable> tablesTables;
+        public List<DataTable> TablesTables
         {
             get
             {
@@ -71,23 +71,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 return formTables;
             }
         }
-       /* private string[] columnsCaption;
-        public string[] ColumnsCaption
-        {
-            get
-            {
-                return columnsCaption;
-            }
-        }
-        private string[] columnsType;
-        public string[] ColumnsType
-        {
-            get
-            {
-                return ColumnsType;
-            }
-        }
-        */
         public List<SForm> Forms;
         public int AllObjectsCounter = 0;
         public delegate void MethodContainer();
@@ -95,6 +78,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
         private Parser parser;
         public CVFPProject() {
             Forms = new List<SForm>();
+            tablesFullName = new List<string>();
             parser = new Parser();
         }
         
@@ -106,13 +90,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
             string[] NameProject = Directory.GetFiles(Path, "*.pjx",
                                                      SearchOption.AllDirectories);
             Name = NameProject[0];
-            tablesFullName = TablesFullName;
+            tablesFullName.AddRange(TablesFullName);
             formsFullName = FormsFullName;
-            tablesTables = new DataTable[tablesFullName.Length];
+            tablesTables = new List<DataTable>();
             formTables = new DataTable[formsFullName.Length];
             Forms.Clear();
             AllObjectsCounter = 0;
-            for (int i = 0; i < tablesFullName.Length; i++) {
+            for (int i = 0; i < tablesFullName.Count; i++) {
                 OpenTable(i);
                 onCount();
             }
@@ -124,13 +108,13 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         public void Open(string[] TablesFullName, string[] FormsFullName) {
-            tablesFullName = TablesFullName;
+            tablesFullName.AddRange(TablesFullName);
             formsFullName = FormsFullName;
-            tablesTables = new DataTable[tablesFullName.Length];
+            tablesTables = new List<DataTable>();
             formTables = new DataTable[formsFullName.Length];
             Forms.Clear();
             AllObjectsCounter = 0;
-            for (int i = 0; i< tablesFullName.Length; i++) {
+            for (int i = 0; i< tablesFullName.Count; i++) {
                 OpenTable(i);
                 onCount();
             }
@@ -147,29 +131,29 @@ namespace Antiplagiat_Projects_VFP9._0 {
             string[] NameProject = Directory.GetFiles(Path, "*.pjx",
                                                      SearchOption.AllDirectories);
             Name = NameProject[0];
-            tablesFullName = TablesFullName;
-            tablesTables = new DataTable[tablesFullName.Length];
-            for (int i = 0; i < tablesFullName.Length; i++) {
+            tablesFullName.AddRange(TablesFullName);
+            tablesTables = new List<DataTable>();
+            int count = tablesFullName.Count;
+            for (int i = 0; i < count; i++) {
                 OpenTable(i);
             }
             return 0;
         }
 
-        public DataTable OpenTable(int i) {
-            //string DirectoryName = Path.GetDirectoryName(tablesFullName[0]);
-            TablesTables[i] = loaderDb.OpenDB(tablesFullName[i]);
-            return TablesTables[i];
+        public void OpenTable(int i) {
+            DataTable LoadTable = loaderDb.OpenDB(tablesFullName[i]);
+            if (LoadTable != null)
+                tablesTables.Add(LoadTable);
+            else {
+                tablesFullName.RemoveAt(i);
+                OpenTable(i);
+            }
+                
         }
         private SForm FormOpen(string formsFullName, DataTable FormTable) {
             SForm form = new SForm();
             form.Name = formsFullName;
-            form.form = new List<SObject>(); form.commandbutton = new List<SObject>();
-            form.header = new List<SObject>(); form.textbox = new List<SObject>();
-            form.grid = new List<SObject>(); form.label = new List<SObject>();
-            form.pageframe = new List<SObject>(); form.editbox = new List<SObject>();
-            form.spinner = new List<SObject>(); form.optiongroup = new List<SObject>();
-            form.checkbox = new List<SObject>(); form.combobox = new List<SObject>();
-            form.listbox = new List<SObject>();
+            form.Objects = new List<SObject>();
             for (int j = 0; j < FormTable.Rows.Count; j++) {
                 SObject obj = new SObject();
                 // получение полей формы
@@ -195,7 +179,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             sMeth.Method = MethodList;
                             sMeth.Hash = new List<int>();
                             sMeth.Hash.AddRange(parser.InsHashWord);
-                            Console.WriteLine("Кол-во: " + sMeth.Hash.Count + "\n");
+                            //Console.WriteLine("Кол-во: " + sMeth.Hash.Count + "\n");
                             obj.methods.Add(sMeth);
                             MethodList = "";
                             parser.InsHashWord.Clear();
@@ -221,49 +205,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 }
                 if (obj.classname.Length > 0 && obj.objname.Length > 0 &&
                     obj.properties.Count > 0) {
-                    
                     // запись в структуру объекта формы в зависимости от класса объекта
-                    switch (obj.classname) {
-                        case "form":
-                            form.form.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "commandbutton":
-                            form.commandbutton.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "header":
-                            form.header.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "textbox":
-                            form.textbox.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "grid":
-                            form.grid.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "label":
-                            form.label.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "pageframe":
-                            form.pageframe.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "editbox":
-                            form.editbox.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "spinner":
-                            form.spinner.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "optiongroup":
-                            form.optiongroup.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "checkbox":
-                            form.checkbox.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "combobox":
-                            form.combobox.Add(obj); AllObjectsCounter++;
-                            break;
-                        case "listbox":
-                            form.listbox.Add(obj); AllObjectsCounter++;
-                            break;
-                    }
+                    form.Objects.Add(obj); AllObjectsCounter++;     
                 }
             }
             return form;
@@ -299,9 +242,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
         }
 
         private void CreateSHA1Prj() {
-            hashTables = new string[tablesFullName.Length];
+            hashTables = new string[tablesFullName.Count];
             hashForms = new string[formsFullName.Length];
-            for (int i = 0; i < tablesFullName.Length; i++) {
+            for (int i = 0; i < tablesFullName.Count; i++) {
                 FileStream stream = File.OpenRead(tablesFullName[i]);
                 byte[] hash = sha1.ComputeHash(stream);
                 //Console.Write(BitConverter.ToString(hash).Replace("-", String.Empty));

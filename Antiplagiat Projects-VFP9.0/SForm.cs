@@ -36,19 +36,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
     public struct SForm {
         public string Name;
-        public List<SObject> form;
-        public List<SObject> commandbutton;
-        public List<SObject> header;
-        public List<SObject> textbox;
-        public List<SObject> grid;
-        public List<SObject> label;
-        public List<SObject> pageframe;
-        public List<SObject> editbox;
-        public List<SObject> spinner;
-        public List<SObject> optiongroup;
-        public List<SObject> checkbox;
-        public List<SObject> combobox;
-        public List<SObject> listbox;
+        public List<SObject> Objects;
         /*public static bool operator ==(SForm A, SForm B) {
             return (A.Name == B.Name &&
             new HashSet<SObject>(A.form, new SObjectEqualityComparer()).SetEquals(B.form) &&

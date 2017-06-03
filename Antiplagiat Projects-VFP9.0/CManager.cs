@@ -39,9 +39,9 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 CheckColumnList = Verificator.OpenCheck(e, DBase.Projects);
                 Console.WriteLine("Предварительная проверка проекта:\n"+
                                     "Заимствованных таблиц: " + Verificator.PerOpenTables + "\n" +
-                                    "Заимствованных таблиц: " + Verificator.PerOpenForms+ "\n\n");
+                                    "Заимствованных форм: " + Verificator.PerOpenForms+ "\n\n");
                 proc = Convert.ToInt32((double)(Verificator.PerOpenTables + Verificator.PerOpenForms) /
-                    (InspectProject.FormsFullName.Length + InspectProject.TablesFullName.Length) * 100);
+                    (InspectProject.FormsFullName.Length + InspectProject.TablesFullName.Count) * 100);
                 Console.WriteLine("Процент заимствования: " + proc + "%");
                 if (CheckColumnList != null)
                     return InspectProject.Name;
@@ -54,7 +54,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             if (InspectProject.Name != null) {
                 Console.WriteLine("Проверка проекта начата...");
                 EqualColumnsInfo = Verificator.CheckTables(InspectProject, DBase.Projects);
-                Console.WriteLine("Проверено таблиц: " + InspectProject.TablesTables.Length + "\n" +
+                Console.WriteLine("Проверено таблиц: " + InspectProject.TablesTables.Count + "\n" +
                     "Заимствованых полей в таблицах: "+Verificator.PerTablesColumns+" из "+
                     Verificator.AllTablesColumns + "\n"+
                     "Заимствованых записей в таблицах: " + Verificator.PerTablesCells + " из " +

@@ -59,8 +59,8 @@ namespace Antiplagiat_Projects_VFP9._0 {
                             treeViewProject.Nodes[0].Nodes[1].Nodes.Add(FormsName[i].ToString());
                         }
                         treeViewProject.Nodes[0].Expand();
-                        treeViewProject.Nodes[0].Nodes[0].Expand();
                         treeViewProject.Nodes[0].Nodes[1].Expand();
+                        treeViewProject.Nodes[0].Nodes[0].Expand();
                         SetColorNodes(manager.CheckColumnList);
                     }
                 }
@@ -75,12 +75,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
             if(OpenInfo != null) {
                 for (int i = 0; i < OpenInfo.Count; i++) {
                     if (OpenInfo[i].Type == 'R' || OpenInfo[i].Type == 'C') {
-                        treeViewProject.Nodes[0].Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[0].Nodes[0].Nodes[OpenInfo[i].EqualNum].BackColor = Properties.Settings.Default.OpenColor;
                         treeViewProject.Nodes[0].Nodes[0].Nodes[OpenInfo[i].EqualNum].ToolTipText =
                             OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
                             "\n" + OpenInfo[i].FileName;
                     } else {
-                        treeViewProject.Nodes[0].Nodes[1].Nodes[OpenInfo[i].EqualNum].BackColor = Color.Red;
+                        treeViewProject.Nodes[0].Nodes[1].Nodes[OpenInfo[i].EqualNum].BackColor = Properties.Settings.Default.OpenColor;
                         treeViewProject.Nodes[0].Nodes[1].Nodes[OpenInfo[i].EqualNum].ToolTipText =
                             OpenInfo[i].StudentName + "\n" + Path.GetFileNameWithoutExtension(OpenInfo[i].ProjectName) +
                             "\n" + OpenInfo[i].FileName;
@@ -136,13 +136,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 ShowView(e.Node, true);
             }
         }
-
-        /*private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
-            if (listView1.SelectedIndices.Count > 0) {
-                richTextBox1.Text = listView1.Items[listView1.SelectedIndices[0]].SubItems[1].Text;
-            }
-        }*/
-
         /// <summary>
         ///  Сохранение проекта в БД
         ///    </summary>
@@ -152,12 +145,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        /*private void button3_Click(object sender, EventArgs e) {
-            dataGridView1.DataSource = manager.DBase.GetProject(0);
-            
-        }*/
-
         private void buttonCheck_Click(object sender, EventArgs e) {
             toolStripStatusLabel.Text = "Проверка проекта";
             toolStripProgressBar.Minimum = 0;
@@ -170,12 +157,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
             SetColorNodes(manager.GetListFilesInfo());
             toolStripStatusLabel.Text = "Проект проверен";
             toolStripProgressBar.Value = 0;
-            /*for(int i = 0; i< ColumnsColor.Length;i++) {
-                for(int j = 0; j < ColumnsColor.Length; j++) {
-                    if(ColumnsColor[i][j] == true)
-                        Console.WriteLine("true");
-                }
-            }*/
         }
 
         private void treeViewProject_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {

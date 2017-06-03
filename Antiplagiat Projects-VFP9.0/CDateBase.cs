@@ -7,7 +7,6 @@ using System.Data;
 using System.IO;
 namespace Antiplagiat_Projects_VFP9._0 {
     public class CDateBase {
-
         public DataTable Projects; // таблица всех проектов
         private DataTable FilesProjectHash; // таблиц файлов одного проекта с их хэшами
         public CDateBase() {
@@ -79,7 +78,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             DataRow newRow;
             FilesProjectHash.Clear();
             // Сохранение путей файлов таблиц и их хэшей
-            for (int i = 0; i < project.TablesFullName.Length; i++) {
+            for (int i = 0; i < project.TablesFullName.Count; i++) {
                 newRow = FilesProjectHash.NewRow();
                 newRow["FileName"] = Path.GetFileName(project.TablesFullName[i]); 
                 newRow["Hash"] = project.HashTables[i];
@@ -98,7 +97,6 @@ namespace Antiplagiat_Projects_VFP9._0 {
 
         public void SaveProject(CVFPProject project, string path) {
             DataRow newRow;
-            Console.WriteLine(path);
             if (CheckProject(path)) {
                 FilesProjectHash.Clear();
                 newRow = Projects.NewRow();
@@ -107,7 +105,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 Projects.Rows.Add(newRow);
                 
                 // Сохранение путей файлов таблиц и их хэшей
-                for (int i = 0; i < project.TablesFullName.Length; i++) {
+                for (int i = 0; i < project.TablesFullName.Count; i++) {
                     newRow = FilesProjectHash.NewRow();
                     newRow["FileName"] = Path.GetFileName(project.TablesFullName[i]);
                     newRow["Hash"] = project.HashTables[i];

@@ -13,15 +13,15 @@ namespace Antiplagiat_Projects_VFP9._0 {
             keywords = new List<string>();
             InsHashWord = new List<int>();
             keywords.AddRange(File.ReadAllLines("keywords"));
-            Console.WriteLine(keywords[0]);
-            Console.WriteLine(keywords.Count);
+            /*Console.WriteLine(keywords[0]);
+            Console.WriteLine(keywords.Count);*/
         }
 
         public string Find(string find) {
             int index = keywords.FindIndex(x => x == find);
             if( index >= 0) {
                 InsHashWord.Add(index);
-                Console.Write("; H: " + index+" ("+find+")");
+                //Console.Write("; H: " + index+" ("+find+")");
                 return index.ToString();
             }else {
                 return "";

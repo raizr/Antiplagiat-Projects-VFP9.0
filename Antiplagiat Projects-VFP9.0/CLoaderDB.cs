@@ -37,7 +37,7 @@ namespace Antiplagiat_Projects_VFP9._0 {
             if (oleDbConnection.State == ConnectionState.Open) {
                  OleDbDataAdapter DataAdapter = new OleDbDataAdapter();
                 if (FileName.Substring(FileName.Length-3, 3) == "scx") {
-                    DataAdapter = new OleDbDataAdapter("select Platform, Uniqueid, Class,Baseclass, Objname, Properties, Methods from " +
+                    DataAdapter = new OleDbDataAdapter("select Baseclass, Objname, Properties, Methods from " +
                     Path.GetFileName(FileName), oleDbConnection);
                 } else {
                     DataAdapter = new OleDbDataAdapter("select * from " +
@@ -46,7 +46,10 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 DataSet ds = new DataSet();
                 DataAdapter.Fill(ds);
                 oleDbConnection.Close();
-                return ds.Tables[0];
+                if (ds.Tables[0].Columns[0].Caption == "uniqueid")
+                    return null;
+                else
+                    return ds.Tables[0];
             } else {
                 return null;
             }

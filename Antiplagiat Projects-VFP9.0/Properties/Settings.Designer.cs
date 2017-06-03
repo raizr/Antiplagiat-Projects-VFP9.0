@@ -94,5 +94,17 @@ namespace Antiplagiat_Projects_VFP9._0.Properties {
                 this["RefFormObjColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color TokenColor {
+            get {
+                return ((global::System.Drawing.Color)(this["TokenColor"]));
+            }
+            set {
+                this["TokenColor"] = value;
+            }
+        }
     }
 }

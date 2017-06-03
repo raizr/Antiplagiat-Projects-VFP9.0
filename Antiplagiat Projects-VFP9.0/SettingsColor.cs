@@ -53,5 +53,12 @@ namespace Antiplagiat_Projects_VFP9._0 {
                 Properties.Settings.Default.Save();
             }
         }
+
+        private void buttonInsMethodColor_Click(object sender, EventArgs e) {
+            if (colorDialog.ShowDialog() == DialogResult.OK) {
+                buttonRefFormObjColor.BackColor = Properties.Settings.Default.TokenColor = colorDialog.Color;
+                Properties.Settings.Default.Save();
+            }
+        }
     }
 }
